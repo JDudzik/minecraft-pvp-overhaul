@@ -1,0 +1,14 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "pvpcontrols:locator",
+      "category": "Nature"
+    },
+    "components": {
+      "minecraft:icon": "pvpcontrols:locator",
+      "minecraft:use_animation": "eat",
+      "minecraft:render_offsets": "apple"
+    }
+  }
+}

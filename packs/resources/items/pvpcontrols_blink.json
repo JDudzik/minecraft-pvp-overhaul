@@ -1,0 +1,14 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "pvpcontrols:blink",
+      "category": "Nature"
+    },
+    "components": {
+      "minecraft:icon": "pvpcontrols:blink",
+      "minecraft:use_animation": "eat",
+      "minecraft:render_offsets": "apple"
+    }
+  }
+}

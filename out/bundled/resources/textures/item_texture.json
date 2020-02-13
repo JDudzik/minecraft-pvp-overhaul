@@ -1,0 +1,24 @@
+{
+  "resource_pack_name": "pvpcontrols",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "pvpcontrols:arrow_rain": {
+      "textures": "textures/items/pvpcontrols_arrow_rain"
+    },
+    "pvpcontrols:blink": {
+      "textures": "textures/items/pvpcontrols_blink"
+    },
+    "pvpcontrols:coin_tablet": {
+      "textures": "textures/items/pvpcontrols_coin_tablet"
+    },
+    "pvpcontrols:balloonify": {
+      "textures": "textures/items/pvpcontrols_balloonify"
+    },
+    "pvpcontrols:locator": {
+      "textures": "textures/items/pvpcontrols_locator"
+    },
+    "pvpcontrols:zombie_squad": {
+      "textures": "textures/items/pvpcontrols_zombie_squad"
+    }
+  }
+}

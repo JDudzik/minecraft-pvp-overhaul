@@ -1,0 +1,14 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "pvpcontrols:arrow_rain",
+      "category": "Nature"
+    },
+    "components": {
+      "minecraft:icon": "pvpcontrols:arrow_rain",
+      "minecraft:use_animation": "eat",
+      "minecraft:render_offsets": "apple"
+    }
+  }
+}
