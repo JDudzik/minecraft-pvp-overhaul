@@ -17,8 +17,14 @@
     "pvpcontrols:locator": {
       "textures": "textures/items/pvpcontrols_locator"
     },
-    "pvpcontrols:zombie_squad": {
-      "textures": "textures/items/pvpcontrols_zombie_squad"
+    "pvpcontrols:mob_squad": {
+      "textures": "textures/items/pvpcontrols_mob_squad"
+    },
+    "pvpcontrols:locate_home_point": {
+      "textures": "textures/items/pvpcontrols_locate_home_point"
+    },
+    "pvpcontrols:save_home_point": {
+      "textures": "textures/items/pvpcontrols_save_home_point"
     }
   }
 }

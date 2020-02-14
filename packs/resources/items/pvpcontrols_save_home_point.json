@@ -2,11 +2,11 @@
   "format_version": "1.10",
   "minecraft:item": {
     "description": {
-      "identifier": "pvpcontrols:zombie_squad",
+      "identifier": "pvpcontrols:save_home_point",
       "category": "Nature"
     },
     "components": {
-      "minecraft:icon": "pvpcontrols:zombie_squad",
+      "minecraft:icon": "pvpcontrols:save_home_point",
       "minecraft:use_animation": "eat",
       "minecraft:render_offsets": "apple"
     }

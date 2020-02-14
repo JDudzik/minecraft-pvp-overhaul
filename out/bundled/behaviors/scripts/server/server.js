@@ -106,24 +106,35 @@ emit;exports.default = _default;
 var _uidTranslations = _interopRequireDefault(require("../helpers/uidTranslations"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}const system = server.registerSystem(0, 0);
 
 
-const getPlayerName = playerData => system.getComponent(playerData, "minecraft:nameable").data.name;
 const getEntityTitle = entity => _uidTranslations.default.uidToName[entity.__identifier__] || undefined;
-const getEntityValue = entity => _uidTranslations.default.uidToValue[entity.__identifier__] || 0;var _default =
+const getEntityValue = entity => _uidTranslations.default.uidToValue[entity.__identifier__] || 0;
+
+
+const getPlayerName = playerData => system.getComponent(playerData, "minecraft:nameable").data.name;
+const getPosition = entity => getComponent(entity, 'minecraft:position').data;
+const getComponent = (entity, component) => system.getComponent(entity, component);var _default =
+
 
 
 {
-  getPlayerName,
   getEntityTitle,
-  getEntityValue };exports.default = _default;
+  getEntityValue,
 
-},{"../helpers/uidTranslations":7}],5:[function(require,module,exports){
+  getPosition,
+  getPlayerName,
+  getComponent };exports.default = _default;
+
+},{"../helpers/uidTranslations":8}],5:[function(require,module,exports){
 "use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 var _log = _interopRequireDefault(require("./log"));
 var _delay = _interopRequireDefault(require("./delay"));
+var _storage = _interopRequireDefault(require("./storage"));
+var _entities = _interopRequireDefault(require("./entities"));
 var _commands = _interopRequireDefault(require("./commands"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}const system = server.registerSystem(0, 0);
 const cmd = _commands.default.cmd;
 
 const tagsToIgnore = `tag=!in_safe_zone,tag=!no_pvp_player`;
+
 
 function arrow_rain(name, stack, entity) {
   cmd(_commands.default.execAs(name, `testfor @a[rm=2,r=75,c=5,${tagsToIgnore}]`), params => {
@@ -135,6 +146,7 @@ function arrow_rain(name, stack, entity) {
 
     if (!params.success) {
       _commands.default.giveItem(name, 'pvpcontrols:arrow_rain');
+      _commands.default.msgPlayer(name, `§cThere are no players in range!`);
     }
   });
 }
@@ -153,7 +165,7 @@ function arrowVolley(playerName) {
 
 
 function blink(name, stack, entity, dist = 20) {
-  _commands.default.tpAs(name, '^', '^1', `^${dist}`, true, params => {
+  _commands.default.tpAs(name, '^', '^2', `^${dist}`, true, params => {
     const newDist = dist - 10;
     if (!params.success && newDist > 0) {
       blink(name, undefined, undefined, newDist);
@@ -167,6 +179,7 @@ function blink(name, stack, entity, dist = 20) {
 
 function coin_tablet(name, stack, entity) {
   _commands.default.addMoney(name, 500);
+  _commands.default.msgPlayer(name, `§a+§e500 Coins`);
 }
 
 
@@ -190,7 +203,47 @@ function locator(name, stack, entity) {
 }
 
 
-function zombie_squad(name, stack, entity) {(0, _log.default)(name, stack, entity);}var _default =
+function mob_squad(name, stack, entity) {
+  // commands.msgPlayer(name, `§cThis item is not implemented yet!`);
+  // cmd(`scoreboard objectives list`, (params) => {
+  //   log(params.object.data.statusMessage);
+  // });
+
+
+  _commands.default.giveItem(name, `pvpcontrols:mob_squad`);
+
+  // storage.dangerouslyDeleteEntireDataTag(entity);
+
+}
+
+
+function save_home_point(name, stack, entity) {
+  _commands.default.giveItem(name, `pvpcontrols:save_home_point`);
+
+  const playerCoords = _entities.default.getPosition(entity);
+  const dataTag = _storage.default.getDataTag(entity);
+  if (!dataTag.homePosition) {dataTag.homePosition = {};}
+  dataTag.homePosition.x = playerCoords.x;
+  dataTag.homePosition.y = playerCoords.y;
+  dataTag.homePosition.z = playerCoords.z;
+  _storage.default.updateDataTag(entity, dataTag);
+  _commands.default.msgPlayer(name, `§aYour home point has been saved!`);
+}
+
+
+function locate_home_point(name, stack, entity) {
+  _commands.default.giveItem(name, `pvpcontrols:locate_home_point`);
+  const coords = _storage.default.getDataTag(entity).homePosition;
+
+  if (!coords) {
+    _commands.default.msgPlayer(name, `§cYou don't have a home location, yet! §rBuy a §aSave Home Point §ritem from the shop to set one.`);
+  }
+  if (coords) {
+    cmd(_commands.default.execAs(name, `tp ~~~ facing ${coords.x} ${coords.y} ${coords.z}`));
+  }
+}var _default =
+
+
 
 
 
@@ -215,11 +268,19 @@ function zombie_squad(name, stack, entity) {(0, _log.default)(name, stack, entit
     action: locator,
     disabled_in_safe_zone: true },
 
-  'pvpcontrols:zombie_squad': {
-    action: zombie_squad,
+  'pvpcontrols:mob_squad': {
+    action: mob_squad,
+    disabled_in_safe_zone: true },
+
+  'pvpcontrols:locate_home_point': {
+    action: locate_home_point,
+    disabled_in_safe_zone: true },
+
+  'pvpcontrols:save_home_point': {
+    action: save_home_point,
     disabled_in_safe_zone: true } };exports.default = _default;
 
-},{"./commands":1,"./delay":2,"./log":6}],6:[function(require,module,exports){
+},{"./commands":1,"./delay":2,"./entities":4,"./log":6,"./storage":7}],6:[function(require,module,exports){
 "use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 var _emit = _interopRequireDefault(require("./emit"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}const system = server.registerSystem(0, 0);
 
@@ -258,6 +319,65 @@ const log = function (...items) {
 log;exports.default = _default;
 
 },{"./emit":3}],7:[function(require,module,exports){
+"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;const system = server.registerSystem(0, 0);
+// import log from './log';
+
+
+function getDataTag(entity) {
+  const entityTags = system.getComponent(entity, "minecraft:tag");
+  const index = getIndexOfDataTag(entityTags.data);
+
+  if (index !== -1) {
+    return JSON.parse(entityTags.data[index]) || {};
+  } else {
+    return {};
+  }
+}
+
+function updateDataTag(entity, newData) {
+  let entityTags = system.getComponent(entity, "minecraft:tag");
+  const index = getIndexOfDataTag(entityTags.data);
+  const stringedData = JSON.stringify(newData);
+
+  if (index !== -1) {
+    entityTags.data.splice(index, 1, stringedData);
+  } else {
+    entityTags.data.push(stringedData);
+  }
+
+  system.applyComponentChanges(entity, entityTags);
+}
+
+function dangerouslyDeleteEntireDataTag(entity) {
+  let entityTags = system.getComponent(entity, "minecraft:tag");
+  const index = getIndexOfDataTag(entityTags.data);
+
+  if (index !== -1) {
+    entityTags.data.splice(index, 1);
+  }
+
+  system.applyComponentChanges(entity, entityTags);
+}
+
+
+
+//////////////////////
+// Internal Methods //
+//////////////////////
+
+
+
+const getIndexOfDataTag = tagArray => tagArray.findIndex(tag => tag[0] === "{") || -1;var _default =
+
+
+
+
+{
+  getDataTag,
+  updateDataTag,
+  dangerouslyDeleteEntireDataTag };exports.default = _default;
+
+},{}],8:[function(require,module,exports){
 "use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;const uidToName = {
   // Neutrals
   'minecraft:pig': 'pig',
@@ -310,7 +430,7 @@ const uidToValue = {
 
 { uidToName, uidToValue };exports.default = _default;
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 "use strict";
 var _emit = _interopRequireDefault(require("../helpers/emit"));
 var _log = _interopRequireDefault(require("../helpers/log"));
@@ -455,4 +575,4 @@ function moneyAboveNegatives(playerName) {
   });
 }
 
-},{"../helpers/commands":1,"../helpers/delay":2,"../helpers/emit":3,"../helpers/entities":4,"../helpers/item_functions":5,"../helpers/log":6}]},{},[8]);
+},{"../helpers/commands":1,"../helpers/delay":2,"../helpers/emit":3,"../helpers/entities":4,"../helpers/item_functions":5,"../helpers/log":6}]},{},[9]);

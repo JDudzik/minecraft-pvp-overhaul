@@ -2,7 +2,7 @@
   "format_version": "1.10",
   "minecraft:item": {
     "description": {
-      "identifier": "pvpcontrols:point"
+      "identifier": "pvpcontrols:mob_squad"
     },
     "components": {
       "minecraft:hand_equipped": false,

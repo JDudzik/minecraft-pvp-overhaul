@@ -1,10 +1,13 @@
 const system = server.registerSystem(0, 0);
 import log from './log';
 import delay from './delay';
+import storage from './storage';
+import entities from './entities';
 import commands from './commands';
 const cmd = commands.cmd;
 
 const tagsToIgnore = `tag=!in_safe_zone,tag=!no_pvp_player`;
+
 
 function arrow_rain(name, stack, entity) {
   cmd(commands.execAs(name, `testfor @a[rm=2,r=75,c=5,${tagsToIgnore}]`), (params) => {
@@ -16,6 +19,7 @@ function arrow_rain(name, stack, entity) {
 
     if (!params.success) {
       commands.giveItem(name, 'pvpcontrols:arrow_rain');
+      commands.msgPlayer(name, `§cThere are no players in range!`);
     }
   })
 }
@@ -34,7 +38,7 @@ function arrowVolley(playerName) {
 
 
 function blink(name, stack, entity, dist = 20) {
-  commands.tpAs(name, '^', '^1', `^${dist}`, true, (params) => {
+  commands.tpAs(name, '^', '^2', `^${dist}`, true, (params) => {
     const newDist = dist - 10;
     if (!params.success && newDist > 0 ) {
       blink(name, undefined, undefined, newDist);
@@ -48,6 +52,7 @@ function blink(name, stack, entity, dist = 20) {
 
 function coin_tablet(name, stack, entity) {
   commands.addMoney(name, 500);
+  commands.msgPlayer(name, `§a+§e500 Coins`);
 }
 
 
@@ -71,7 +76,47 @@ function locator(name, stack, entity) {
 }
 
 
-function zombie_squad(name, stack, entity) { log(name, stack, entity); }
+function mob_squad(name, stack, entity) {
+  // commands.msgPlayer(name, `§cThis item is not implemented yet!`);
+  // cmd(`scoreboard objectives list`, (params) => {
+  //   log(params.object.data.statusMessage);
+  // });
+
+
+  commands.giveItem(name, `pvpcontrols:mob_squad`);
+
+  // storage.dangerouslyDeleteEntireDataTag(entity);
+
+}
+
+
+function save_home_point(name, stack, entity) {
+  commands.giveItem(name, `pvpcontrols:save_home_point`);
+
+  const playerCoords = entities.getPosition(entity);
+  const dataTag = storage.getDataTag(entity);
+  if (!dataTag.homePosition) { dataTag.homePosition = {}; }
+  dataTag.homePosition.x = playerCoords.x;
+  dataTag.homePosition.y = playerCoords.y;
+  dataTag.homePosition.z = playerCoords.z;
+  storage.updateDataTag(entity, dataTag);
+  commands.msgPlayer(name, `§aYour home point has been saved!`);
+}
+
+
+function locate_home_point(name, stack, entity) {
+  commands.giveItem(name, `pvpcontrols:locate_home_point`);
+  const coords = storage.getDataTag(entity).homePosition;
+
+  if (!coords) {
+    commands.msgPlayer(name, `§cYou don't have a home location, yet! §rBuy a §aSave Home Point §ritem from the shop to set one.`);
+  }
+  if (coords) {
+    cmd(commands.execAs(name, `tp ~~~ facing ${coords.x} ${coords.y} ${coords.z}`));
+  }
+}
+
+
 
 
 
@@ -96,8 +141,16 @@ export default {
     action: locator,
     disabled_in_safe_zone: true,
   },
-  'pvpcontrols:zombie_squad': {
-    action: zombie_squad,
+  'pvpcontrols:mob_squad': {
+    action: mob_squad,
+    disabled_in_safe_zone: true,
+  },
+  'pvpcontrols:locate_home_point': {
+    action: locate_home_point,
+    disabled_in_safe_zone: true,
+  },
+  'pvpcontrols:save_home_point': {
+    action: save_home_point,
     disabled_in_safe_zone: true,
   },
 }

@@ -2,11 +2,11 @@
   "format_version": "1.10",
   "minecraft:item": {
     "description": {
-      "identifier": "pvpcontrols:ballonify",
+      "identifier": "pvpcontrols:locate_home_point",
       "category": "Nature"
     },
     "components": {
-      "minecraft:icon": "pvpcontrols:ballonify",
+      "minecraft:icon": "pvpcontrols:locate_home_point",
       "minecraft:use_animation": "eat",
       "minecraft:render_offsets": "apple"
     }
