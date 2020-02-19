@@ -1,9 +1,10 @@
 {
-  "format_version": 1,
+  "format_version": 2,
   "header": {
     "name": "PvP Controls Behaviors",
     "description": "Functions and tools for a dedicated PvP server",
     "uuid": "cc819388-49a3-4990-a200-e67c44dd0f2c",
+    "min_engine_version": [1, 14, 1],
     "version": [
       1,
       0,
@@ -19,6 +20,16 @@
         1,
         0,
         6
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "6e202be4-ba41-4a9b-91ec-04eae0524b5c",
+      "version": [
+        1,
+        0,
+        5
       ]
     }
   ]

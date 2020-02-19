@@ -8,7 +8,7 @@ const remMoney = (playerName, amount, callback) => cmd(`scoreboard players remov
 const testMoney = (playerName, min, max, callback) => cmd(`scoreboard players test @a[name="${playerName}"] money ${min} ${max}`, callback);
 
 // Items
-const giveItem = (playerName, item, amount, id, callback) => cmd(`give @a[name="${playerName}"] ${item} ${amount || 1} ${id || 0}`, callback);
+const giveItem = (playerName, item, quantity, id, callback) => cmd(`give @a[name="${playerName}"] ${item} ${quantity || 1} ${id || 0}`, callback);
 
 // Messaging
 const msgPlayer = (playerName, message, callback) => msgTarget(`@a[name="${playerName}"]`, message, callback);
@@ -24,7 +24,7 @@ const cmd = (command, callback) => system.executeCommand(`/${command}`, (params)
 
 
 const cmdCallback = (params, callback) => callback
-  ? callback({success: !params.data.statusCode, object: params})
+  ? callback({success: !params.data.statusCode, message: params.data.statusMessage, object: params})
   : () => null;
 
 

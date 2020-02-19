@@ -1,10 +1,15 @@
 const system = server.registerSystem(0, 0);
-import emit from '../helpers/emit';
 import log from '../helpers/log';
 import delay from '../helpers/delay';
 import commands from '../helpers/commands';
 import entities from '../helpers/entities';
-import item_functions from '../helpers/item_functions';
+import storage from '../helpers/storage';
+import item_functions from '../functionality/item_functions';
+import shopping from '../functionality/shopping';
+import bans from '../functionality/bans';
+import tag_commands from '../functionality/tag_commands';
+import global_storage from '../helpers/global_storage';
+import {moneyAboveNegatives, numberWithCommas, emit, printBlockCoords} from '../helpers/misc';
 
 const cmd = commands.cmd;
 
@@ -16,11 +21,16 @@ system.initialize = function () {
 
 	// Set up any events you wish to listen to
 	system.listenForEvent('minecraft:entity_death', e => onEntityDeath(e));
-	system.listenForEvent('minecraft:piston_moved_block', e => onPistonMovedBlock(e));
 	system.listenForEvent('minecraft:entity_use_item', e => onUsedItem(e));
+	system.listenForEvent('minecraft:entity_created', e => onEntityCreated(e));
+	system.listenForEvent('minecraft:piston_moved_block', e => onPistonMovedBlock(e));
+	system.listenForEvent('minecraft:player_destroyed_block', e => onDestroyedBlock(e));
+	system.listenForEvent('minecraft:block_interacted_with', e => onBlockInteractedWith(e));
+
+
 
 	// Enable full logging, useful for seeing errors, you will probably want to disable this for
-	// release v/ersions of your scripts.
+	// release versions of your scripts.
 	// Generally speaking it's not recommended to use broadcastEvent in initialize, but for configuring logging it's fine.
 	const scriptLoggerConfig = system.createEventData("minecraft:script_logger_config");
 	scriptLoggerConfig.data.log_errors = true;
@@ -40,10 +50,20 @@ system.update = function() {
 		delay.checkActions(currTick);
 	}
 
-	// if (currTick % 20 === 0) { // Every 1 second
-	// 	// checkRevivedPlayers();
-	// }
+	if (currTick % 30 === 0) { // Every 1.5 seconds
+		tag_commands.watchCommandEntity();
+		global_storage.watchGlobalDataEntity();
+	}
+}
 
+
+
+function onEntityCreated(params) {
+	const entity = params.data.entity;
+	if (entity.__identifier__ === 'minecraft:player') {
+		const playerName = entities.getPlayerName(entity);
+		bans.checkAndEnforceBan(playerName);
+	}
 }
 
 
@@ -73,13 +93,23 @@ function onUsedItem(itemParams) {
 }
 
 
+const disabledBlocks = ["Trapped Chest"];
 function onPistonMovedBlock(params) {
 	const movedCoords = params.data.block_position;
 
 	cmd(`testforblock ${movedCoords.x} ${movedCoords.y} ${movedCoords.z} chest`, (params) => {
-		if (params.success) {
-				cmd(`setblock ${movedCoords.x} ${movedCoords.y} ${movedCoords.z} air 0`);
-				commands.msgTarget(`@a`, `§aReminder: §fMoving chests with pistons is disabled`);
+		let removeMovedBlock = false;
+
+		if (!params.success) {
+				const movedBlock = params.message.match(/\sis\s(.+?)\s\(expected:/)[1];
+				if (disabledBlocks.includes(movedBlock)) {
+					removeMovedBlock = true;
+				}
+		}
+
+		if (removeMovedBlock || params.success) {
+			cmd(`setblock ${movedCoords.x} ${movedCoords.y} ${movedCoords.z} air 0`);
+			commands.msgTarget(`@a`, `§aReminder: §fMoving chests with pistons is disabled`);
 		}
 	});
 
@@ -106,13 +136,40 @@ function onEntityDeath(params) {
 		if (deadEntityIsPlayer && killer && killer.__identifier__ === 'minecraft:player') {
 				const deadPlayerName = entities.getPlayerName(deadEntity);
 				const killerName = entities.getPlayerName(killer);
-				commands.msgPlayer(killerName, `§aYou have killed §l${deadPlayerName}§r§a! §rYou have gained §e$5,000 Coins`);
-				commands.addMoney(killerName, entityValue);
 
-				delay.create(50, () => {
-					commands.msgPlayer(deadPlayerName, `§cYou have been killed by §l${killerName}§r§c! §fYou have lost §e7,500 Coins`);
-					commands.remMoney(deadPlayerName, entityValue*1.5);
-					moneyAboveNegatives(deadPlayerName);
+				let penaltyValue = 5500;
+				let penaltyMessage = `§cYou have been killed by §l${killerName}§r§c! §fYou have lost §e${numberWithCommas(penaltyValue)} Coins`;
+				let rewardValue = 5000;
+				let rewardMessage = `§aYou have killed §l${deadPlayerName}§r§a! §rYou have gained §e${numberWithCommas(rewardValue)} Coins`;
+				commands.testMoney(deadPlayerName, 5000, '*', (params) => {
+					// if (params.success) {
+				  //   No need to do anything, just use the defaults if the value check was a success!
+					// }
+					if (!params.success) {
+						const deadPlayerMoney = params.message.match(/Score\s(.+?)\sis\sNOT\sin\srange/)[1];
+						log(deadPlayerMoney);
+
+						if (deadPlayerMoney < 1000) {
+							penaltyValue = deadPlayerMoney;
+							penaltyMessage = `§cYou have been killed by §l${killerName}§r§c! §fYou have lost §e${numberWithCommas(penaltyValue)} Coins`;
+							rewardValue = deadPlayerMoney;
+							rewardMessage = `§aYou have killed an impoverished player! §rYou have only gained §e${numberWithCommas(rewardValue)} Coins`;
+						} else if (deadPlayerMoney < 5000) {
+							penaltyValue = 1200;
+							penaltyMessage = `§cYou have been killed by §l${killerName}§r§c! §fYou have lost §e${numberWithCommas(penaltyValue)} Coins`;
+							rewardValue = 1000;
+							rewardMessage = `§aYou have killed an impoverished player! §rYou have only gained §e${numberWithCommas(rewardValue)} Coins`;
+						}
+					}
+
+					delay.create(50, () => {
+						commands.msgPlayer(deadPlayerName, penaltyMessage);
+						commands.remMoney(deadPlayerName, penaltyValue);
+						moneyAboveNegatives(deadPlayerName);
+					});
+
+					commands.msgPlayer(killerName, rewardMessage);
+					commands.addMoney(killerName, rewardValue);
 				});
 		}
 
@@ -120,13 +177,11 @@ function onEntityDeath(params) {
 		if (deadEntityIsPlayer) {
 			  if (!killer || killer.__identifier__ !== 'minecraft:player') {
 						const deadPlayerName = entities.getPlayerName(deadEntity);
+						const penaltyValue = 1000;
 
 						delay.create(50, () => {
-							commands.msgPlayer(deadPlayerName, "§cYou have died! §fYou have lost §e1,000 Coins")
-							commands.remMoney(deadPlayerName, entityValue/5);
-							commands.remMoney(deadPlayerName, entityValue/5);
-							commands.remMoney(deadPlayerName, entityValue/5);
-							commands.remMoney(deadPlayerName, entityValue/5);
+							commands.msgPlayer(deadPlayerName, `§cYou have died! §fYou have lost §e${numberWithCommas(penaltyValue)} Coins`)
+							commands.remMoney(deadPlayerName, penaltyValue);
 							moneyAboveNegatives(deadPlayerName);
 						})
 				}
@@ -134,10 +189,37 @@ function onEntityDeath(params) {
 }
 
 
-function moneyAboveNegatives(playerName) {
-	commands.testMoney(playerName, '*', '-1', (params) => {
-		if (params.success) {
-			commands.setMoney(playerName, 0);
-		}
+function onBlockInteractedWith(params) {
+	const printedBlockCoords = printBlockCoords(params);
+	if (printedBlockCoords) {return false;}
+
+	shopping.validateAndUseKiosk(params);
+}
+
+
+const blocksToRecord = ['minecraft:tnt', 'minecraft:diamond_ore', 'minecraft:dragon_egg'];
+function onDestroyedBlock(params) {
+	const entity = params.data.player;
+	const position = params.data.block_position;
+	const blockIdentifier = params.data.block_identifier;
+
+	if (blocksToRecord.includes(blockIdentifier)) {
+		addToBlockHistory(entity, position, blockIdentifier, 'destroyed');
+	}
+}
+function addToBlockHistory(entity, position, blockIdentifier, action) {
+	const playerName = entities.getPlayerName(entity);
+  const dataTag = storage.getDataTag(entity);
+  if (!dataTag.blockHistory) { dataTag.blockHistory = []; }
+
+	dataTag.blockHistory.push({
+		time: Date.now(),
+		action: action,
+		x: position.x,
+		y: position.y,
+		z: position.z,
+		block: blockIdentifier,
 	});
+
+  storage.updateDataTag(entity, dataTag);
 }

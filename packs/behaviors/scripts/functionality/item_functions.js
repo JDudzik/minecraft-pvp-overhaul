@@ -1,9 +1,9 @@
 const system = server.registerSystem(0, 0);
-import log from './log';
-import delay from './delay';
-import storage from './storage';
-import entities from './entities';
-import commands from './commands';
+import log from '../helpers/log';
+import delay from '../helpers/delay';
+import storage from '../helpers/storage';
+import entities from '../helpers/entities';
+import commands from '../helpers/commands';
 const cmd = commands.cmd;
 
 const tagsToIgnore = `tag=!in_safe_zone,tag=!no_pvp_player`;
@@ -77,15 +77,12 @@ function locator(name, stack, entity) {
 
 
 function mob_squad(name, stack, entity) {
-  // commands.msgPlayer(name, `§cThis item is not implemented yet!`);
-  // cmd(`scoreboard objectives list`, (params) => {
-  //   log(params.object.data.statusMessage);
-  // });
-
+  commands.msgPlayer(name, `§cThis item is not implemented yet!`);
+  cmd(`scoreboard objectives list`, (params) => {
+    log(params.object.data.statusMessage);
+  });
 
   commands.giveItem(name, `pvpcontrols:mob_squad`);
-
-  // storage.dangerouslyDeleteEntireDataTag(entity);
 
 }
 
@@ -96,9 +93,9 @@ function save_home_point(name, stack, entity) {
   const playerCoords = entities.getPosition(entity);
   const dataTag = storage.getDataTag(entity);
   if (!dataTag.homePosition) { dataTag.homePosition = {}; }
-  dataTag.homePosition.x = playerCoords.x;
-  dataTag.homePosition.y = playerCoords.y;
-  dataTag.homePosition.z = playerCoords.z;
+  dataTag.homePosition.x = Math.floor(playerCoords.x);
+  dataTag.homePosition.y = Math.floor(playerCoords.y);
+  dataTag.homePosition.z = Math.floor(playerCoords.z);
   storage.updateDataTag(entity, dataTag);
   commands.msgPlayer(name, `§aYour home point has been saved!`);
 }
@@ -114,6 +111,15 @@ function locate_home_point(name, stack, entity) {
   if (coords) {
     cmd(commands.execAs(name, `tp ~~~ facing ${coords.x} ${coords.y} ${coords.z}`));
   }
+}
+
+
+function ender_pearl(name, stack, entity) {
+  cmd(`execute @a[name=${name},tag=in_protected_zone] ~~~ kill @e[type=ender_pearl,r=10]`, (params) => {
+    if (params.success) {
+        commands.msgPlayer(name, `§aReminder: §fEnder Pearls are disabled in safe-zones`);
+    }
+  });
 }
 
 
@@ -153,4 +159,8 @@ export default {
     action: save_home_point,
     disabled_in_safe_zone: true,
   },
+  'minecraft:ender_pearl': {
+    action: ender_pearl,
+    disabled_in_safe_zone: false,
+  }
 }

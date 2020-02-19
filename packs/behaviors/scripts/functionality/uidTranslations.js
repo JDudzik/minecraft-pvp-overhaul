@@ -44,7 +44,6 @@ const uidToValue = {
 	'minecraft:enderman': 100,
 	'minecraft:phantom': 125,
 	'minecraft:magma_cube': 60,
-	'minecraft:player': 5000,
 }
 
 

@@ -4,10 +4,10 @@ const system = server.registerSystem(0, 0);
 let currTick = 0;
 let actions = [];
 
-function create(delayLength, callback) {
+function create(delayInTicks, callback) {
   actions.push({
     start: currTick,
-    delay: delayLength,
+    delay: delayInTicks,
     callback: callback,
     completed: false,
   });

@@ -4,6 +4,8 @@ const system = server.registerSystem(0, 0);
 
 function getDataTag(entity) {
   const entityTags = system.getComponent(entity, "minecraft:tag");
+  if (!entityTags) { return undefined; }
+
   const index = getIndexOfDataTag(entityTags.data);
 
   if (index !== -1) {

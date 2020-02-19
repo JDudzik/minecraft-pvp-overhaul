@@ -1,11 +1,7 @@
 const system = server.registerSystem(0, 0);
-import emit from './emit';
+import commands from './commands';
+import {emit} from './misc';
 
-
-/**
-* Simplifies logging
-* @param {...*} items   The variables to log
-*/
 
 const log = function(...items) {
 	const toString = item => {
