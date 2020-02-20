@@ -1,0 +1,16 @@
+As a future reference to anybody wanting to get wine-bdlauncher running on an Ubuntu 18.04 server:
+
+You may run into a few problems.
+- First off, you need to install wine. Use the instructions here: https://wiki.winehq.org/Ubuntu
+- When you run the final command to install the stable branch, you may encounter an error. Something about not being able to install a required dependency (probably wine-stable or something similar). Most likely there's a specific broken nested dependency. Try doing the steps noted in the top answer on this stack exchange question: https://askubuntu.com/questions/1164191/wine-staging-fails-to-install-on-18-04 (download the Release.key file, then run the commands to add it and add the new repo).
+Try installing wine again and hopefully that works.
+
+- After wine is installed, you need to download the latest pkg.tar.xz file from here: https://github.com/codehz/wine-bdlauncher/releases for the wine-bdlauncher
+
+- Just dump all of the contents from the Dist folder in that package into your bedrock server directory.
+From here you should be able to run wine bedrock_server_mod.exe.
+- There's a chance this will fail. If so, read the errors carefully. You may be missing a file called vcruntime140_1.dll. If so, you can download it from here: https://www.dll-files.com/vcruntime140_1.dll.html
+Drop that file into your BDS folder and try running wine again.
+- One last note, if you're running wine from the terminal as opposed to launching it normally (for example, using a headless Ubuntu install) you'll probably see a lot of garbage output along with the server's output. So far none of this looks worrisome, just annoying. I haven't tried hard enough to fix this yet, though I'm sure there's a way.
+
+Hopefully this is helpful to anyone else wanting to get wine-bdlauncher running on an Ubuntu 18.04 server!
