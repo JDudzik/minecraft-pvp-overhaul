@@ -9,6 +9,7 @@ import shopping from '../functionality/shopping';
 import bans from '../functionality/bans';
 import tag_commands from '../functionality/tag_commands';
 import global_storage from '../helpers/global_storage';
+import xray_anticheat from '../functionality/xray_anticheat';
 import {moneyAboveNegatives, numberWithCommas, emit, printBlockCoords} from '../helpers/misc';
 const cmd = commands.cmd;
 
@@ -58,11 +59,11 @@ system.update = function() {
 
 
 function onEntityCreated(params) {
-	const entity = params.data.entity;
-	if (entity.__identifier__ === 'minecraft:player') {
-		const playerName = entities.getPlayerName(entity);
-		bans.checkAndEnforceBan(playerName);
-	}
+	// const entity = params.data.entity;
+	// if (entity.__identifier__ === 'minecraft:player') {
+	// 	const playerName = entities.getPlayerName(entity);
+	// 	bans.checkAndEnforceBan(playerName);
+	// }
 }
 
 
@@ -191,7 +192,7 @@ function onEntityDeath(params) {
 
 function onBlockInteractedWith(params) {
 	const printedBlockCoords = printBlockCoords(params);
-	if (printedBlockCoords) {return false;}
+	if (printedBlockCoords) { return false; }
 
 	shopping.validateAndUseKiosk(params);
 }
@@ -205,6 +206,8 @@ function onDestroyedBlock(params) {
 
 	if (blocksToRecord.includes(blockIdentifier)) {
 		addToBlockHistory(entity, position, blockIdentifier, 'destroyed');
+
+		xray_anticheat.determineCheating(entity, blockIdentifier);
 	}
 }
 function addToBlockHistory(entity, position, blockIdentifier, action) {
