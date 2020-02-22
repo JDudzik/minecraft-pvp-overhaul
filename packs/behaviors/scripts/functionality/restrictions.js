@@ -11,7 +11,7 @@ const banDataName = 'ban_list';
 
 function add_ban(name, duration = 10, durationType = 'hours') {
   if (!name) {
-    commands.msgTarget('@a[tag=super_admin]', `§cYou did not provide a user to ban in your command`);
+    commands.msgServerTech(`§cYou did not provide a user to ban in your command`);
     return;
   }
 
@@ -34,8 +34,7 @@ function add_ban(name, duration = 10, durationType = 'hours') {
   commands.msgPlayer(name, `§4----------------------------------------------------------`);
   commands.msgPlayer(name, `§4----------------------------------------------------------`);
   delay.create(240, () => {
-    commands.cmd(`kick ${name}`);
-    log('KICKED! jk');
+    commands.cmdAsOwner(`kick ${name}`);
   });
 }
 
@@ -46,10 +45,8 @@ function checkAndEnforceBan(playerName) {
 
   if (banData) {
     const currentTime = Date.now();
-    log('has ban data');
     if (banData.ends_at > currentTime) {
-      commands.cmd(`kick ${playerName}`);
-      log('KICKED! jk');
+      commands.cmdAsOwner(`kick ${name}`);
     }
     if (banData.ends_at <= currentTime) {
       banList[playerName] = undefined;
@@ -59,6 +56,36 @@ function checkAndEnforceBan(playerName) {
 }
 
 
+function lock(playerName, reason = "N/A") {
+  commands.cmd(`tp @a[name="${playerName}"] 4000 3 3000`);
+  commands.cmd(`tag @a[name="${playerName}"] add locked_player`);
+  commands.cmd(`tag @a[name="${playerName}"] add in_safe_zone`);
+  commands.cmd(`tag @a[name="${playerName}"] add in_protected_zone`);
+  commands.msgPlayer(playerName, `§4----------------------------------------------------------`);
+  commands.msgPlayer(playerName, `§4----------------------------------------------------------`);
+  commands.msgPlayer(playerName, `§cYou have been §llocked-up§r§c! Reason: §a§l${reason}`);
+  commands.msgPlayer(playerName, `§4----------------------------------------------------------`);
+  commands.msgPlayer(playerName, `§4----------------------------------------------------------`);
+}
+
+function unlock(playerName, reason = "N/A") {
+  commands.cmd(`tag @a[name="${playerName}"] remove locked_player`);
+  commands.cmd(`tp @a[name="${playerName}"] 3000 165 3000`);
+  commands.msgPlayer(playerName, `§4----------------------------------------------------------`);
+  commands.msgPlayer(playerName, `§4----------------------------------------------------------`);
+  commands.msgPlayer(playerName, `§aYou have been §lfreed§r§a! Reason: §a§l${reason}`);
+  commands.msgPlayer(playerName, `§4----------------------------------------------------------`);
+  commands.msgPlayer(playerName, `§4----------------------------------------------------------`);
+}
+
+
+
+
+
+//////////////////////
+// Internal Methods //
+//////////////////////
+
 const toHours = days => days * 24;
 const toMinutes = hours => hours * 60;
 const toSeconds = minutes => minutes * 60;
@@ -66,7 +93,11 @@ const toMil = seconds => seconds * 1000;
 
 
 
+
+
 export default {
   add_ban,
   checkAndEnforceBan,
+  lock,
+  unlock,
 }

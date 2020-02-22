@@ -10,7 +10,6 @@ import bans from '../functionality/bans';
 import tag_commands from '../functionality/tag_commands';
 import global_storage from '../helpers/global_storage';
 import {moneyAboveNegatives, numberWithCommas, emit, printBlockCoords} from '../helpers/misc';
-
 const cmd = commands.cmd;
 
 
@@ -137,7 +136,7 @@ function onEntityDeath(params) {
 				const deadPlayerName = entities.getPlayerName(deadEntity);
 				const killerName = entities.getPlayerName(killer);
 
-				let penaltyValue = 5500;
+				let penaltyValue = 5000;
 				let penaltyMessage = `§cYou have been killed by §l${killerName}§r§c! §fYou have lost §e${numberWithCommas(penaltyValue)} Coins`;
 				let rewardValue = 5000;
 				let rewardMessage = `§aYou have killed §l${deadPlayerName}§r§a! §rYou have gained §e${numberWithCommas(rewardValue)} Coins`;
@@ -149,15 +148,16 @@ function onEntityDeath(params) {
 						const deadPlayerMoney = params.message.match(/Score\s(.+?)\sis\sNOT\sin\srange/)[1];
 						log(deadPlayerMoney);
 
+						if (deadPlayerMoney < 5000) {
+							penaltyValue = 1000;
+							penaltyMessage = `§cYou have been killed by §l${killerName}§r§c! §fYou have lost §e${numberWithCommas(penaltyValue)} Coins`;
+							rewardValue = 1000;
+							rewardMessage = `§aYou have killed an impoverished player! §rYou have only gained §e${numberWithCommas(rewardValue)} Coins`;
+						}
 						if (deadPlayerMoney < 1000) {
 							penaltyValue = deadPlayerMoney;
 							penaltyMessage = `§cYou have been killed by §l${killerName}§r§c! §fYou have lost §e${numberWithCommas(penaltyValue)} Coins`;
-							rewardValue = deadPlayerMoney;
-							rewardMessage = `§aYou have killed an impoverished player! §rYou have only gained §e${numberWithCommas(rewardValue)} Coins`;
-						} else if (deadPlayerMoney < 5000) {
-							penaltyValue = 1200;
-							penaltyMessage = `§cYou have been killed by §l${killerName}§r§c! §fYou have lost §e${numberWithCommas(penaltyValue)} Coins`;
-							rewardValue = 1000;
+							rewardValue = deadPlayerMoney >= 100 ? deadPlayerMoney : 100;
 							rewardMessage = `§aYou have killed an impoverished player! §rYou have only gained §e${numberWithCommas(rewardValue)} Coins`;
 						}
 					}

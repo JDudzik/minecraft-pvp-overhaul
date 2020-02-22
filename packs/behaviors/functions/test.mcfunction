@@ -1,1 +1,1 @@
-say it worked
+say WORKED

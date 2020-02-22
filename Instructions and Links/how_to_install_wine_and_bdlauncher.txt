@@ -1,3 +1,5 @@
+wine-bdlauncher: https://github.com/codehz/wine-bdlauncher/releases
+
 As a future reference to anybody wanting to get wine-bdlauncher running on an Ubuntu 18.04 server:
 
 You may run into a few problems.

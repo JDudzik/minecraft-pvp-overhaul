@@ -3,31 +3,44 @@ import log from '../helpers/log';
 import commands from '../helpers/commands';
 import entities from '../helpers/entities';
 import global_storage from '../helpers/global_storage';
-import bans from '../functionality/bans';
+import restrictions from '../functionality/restrictions';
 
-const masterCommandTagName = 'master_command_entity';
+const masterCommandTagName = 'mce';
 
 
 
 function say(message, message2) {
   log(message);
-  if (message2) {
-    log(message2);
-  }
+  log(message2);
 }
 
-
-function ban(name, duration, durationType = 'hours') {
-  bans.add_ban(name, duration, durationType);
+function announce(message, paddingColor, mainColor) {
+  const colors = {red: '§c', yellow: '§e', green: '§a', aqua: '§b', purple: '§d', blue: '§9'};
+  commands.msgTarget(`@a`, `${colors[paddingColor] || '§e'}----------------------------------------------------------`);
+  commands.msgTarget(`@a`, `${colors[paddingColor] || '§e'}----------------------------------------------------------`);
+  commands.msgTarget(`@a`, `${colors[mainColor] || ''}${message}`);
+  commands.msgTarget(`@a`, `${colors[paddingColor] || '§e'}----------------------------------------------------------`);
+  commands.msgTarget(`@a`, `${colors[paddingColor] || '§e'}----------------------------------------------------------`);
 }
 
+function tags(recipient, target) {
+  if (!recipient) { commands.msgServerTech(`§cYou must provide the "recipient" parameter`); }
+  commands.cmd(`tag ${target || recipient} list`, (params) => {
+    commands.msgPlayer(recipient, `§bMessage: §r${params.message}`);
+  });
+}
 
 
 
 const commandMap = {
-  say,
-  ban,
+  say: say,
+  announce: announce,
+  tags: tags,
+  ban: restrictions.add_ban,
+  lock: restrictions.lock,
+  unlock: restrictions.unlock,
 }
+
 
 
 
@@ -38,7 +51,7 @@ function watchCommandEntity() {
   		if (entity.__identifier__ === "minecraft:armor_stand") {
   			const entityTags = entities.getTags(entity);
         if (entityTags.includes(masterCommandTagName)) {
-          commands.msgTarget('@a[tag=super_admin]', `§9Found new master command entity!`);
+          commands.msgServerTech(`§9Found new master command entity!`);
           masterCommandEntity = entity;
         }
   		}
@@ -47,20 +60,20 @@ function watchCommandEntity() {
 
   if (masterCommandEntity) {
     if (!entities.hasComponent(masterCommandEntity, 'minecraft:tag')) {
-      commands.msgTarget('@a[tag=super_admin]', `§cLost master command entity!`);
+      commands.msgServerTech(`§cLost master command entity!`);
       masterCommandEntity = undefined;
       return;
     }
 
     const tagObject = entities.getComponent(masterCommandEntity, 'minecraft:tag');
-    const cmdTags = tagObject.data.map(tag => tag.split('/')).filter(tag => tag[0] === 'cmd');
+    const cmdTags = tagObject.data.filter(tag => tag[0] === '/').map(tag => tag.split('/'));
 
     if (cmdTags.length) {
       cmdTags.forEach(cmdTag => {
-        const [cmdDecla, commandName, ...parameters] = cmdTag;
+        const [empty, commandName, ...parameters] = cmdTag;
         const commandToRun = commandMap[commandName];
         if (!commandMap[commandName]) {
-          commands.msgTarget('@a[tag=super_admin]', `§cThe command §l${commandName} §r§cdoes not exist`);
+          commands.msgServerTech(`§cThe command §l${commandName} §r§cdoes not exist`);
           return;
         }
 

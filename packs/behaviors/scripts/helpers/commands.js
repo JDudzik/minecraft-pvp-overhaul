@@ -12,7 +12,9 @@ const giveItem = (playerName, item, quantity, id, callback) => cmd(`give @a[name
 
 // Messaging
 const msgPlayer = (playerName, message, callback) => msgTarget(`@a[name="${playerName}"]`, message, callback);
-const msgTarget = (target, message, callback) => cmd(`tellraw ${target} {"rawtext":[{"translate":"${message}"}]}`, callback);
+const msgServerTech = (message, callback) => msgTarget(`@a[tag="server_technician"]`, message, callback);
+const msgTarget = (target, message, callback) => cmd(`tellraw ${target} {"rawtext":[{"translate":"${message.replace(/"/gi, `'`)}"}]}`, callback);
+
 
 // Teleporting
 const tpAs = (target, x, y, z, checkBlocks, callback) => cmd(execAs(target, `tp @s ${x} ${y} ${z} ${checkBlocks || false}`), callback);
@@ -21,6 +23,12 @@ const tpAs = (target, x, y, z, checkBlocks, callback) => cmd(execAs(target, `tp 
 const nearbyPlayers = (playerName, range, maxCount, callback) => cmd(execAs(playerName, `testfor @a[rm=2,r=${range},c=${maxCount}]`), callback);
 const execAs = (target, command) => `execute @a[name="${target}"] ~~~ ${command}`;
 const cmd = (command, callback) => system.executeCommand(`/${command}`, (params) => cmdCallback(params, callback));
+const cmdAsOwner = (command) => {
+  const commandEvent = system.createEventData("minecraft:execute_command");
+  commandEvent.data.command = `/${command}`;
+  return system.broadcastEvent("minecraft:execute_command", commandEvent);
+}
+
 
 
 const cmdCallback = (params, callback) => callback
@@ -36,9 +44,11 @@ export default {
   testMoney,
   giveItem,
   msgPlayer,
+  msgServerTech,
   msgTarget,
   tpAs,
   execAs,
   cmd,
+  cmdAsOwner,
   nearbyPlayers,
 }

@@ -33,7 +33,7 @@ function watchGlobalDataEntity() {
       if (entity.__identifier__ === "minecraft:armor_stand") {
         const entityTags = entities.getTags(entity);
         if (entityTags.includes(globalDataTag)) {
-          commands.msgTarget('@a[tag=super_admin]', `§9Found new global data entity!`);
+          commands.msgServerTech(`§9Found new global data entity!`);
           globalDataEntity = entity;
         }
       }
@@ -41,7 +41,7 @@ function watchGlobalDataEntity() {
   }
   if (globalDataEntity) {
     if (!entities.hasComponent(globalDataEntity, 'minecraft:tag')) {
-      commands.msgTarget('@a[tag=super_admin]', `§cLost global data entity!`);
+      commands.msgServerTech(`§cLost global data entity!`);
       globalDataEntity = undefined;
       return;
     }
