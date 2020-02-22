@@ -6,7 +6,7 @@ import entities from '../helpers/entities';
 import storage from '../helpers/storage';
 import item_functions from '../functionality/item_functions';
 import shopping from '../functionality/shopping';
-import bans from '../functionality/bans';
+import restrictions from '../functionality/restrictions';
 import tag_commands from '../functionality/tag_commands';
 import global_storage from '../helpers/global_storage';
 import xray_anticheat from '../functionality/xray_anticheat';
@@ -62,7 +62,7 @@ function onEntityCreated(params) {
 	// const entity = params.data.entity;
 	// if (entity.__identifier__ === 'minecraft:player') {
 	// 	const playerName = entities.getPlayerName(entity);
-	// 	bans.checkAndEnforceBan(playerName);
+	// 	restrictions.checkAndEnforceBan(playerName);
 	// }
 }
 
