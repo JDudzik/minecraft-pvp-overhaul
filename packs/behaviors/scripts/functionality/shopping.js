@@ -56,10 +56,10 @@ const shopData = {
   'buy-minecart-1': {
     action: 'buy',
     slug: 'minecart',
+    data_id: 0,
     pretty_name:'Minecart',
     quantity: 1,
     price: 500,
-    data_id: 0,
   },
   'buy-chestcart-1': {
     action: 'buy',
@@ -317,6 +317,85 @@ const shopData = {
     quantity: 1,
     price: 3500,
   },
+
+  // Abilities
+  'buy-arrow_rain-1': {
+    action: 'buy',
+    slug: 'pvpcontrols:arrow_rain',
+    pretty_name: 'Arrow Rain',
+    quantity: 1,
+    price: 620,
+  },
+  'buy-balloonify-1': {
+    action: 'buy',
+    slug: 'pvpcontrols:balloonify',
+    pretty_name: 'Balloonify',
+    quantity: 1,
+    price: 620,
+  },
+  'buy-blink-8': {
+    action: 'buy',
+    slug: 'pvpcontrols:blink',
+    pretty_name: 'Blink',
+    quantity: 8,
+    price: 1240,
+  },
+  'buy-coin_tablet-1': {
+    action: 'buy',
+    slug: 'pvpcontrols:coin_tablet',
+    pretty_name: 'Coin Tablet',
+    quantity: 1,
+    price: 550,
+  },
+  'buy-locate_home-1': {
+    action: 'buy',
+    slug: 'pvpcontrols:locate_home_point',
+    pretty_name: 'Locate Home Point',
+    quantity: 1,
+    price: 186,
+  },
+  'buy-save_home-1': {
+    action: 'buy',
+    slug: 'pvpcontrols:save_home_point',
+    pretty_name: 'Save Home Point',
+    quantity: 1,
+    price: 3720,
+  },
+  'buy-locator-6': {
+    action: 'buy',
+    slug: 'pvpcontrols:locator',
+    data_id: 35,
+    pretty_name: 'Locator',
+    quantity: 6,
+    price: 3720,
+  },
+
+  // Spawn Eggs
+  'buy-stray-1': {
+    action: 'buy',
+    slug: 'spawn_egg',
+    data_id: 46,
+    pretty_name: 'Stray Egg',
+    quantity: 1,
+    price: 1240,
+  },
+  'buy-spider-1': {
+    action: 'buy',
+    slug: 'spawn_egg',
+    data_id: 35,
+    pretty_name: 'Spider Egg',
+    quantity: 1,
+    price: 372,
+  },
+  'buy-husk-3': {
+    action: 'buy',
+    slug: 'spawn_egg',
+    data_id: 47,
+    pretty_name: 'Husk Eggs',
+    quantity: 3,
+    price: 1860,
+  },
+
 
 
 

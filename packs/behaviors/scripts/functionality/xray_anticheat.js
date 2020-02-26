@@ -10,35 +10,52 @@ import {numberWithCommas} from '../helpers/misc';
 const cmd = commands.cmd;
 
 
+const timeRange = 1800000; // 30 minutes
 const watchedBlocks = {
-	'minecraft:tnt':         {alert: 10, severe: 30},
-	'minecraft:dragon_egg':  {alert: 1,  severe: 10},
-	'minecraft:diamond_ore': {alert: 5,  severe: 10},
+	'minecraft:diamond_ore': {alert: 10,  severe: 25},
 }
 
 
 function readAlerts(recipient) {
 	const xrayAlerts = global_storage.getData('xray_alerts', {});
-	Object.value(xrayAlerts).forEach((alert, index) => {
+	const alertValues = Object.values(xrayAlerts);
+	const recipientTarget = `@a[name=${recipient}]` || `@a[tag=server_technician]`;
+
+	if (!alertValues.length) {
+		commands.msgTarget(recipientTarget, `§eThere are no alerts at this time`);
+	}
+
+	alertValues.forEach((alert, index) => {
 		const datetime = new Date(alert.timestamp).toLocaleString();
-		commands.msgPlayer(recipient, `${index} - player: ${alert.player_name}, at: ${datetime}, block: ${alert.block_count}`);
-		commands.msgPlayer(recipient, `    First  = X: ${alert.first.x}, Y: ${alert.first.Y}, Z: ${alert.first.Z}`);
-		commands.msgPlayer(recipient, `    Middle = X: ${alert.middle.x}, Y: ${alert.middle.Y}, Z: ${alert.middle.Z}`);
-		commands.msgPlayer(recipient, `    Laste  = X: ${alert.last.x}, Y: ${alert.last.Y}, Z: ${alert.last.Z}`);
+		const {first, middle, last} = alert.positions;
+		commands.msgTarget(recipientTarget, `§e${index}§r - §dplayer: §r§6${alert.player_name}§r, §dat: §r§6${datetime}§r, §dblock: §r§6${alert.block_identifier}§r, §dcount: §r§6${alert.block_count}§r`);
+		commands.msgTarget(recipientTarget, `§    First      = §dXYZ: §r§6${first.x} ${first.y} ${first.z}`);
+		commands.msgTarget(recipientTarget, `§    Middle = §dXYZ: §r§6${middle.x} ${middle.y} ${middle.z}`);
+		commands.msgTarget(recipientTarget, `§    Last      = §dXYZ: §r§6${last.x} ${last.y} ${last.z}`);
 	});
+}
 
 
 function clearAlert(alertIndex) {
 	const xrayAlerts = global_storage.getData('xray_alerts', {});
-	newData.splice(alertIndex, 1);
 
-	commands.msgServerTech(`§9Deleted alert: ${alertIndex}`);
-	const newData = global_storage.updateData('xray_alerts', xrayAlerts);
+	const selectedAlert = Object.values(xrayAlerts)[alertIndex];
+
+	if (selectedAlert) {
+		const alertPlayerName = selectedAlert.player_name;
+		xrayAlerts[alertPlayerName] = undefined;
+		commands.msgServerTech(`§9Deleted alert: ${alertIndex}`);
+		global_storage.updateData('xray_alerts', xrayAlerts);
+		return;
+	}
+	else {
+		commands.msgServerTech(`§cAlert "${alertIndex}" does not exist!`);
+	}
+
 }
 
 
 function determineCheating(entity, blockIdentifier) {
-	const timeRange = 900000; // 15 minutes
 	const dataTag = storage.getDataTag(entity);
 	if (!dataTag.blockHistory) { return; }
 
@@ -48,7 +65,7 @@ function determineCheating(entity, blockIdentifier) {
 	if (importantEntries.length >= watchedBlocks[blockIdentifier].severe) {
 		const playerName = entities.getPlayerName(entity);
 
-		restrictions(playerName, `Automated cheat detection has been activated. An admin has been alerted to investigate`);
+		restrictions.lock(playerName, `Automated cheat detection has been activated. An admin has been alerted to investigate`);
 		saveAlert(playerName, importantEntries, 'severe');
 		return;
 	}
@@ -64,16 +81,22 @@ function determineCheating(entity, blockIdentifier) {
 
 function saveAlert(playerName, importantEntries, alertType) {
 	const xrayAlerts = global_storage.getData('xray_alerts', {});
-	const currentTime = Date.now();
+	const thisPlayersAlert = xrayAlerts[playerName];
 
-	const firstBlock = dataTag.blockHistory[0];
-	const middBlock = dataTag.blockHistory[Math.round(dataTag.blockHistory.length / 2)];
-	const lastBlock = dataTag.blockHistory[dataTag.blockHistory.length - 1];
-	xrayAlerts[playerName] = {
+	// If the existing report is bigger, don't update it
+	if (thisPlayersAlert && thisPlayersAlert.block_count >= importantEntries.length) {
+		return;
+	}
+
+	const firstBlock = importantEntries[0];
+	const middBlock = importantEntries[Math.floor(importantEntries.length / 2)];
+	const lastBlock = importantEntries[importantEntries.length - 1];
+	thisPlayersAlert = {
 		player_name: playerName,
 		alert_type: alertType,
 		timestamp: Date.now(),
-		block_count: dataTag.blockHistory.length;
+		block_count: importantEntries.length,
+		block_identifier: lastBlock.block,
 		positions: {
 			first:  {x: firstBlock.x, y: firstBlock.y, z: firstBlock.z},
 			middle: {x: middBlock.x,  y: middBlock.y,  z: middBlock.z},
@@ -81,8 +104,7 @@ function saveAlert(playerName, importantEntries, alertType) {
 		}
 	}
 
-	commands.msgServerTech(`§dNew X-Ray Alert - §rPlayer: ${xrayAlerts.playerName}, Block: ${lastBlock.}, Destroyed: ${xrayAlerts.block_count}, Type: ${xrayAlerts.alert_type}`);
-
+	commands.msgServerTech(`§dNew X-Ray Alert - §rPlayer: §r§6${thisPlayersAlert.player_name}§r, Count: §r§6${thisPlayersAlert.block_count}§r, Type: §r§6${thisPlayersAlert.alert_type}`);
 	global_storage.updateData('xray_alerts', xrayAlerts);
 }
 
@@ -91,4 +113,6 @@ function saveAlert(playerName, importantEntries, alertType) {
 
 export default {
 	determineCheating,
+	readAlerts,
+	clearAlert,
 }

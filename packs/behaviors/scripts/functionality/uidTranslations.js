@@ -25,6 +25,7 @@ const uidToName = {
 	'minecraft:enderman': 'enderman',
 	'minecraft:phantom': 'phantom',
 	'minecraft:magma_cube': 'magma cube',
+	'minecraft:stray': 'stray',
 }
 
 const uidToValue = {
@@ -35,7 +36,7 @@ const uidToValue = {
 	'minecraft:skeleton': 60,
 	'minecraft:creeper': 60,
 	'minecraft:spider': 60,
-	'minecraft:cave_spider': 50,
+	'minecraft:cave_spider': 45,
 	'minecraft:slime': 20,
 	'minecraft:wither_skeleton': 125,
 	'minecraft:zombie_pigman': 100,
@@ -43,7 +44,8 @@ const uidToValue = {
 	'minecraft:blaze': 125,
 	'minecraft:enderman': 100,
 	'minecraft:phantom': 125,
-	'minecraft:magma_cube': 60,
+	'minecraft:magma_cube': 50,
+	'minecraft:stray': 125,
 }
 
 

@@ -137,11 +137,10 @@ function onEntityDeath(params) {
 				const deadPlayerName = entities.getPlayerName(deadEntity);
 				const killerName = entities.getPlayerName(killer);
 
-				let penaltyValue = 5000;
-				let penaltyMessage = `§cYou have been killed by §l${killerName}§r§c! §fYou have lost §e${numberWithCommas(penaltyValue)} Coins`;
-				let rewardValue = 5000;
-				let rewardMessage = `§aYou have killed §l${deadPlayerName}§r§a! §rYou have gained §e${numberWithCommas(rewardValue)} Coins`;
-				commands.testMoney(deadPlayerName, 5000, '*', (params) => {
+				let killValue = 5000;
+				let penaltyMessage = `§cYou have been killed by §l${killerName}§r§c! §fYou have lost §e${numberWithCommas(killValue)} Coins`;
+				let rewardMessage = `§aYou have killed §l${deadPlayerName}§r§a! §rYou have gained §e${numberWithCommas(killValue)} Coins`;
+				commands.testMoney(deadPlayerName, killValue, '*', (params) => {
 					// if (params.success) {
 				  //   No need to do anything, just use the defaults if the value check was a success!
 					// }
@@ -150,27 +149,25 @@ function onEntityDeath(params) {
 						log(deadPlayerMoney);
 
 						if (deadPlayerMoney < 5000) {
-							penaltyValue = 1000;
-							penaltyMessage = `§cYou have been killed by §l${killerName}§r§c! §fYou have lost §e${numberWithCommas(penaltyValue)} Coins`;
-							rewardValue = 1000;
-							rewardMessage = `§aYou have killed an impoverished player! §rYou have only gained §e${numberWithCommas(rewardValue)} Coins`;
+							killValue = 1000;
+							penaltyMessage = `§cYou have been killed by §l${killerName}§r§c! §fYou have lost §e${numberWithCommas(killValue)} Coins`;
+							rewardMessage = `§aYou have killed an impoverished player! §rYou have only gained §e${numberWithCommas(killValue)} Coins`;
 						}
 						if (deadPlayerMoney < 1000) {
-							penaltyValue = deadPlayerMoney;
-							penaltyMessage = `§cYou have been killed by §l${killerName}§r§c! §fYou have lost §e${numberWithCommas(penaltyValue)} Coins`;
-							rewardValue = deadPlayerMoney >= 100 ? deadPlayerMoney : 100;
-							rewardMessage = `§aYou have killed an impoverished player! §rYou have only gained §e${numberWithCommas(rewardValue)} Coins`;
+							killValue = deadPlayerMoney;
+							penaltyMessage = `§cYou have been killed by §l${killerName}§r§c! §fYou have lost §e${numberWithCommas(killValue)} Coins`;
+							rewardMessage = `§aYou have killed an impoverished player! §rYou have only gained §e${numberWithCommas(killValue)} Coins`;
 						}
 					}
 
 					delay.create(50, () => {
 						commands.msgPlayer(deadPlayerName, penaltyMessage);
-						commands.remMoney(deadPlayerName, penaltyValue);
+						commands.remMoney(deadPlayerName, killValue);
 						moneyAboveNegatives(deadPlayerName);
 					});
 
 					commands.msgPlayer(killerName, rewardMessage);
-					commands.addMoney(killerName, rewardValue);
+					commands.addMoney(killerName, killValue );
 				});
 		}
 
@@ -198,7 +195,7 @@ function onBlockInteractedWith(params) {
 }
 
 
-const blocksToRecord = ['minecraft:tnt', 'minecraft:diamond_ore', 'minecraft:dragon_egg'];
+const blocksToRecord = ['minecraft:diamond_ore'];
 function onDestroyedBlock(params) {
 	const entity = params.data.player;
 	const position = params.data.block_position;

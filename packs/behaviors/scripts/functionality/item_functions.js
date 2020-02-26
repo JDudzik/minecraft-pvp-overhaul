@@ -32,7 +32,7 @@ function arrowVolley(playerName) {
     const randX = Math.random() * (maxRadius - minRadius) + minRadius;
     const randY = Math.random() * (maxRadius - minRadius) + baseHeight;
     const randZ = Math.random() * (maxRadius - minRadius) + minRadius;
-    cmd(`execute @a[name="${playerName}"] ~~~ execute @e[type=armor_stand,rm=2,r=75,c=5,${tagsToIgnore}] ~~~ summon arrow ~${randX} ~${randY} ~${randZ}`)
+    cmd(`execute @a[name="${playerName}"] ~~~ execute @a[rm=2,r=75,c=5,${tagsToIgnore}] ~~~ summon arrow ~${randX} ~${randY} ~${randZ}`)
   }
 }
 
@@ -78,18 +78,11 @@ function locator(name, stack, entity) {
 
 function mob_squad(name, stack, entity) {
   commands.msgPlayer(name, `§cThis item is not implemented yet!`);
-  cmd(`scoreboard objectives list`, (params) => {
-    log(params.object.data.statusMessage);
-  });
-
   commands.giveItem(name, `pvpcontrols:mob_squad`);
-
 }
 
 
 function save_home_point(name, stack, entity) {
-  commands.giveItem(name, `pvpcontrols:save_home_point`);
-
   const playerCoords = entities.getPosition(entity);
   const dataTag = storage.getDataTag(entity);
   if (!dataTag.homePosition) { dataTag.homePosition = {}; }

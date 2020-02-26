@@ -4,43 +4,92 @@ import commands from '../helpers/commands';
 import entities from '../helpers/entities';
 import global_storage from '../helpers/global_storage';
 import restrictions from '../functionality/restrictions';
+import xray_anticheat from '../functionality/xray_anticheat';
 
 const masterCommandTagName = 'mce';
+const colors = {red: '§c', yellow: '§e', green: '§a', aqua: '§b', purple: '§d', blue: '§9'};
 
 
-
-function say(message, message2) {
-  log(message);
-  log(message2);
+function test(recipient) {
+  if (!recipient) {
+    commands.msgServerTech('§aTest was successful');
+    return;
+  }
+  commands.msgPlayer(recipient, '§aTest was successful');
 }
+
+
+function say(recipient, message, color) {
+  commands.msgPlayer(recipient, `${colors[color] || ''}${message}`);
+}
+
 
 function announce(message, paddingColor, mainColor) {
-  const colors = {red: '§c', yellow: '§e', green: '§a', aqua: '§b', purple: '§d', blue: '§9'};
-  commands.msgTarget(`@a`, `${colors[paddingColor] || '§e'}----------------------------------------------------------`);
-  commands.msgTarget(`@a`, `${colors[paddingColor] || '§e'}----------------------------------------------------------`);
+  commands.msgTarget(`@a`, `${colors[paddingColor] || colors['yellow']}----------------------------------------------------------`);
+  commands.msgTarget(`@a`, `${colors[paddingColor] || colors['yellow']}----------------------------------------------------------`);
   commands.msgTarget(`@a`, `${colors[mainColor] || ''}${message}`);
-  commands.msgTarget(`@a`, `${colors[paddingColor] || '§e'}----------------------------------------------------------`);
-  commands.msgTarget(`@a`, `${colors[paddingColor] || '§e'}----------------------------------------------------------`);
+  commands.msgTarget(`@a`, `${colors[paddingColor] || colors['yellow']}----------------------------------------------------------`);
+  commands.msgTarget(`@a`, `${colors[paddingColor] || colors['yellow']}----------------------------------------------------------`);
 }
 
+
 function tags(recipient, target) {
-  if (!recipient) { commands.msgServerTech(`§cYou must provide the "recipient" parameter`); }
   commands.cmd(`tag ${target || recipient} list`, (params) => {
-    commands.msgPlayer(recipient, `§bMessage: §r${params.message}`);
+    const allTags = params.message.match(/.+?\shas\s\d+?\stags:\s(.+?)$/);
+    if (allTags && allTags.length >= 2) {
+      const tagArray = allTags[1].split(', ');
+      const indexOfDataTag = tagArray.findIndex(tag => tag[2] === "{") || -1;
+      if (indexOfDataTag !== -1) { tagArray.splice(indexOfDataTag, 1); }
+
+      commands.msgPlayer(recipient, `§6${target || recipient}§r tags: ${tagArray.join(',  ')}`);
+    }
+    else {
+      commands.msgPlayer(recipient, `§6${target || recipient}§r Does not have any tags, Or something broke`);
+    }
   });
 }
 
 
 
-const commandMap = {
-  say: say,
-  announce: announce,
-  tags: tags,
-  ban: restrictions.add_ban,
-  lock: restrictions.lock,
-  unlock: restrictions.unlock,
-}
 
+const commandMap = {
+  test: {
+    method: test,
+    requiredParamCount: 0,
+  },
+  say: {
+    method: say,
+    requiredParamCount: 2,
+  },
+  announce: {
+    method: announce,
+    requiredParamCount: 1,
+  },
+  tags: {
+    method: tags,
+    requiredParamCount: 1,
+  },
+  ban: {
+    method: restrictions.add_ban,
+    requiredParamCount: 1,
+  },
+  lock: {
+    method: restrictions.lock,
+    requiredParamCount: 1,
+  },
+  unlock: {
+    method: restrictions.unlock,
+    requiredParamCount: 1,
+  },
+  read_alerts: {
+    method: xray_anticheat.readAlerts,
+    requiredParamCount: 1,
+  },
+  clear_alert: {
+    method: xray_anticheat.clearAlert,
+    requiredParamCount: 1,
+  },
+}
 
 
 
@@ -77,7 +126,14 @@ function watchCommandEntity() {
           return;
         }
 
-        try { commandToRun(...parameters) } catch(error) {}
+        const isMissingRequiredParams = missingRequiredParams(parameters, commandToRun.requiredParamCount);
+        if (isMissingRequiredParams) {
+          commands.msgServerTech(`§cThe command §l${commandName} §r§cis missing required parameters.`);
+        }
+
+        if (!isMissingRequiredParams) {
+          try { commandToRun.method(...parameters) } catch(error) {}
+        }
       });
 
       tagObject.data = [masterCommandTagName];
@@ -86,6 +142,7 @@ function watchCommandEntity() {
   }
 }
 
+const missingRequiredParams = (params, requiredParamCount) => requiredParamCount && (!params || params.length < requiredParamCount);
 
 
 export default {watchCommandEntity}

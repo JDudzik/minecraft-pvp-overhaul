@@ -32,7 +32,7 @@ export function printBlockCoords(params) {
 	if (playerTags.includes('debug_block_coords')) {
 		const playerName = entities.getPlayerName(player);
 		const coords = params.data.block_position;
-		commands.msgPlayer(playerName, `x: ${coords.x}, y: ${coords.y}, z: ${coords.z}`);
+		commands.msgPlayer(playerName, `§dXYZ: §6${coords.x} ${coords.y} ${coords.z}`);
 		return true;
 	}
 

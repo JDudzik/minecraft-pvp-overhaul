@@ -10,11 +10,6 @@ const banDataName = 'ban_list';
 
 
 function add_ban(name, duration = 10, durationType = 'hours') {
-  if (!name) {
-    commands.msgServerTech(`§cYou did not provide a user to ban in your command`);
-    return;
-  }
-
   let banTimeinMilliseconds = 0;
   if (durationType === 'minutes' || durationType === 'minute') { banTimeinMilliseconds = toMil(toSeconds(duration)); }
   if (durationType === 'hours'   || durationType === 'hour' )  { banTimeinMilliseconds = toMil(toSeconds(toMinutes(duration))); }
@@ -56,26 +51,27 @@ function checkAndEnforceBan(playerName) {
 }
 
 
-function lock(playerName, reason = "N/A") {
-  commands.cmd(`tp @a[name="${playerName}"] 4000 3 3000`);
-  commands.cmd(`tag @a[name="${playerName}"] add locked_player`);
-  commands.cmd(`tag @a[name="${playerName}"] add in_safe_zone`);
-  commands.cmd(`tag @a[name="${playerName}"] add in_protected_zone`);
-  commands.msgPlayer(playerName, `§4----------------------------------------------------------`);
-  commands.msgPlayer(playerName, `§4----------------------------------------------------------`);
-  commands.msgPlayer(playerName, `§cYou have been §llocked-up§r§c! Reason: §a§l${reason}`);
-  commands.msgPlayer(playerName, `§4----------------------------------------------------------`);
-  commands.msgPlayer(playerName, `§4----------------------------------------------------------`);
+function lock(name, reason = "N/A") {
+  commands.cmd(`tp @a[name="${name}"] 4000 3 3000`);
+  commands.cmd(`tag @a[name="${name}"] add locked_player`);
+  commands.cmd(`tag @a[name="${name}"] add in_safe_zone`);
+  commands.cmd(`tag @a[name="${name}"] add in_protected_zone`);
+  commands.msgPlayer(name, `§4----------------------------------------------------------`);
+  commands.msgPlayer(name, `§4----------------------------------------------------------`);
+  commands.msgPlayer(name, `§cYou have been §llocked-up§r§c! Reason: §a§l${reason}`);
+  commands.msgPlayer(name, `§4----------------------------------------------------------`);
+  commands.msgPlayer(name, `§4----------------------------------------------------------`);
 }
 
-function unlock(playerName, reason = "N/A") {
-  commands.cmd(`tag @a[name="${playerName}"] remove locked_player`);
-  commands.cmd(`tp @a[name="${playerName}"] 3000 165 3000`);
-  commands.msgPlayer(playerName, `§4----------------------------------------------------------`);
-  commands.msgPlayer(playerName, `§4----------------------------------------------------------`);
-  commands.msgPlayer(playerName, `§aYou have been §lfreed§r§a! Reason: §a§l${reason}`);
-  commands.msgPlayer(playerName, `§4----------------------------------------------------------`);
-  commands.msgPlayer(playerName, `§4----------------------------------------------------------`);
+
+function unlock(name, reason = "N/A") {
+  commands.cmd(`tag @a[name="${name}"] remove locked_player`);
+  commands.cmd(`tp @a[name="${name}"] 3000 165 3000`);
+  commands.msgPlayer(name, `§4----------------------------------------------------------`);
+  commands.msgPlayer(name, `§4----------------------------------------------------------`);
+  commands.msgPlayer(name, `§aYou have been §lfreed§r§a! Reason: §a§l${reason}`);
+  commands.msgPlayer(name, `§4----------------------------------------------------------`);
+  commands.msgPlayer(name, `§4----------------------------------------------------------`);
 }
 
 
