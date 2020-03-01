@@ -49,7 +49,24 @@ const kioskLocations = {
   '2009,29,3402': 'buy-cooked_salmon-1',
   '2009,29,3404': 'buy-cake-1',
   '2009,29,3406': 'buy-golden_apple-1',
+
+  // Abilities
+  '2018,8,3628': 'buy-arrow_rain-1',
+  '2018,8,3626': 'buy-balloonify-1',
+  '2012,8,3628': 'buy-blink-8',
+  '2012,8,3620': 'buy-coin_tablet-1',
+  '2012,8,3624': 'buy-locate_home-1',
+  '2012,8,3626': 'buy-save_home-1',
+  '2012,8,3622': 'buy-locator-6',
+
+  // Spawn Eggs
+  '2018,8,3620': 'buy-spider-1',
+  '2018,8,3622': 'buy-husk-3',
+  '2018,8,3624': 'buy-stray-1',
 }
+
+
+
 
 const shopData = {
   // Minecart
@@ -360,6 +377,12 @@ const shopData = {
     pretty_name: 'Save Home Point',
     quantity: 1,
     price: 3720,
+    additional_items: [
+      {
+        slug: 'pvpcontrols:locate_home_point',
+        quantity: 1
+      }
+    ],
   },
   'buy-locator-6': {
     action: 'buy',
@@ -371,14 +394,6 @@ const shopData = {
   },
 
   // Spawn Eggs
-  'buy-stray-1': {
-    action: 'buy',
-    slug: 'spawn_egg',
-    data_id: 46,
-    pretty_name: 'Stray Egg',
-    quantity: 1,
-    price: 1240,
-  },
   'buy-spider-1': {
     action: 'buy',
     slug: 'spawn_egg',
@@ -395,16 +410,245 @@ const shopData = {
     quantity: 3,
     price: 1860,
   },
+  'buy-stray-1': {
+    action: 'buy',
+    slug: 'spawn_egg',
+    data_id: 46,
+    pretty_name: 'Stray Egg',
+    quantity: 1,
+    price: 1240,
+  },
+
+  // Offensive Gear
+  'buy-iron_sword-1': {
+    action: 'buy',
+    slug: 'iron_sword',
+    pretty_name: 'Iron Sword',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-diamond_sword-1': {
+    action: 'buy',
+    slug: 'diamond_sword',
+    pretty_name: 'Diamond Sword',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-crossbow-1': {
+    action: 'buy',
+    slug: 'crossbow',
+    pretty_name: 'Crossbow',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-bow-1': {
+    action: 'buy',
+    slug: 'bow',
+    pretty_name: 'Bow',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-arrow-___': {
+    action: 'buy',
+    slug: 'arrow',
+    pretty_name: 'Arrow',
+    quantity: 99999,
+    price: 0,
+  },
+  'buy-arrow_slow-_': {
+    action: 'buy',
+    slug: 'arrow',
+    pretty_name: 'Arrow of Slowness',
+    quantity: 99999,
+    price: 0,
+    data_id: 19,
+  },
+  'buy-arrow_poison-_': {
+    action: 'buy',
+    slug: 'arrow',
+    pretty_name: 'Arrow of Poison',
+    quantity: 99999,
+    price: 0,
+    data_id: 26,
+  },
+  'buy-arrow_weakness-_': {
+    action: 'buy',
+    slug: 'arrow',
+    pretty_name: 'Arrow of Weakness',
+    quantity: 99999,
+    price: 0,
+    data_id: 35,
+  },
+
+  // Defensive Gear
+  'buy-shield-1': {
+    action: 'buy',
+    slug: 'shield',
+    pretty_name: 'Shield',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-chainmail_helmet-1': {
+    action: 'buy',
+    slug: 'chainmail_helmet',
+    pretty_name: 'Chainmail Helmet',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-diamond_helmet-1': {
+    action: 'buy',
+    slug: 'diamond_helmet',
+    pretty_name: 'Diamnd Helmet',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-chainmail_chestplate-1': {
+    action: 'buy',
+    slug: 'chainmail_chestplate',
+    pretty_name: 'Chainmail Chestplate',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-diamond_chestplate-1': {
+    action: 'buy',
+    slug: 'diamond_chestplate',
+    pretty_name: 'Diamond Chestplate',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-chainmail_leggings-1': {
+    action: 'buy',
+    slug: 'chainmail_leggings',
+    pretty_name: '___',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-diamond_leggings-1': {
+    action: 'buy',
+    slug: 'diamond_leggings',
+    pretty_name: 'Diamond Leggings',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-chainmail_boots-1': {
+    action: 'buy',
+    slug: 'chainmail_boots',
+    pretty_name: 'Chainmail Boots',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-diamond_boots-1': {
+    action: 'buy',
+    slug: 'diamond_boots',
+    pretty_name: 'Diamond Boots',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-horsearmoriron-1': {
+    action: 'buy',
+    slug: 'horsearmoriron',
+    pretty_name: 'Iron Horse Armor',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-horsearmordiamond-1': {
+    action: 'buy',
+    slug: 'horsearmordiamond',
+    pretty_name: 'Diamond Horse Armor',
+    quantity: 1,
+    price: 0,
+  },
+
+  // Tools
+  'buy-iron_axe-1': {
+    action: 'buy',
+    slug: 'iron_axe',
+    pretty_name: 'Iron Axe',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-diamond_axe-1': {
+    action: 'buy',
+    slug: 'diamond_axe',
+    pretty_name: 'Diamond Axe',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-iron_pickaxe-1': {
+    action: 'buy',
+    slug: 'iron_pickaxe',
+    pretty_name: 'Iron Pickaxe',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-diamond_pickaxe-1': {
+    action: 'buy',
+    slug: 'diamond_pickaxe',
+    pretty_name: 'Diamond Pickaxe',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-iron_shovel-1': {
+    action: 'buy',
+    slug: 'iron_shovel',
+    pretty_name: 'Iron Shovel',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-diamond_shovel-1': {
+    action: 'buy',
+    slug: 'diamond_shovel',
+    pretty_name: 'Diamond Shovel',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-iron_hoe-1': {
+    action: 'buy',
+    slug: 'iron_hoe',
+    pretty_name: 'Iron Hoe',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-diamond_hoe-1': {
+    action: 'buy',
+    slug: 'diamond_hoe',
+    pretty_name: 'Diamond Hoe',
+    quantity: 1,
+    price: 0,
+  },
+
+  // Misc
+  'buy-snowball-16': {
+    action: 'buy',
+    slug: 'snowball',
+    pretty_name: 'Snowball',
+    quantity: 16,
+    price: 0,
+  },
+  'buy-elytra-1': {
+    action: 'buy',
+    slug: 'elytra',
+    pretty_name: 'Elytre',
+    quantity: 1,
+    price: 0,
+  },
+  'buy-totem-1': {
+    action: 'buy',
+    slug: 'totem',
+    pretty_name: 'Totem of Undying',
+    quantity: 1,
+    price: 0,
+  },
 
 
 
 
-  // 'buy-____-__': {
+  // 'buy-______-_____': {
   //   action: 'buy',
-  //   slug: '_____',
-  //   pretty_name: '____',
-  //   quantity: __,
-  //   price: __,
+  //   slug: '______',
+  //   pretty_name: '___',
+  //   quantity: _____,
+  //   price: 0,
   // },
 }
 
@@ -426,10 +670,13 @@ function validateAndUseKiosk(params) {
       }
 
       if (params.success) {
-        const {slug, pretty_name, quantity, data_id, price} = kioskValues;
+        const {slug, pretty_name, quantity, data_id, price, additional_items} = kioskValues;
         cmd(`playsound random.click ${playerName}`);
         commands.remMoney(playerName, price);
         commands.giveItem(playerName, slug, quantity, data_id);
+        if (additional_items && additional_items.length > 0) {
+          additional_items.forEach(item => commands.giveItem(playerName, item.slug, item.quantity, item.data_id));
+        }
         commands.msgPlayer(playerName, `§aBought §l§6${quantity} §f${pretty_name} §r§7for §l§e${numberWithCommas(price)} §r§7Coins`);
       }
     })
@@ -445,3 +692,45 @@ export default {validateAndUseKiosk}
 // §eRight-click §f/ §eTap
 // §fthe §bSigns
 // §fto §aBuy
+
+
+
+
+
+// Gear store - 19:
+// Offensive:
+// - iron, diamond sword
+// - Bow
+// - crossbow
+// - arrows
+// - arrows_slow
+// - arrows_poison
+// - arrows_weakness
+
+// defensive:
+// - chain, diamond Helmet
+// - chain, diamond chest
+// - chain, diamond pants
+// - chain, diamond boots
+// - diamond boots
+// - iron horse armor
+// - diamond horse armor
+// - shield
+
+
+
+// Everything Else Store - 15:
+// Tools:
+// - iron, diamond axe
+// - iron, diamond pickaxe
+// - iron, diamond hoe
+// - iron, diamond shovel
+
+// Misc:
+// - Snowballs
+// - Elytra
+// - Totem
+// - ...
+// - ...
+// - ...
+// - ...

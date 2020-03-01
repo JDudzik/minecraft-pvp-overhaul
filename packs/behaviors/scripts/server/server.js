@@ -46,6 +46,8 @@ system.update = function() {
 	// Any logic that needs to happen every tick on the server.
 	currTick++;
 
+	delay.checkRapidActions(currTick); // Checks EVERY game tick. do NOT add actions to this list that will have long delays
+
 	if (currTick % 5 === 0) { // Every 0.25 seconds
 		delay.checkActions(currTick);
 	}
@@ -204,7 +206,7 @@ function onDestroyedBlock(params) {
 	if (blocksToRecord.includes(blockIdentifier)) {
 		addToBlockHistory(entity, position, blockIdentifier, 'destroyed');
 
-		xray_anticheat.determineCheating(entity, blockIdentifier);
+		// xray_anticheat.determineCheating(entity, blockIdentifier);
 	}
 }
 function addToBlockHistory(entity, position, blockIdentifier, action) {

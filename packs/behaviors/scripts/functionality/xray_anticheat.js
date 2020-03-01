@@ -12,7 +12,7 @@ const cmd = commands.cmd;
 
 const timeRange = 1800000; // 30 minutes
 const watchedBlocks = {
-	'minecraft:diamond_ore': {alert: 10,  severe: 25},
+	'minecraft:diamond_ore': {alert: 10,  severe: 22},
 }
 
 
@@ -42,9 +42,9 @@ function clearAlert(alertIndex) {
 	const selectedAlert = Object.values(xrayAlerts)[alertIndex];
 
 	if (selectedAlert) {
-		const alertPlayerName = selectedAlert.player_name;
-		xrayAlerts[alertPlayerName] = undefined;
-		commands.msgServerTech(`§9Deleted alert: ${alertIndex}`);
+		const alertIdentifier = selectedAlert.alert_identifier;
+		xrayAlerts[alertIdentifier] = undefined;
+		commands.msgServerTech(`§9Deleted alert: ${alertIndex}.  ${alertIdentifier}`);
 		global_storage.updateData('xray_alerts', xrayAlerts);
 		return;
 	}
@@ -66,37 +66,39 @@ function determineCheating(entity, blockIdentifier) {
 		const playerName = entities.getPlayerName(entity);
 
 		restrictions.lock(playerName, `Automated cheat detection has been activated. An admin has been alerted to investigate`);
-		saveAlert(playerName, importantEntries, 'severe');
+		saveAlert(playerName, importantEntries, blockIdentifier, 'severe');
 		return;
 	}
 
 	if (importantEntries.length >= watchedBlocks[blockIdentifier].alert) {
 		const playerName = entities.getPlayerName(entity);
 
-		saveAlert(playerName, importantEntries, 'alert');
+		saveAlert(playerName, importantEntries, blockIdentifier, 'alert');
 		return;
 	}
 }
 
 
-function saveAlert(playerName, importantEntries, alertType) {
+function saveAlert(playerName, importantEntries, blockIdentifier, alertType) {
 	const xrayAlerts = global_storage.getData('xray_alerts', {});
-	const thisPlayersAlert = xrayAlerts[playerName];
+	const alertIdentifier = `${playerName}_${blockIdentifier}`;
+	const thisAlert = xrayAlerts[alertIdentifier];
 
 	// If the existing report is bigger, don't update it
-	if (thisPlayersAlert && thisPlayersAlert.block_count >= importantEntries.length) {
+	if (thisAlert && thisAlert.block_count >= importantEntries.length) {
 		return;
 	}
 
 	const firstBlock = importantEntries[0];
 	const middBlock = importantEntries[Math.floor(importantEntries.length / 2)];
 	const lastBlock = importantEntries[importantEntries.length - 1];
-	thisPlayersAlert = {
+	thisAlert = {
+		alert_identifier: alertIdentifier,
 		player_name: playerName,
 		alert_type: alertType,
 		timestamp: Date.now(),
 		block_count: importantEntries.length,
-		block_identifier: lastBlock.block,
+		block_identifier: blockIdentifier,
 		positions: {
 			first:  {x: firstBlock.x, y: firstBlock.y, z: firstBlock.z},
 			middle: {x: middBlock.x,  y: middBlock.y,  z: middBlock.z},
@@ -104,7 +106,7 @@ function saveAlert(playerName, importantEntries, alertType) {
 		}
 	}
 
-	commands.msgServerTech(`§dNew X-Ray Alert - §rPlayer: §r§6${thisPlayersAlert.player_name}§r, Count: §r§6${thisPlayersAlert.block_count}§r, Type: §r§6${thisPlayersAlert.alert_type}`);
+	commands.msgServerTech(`§dNew X-Ray Alert - §rPlayer: §r§6${thisAlert.player_name}§r, Count: §r§6${thisPlayersAlert.block_count}§r, Type: §r§6${thisPlayersAlert.alert_type}`);
 	global_storage.updateData('xray_alerts', xrayAlerts);
 }
 

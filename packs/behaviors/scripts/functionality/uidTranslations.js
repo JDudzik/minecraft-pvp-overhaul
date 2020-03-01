@@ -31,7 +31,7 @@ const uidToName = {
 const uidToValue = {
 	'minecraft:zombie': 30,
 	'minecraft:zombie_village_v2': 30,
-	'minecraft:husk': 30,
+	'minecraft:husk': 60,
 	'minecraft:drowned': 30,
 	'minecraft:skeleton': 60,
 	'minecraft:creeper': 60,

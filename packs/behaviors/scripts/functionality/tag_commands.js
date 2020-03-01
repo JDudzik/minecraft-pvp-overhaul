@@ -5,6 +5,7 @@ import entities from '../helpers/entities';
 import global_storage from '../helpers/global_storage';
 import restrictions from '../functionality/restrictions';
 import xray_anticheat from '../functionality/xray_anticheat';
+import block_manipulation from '../functionality/block_manipulation';
 
 const masterCommandTagName = 'mce';
 const colors = {red: '§c', yellow: '§e', green: '§a', aqua: '§b', purple: '§d', blue: '§9'};
@@ -89,6 +90,10 @@ const commandMap = {
     method: xray_anticheat.clearAlert,
     requiredParamCount: 1,
   },
+  fill: {
+    method: block_manipulation.fill,
+    requiredParamCount: 8,
+  }
 }
 
 
