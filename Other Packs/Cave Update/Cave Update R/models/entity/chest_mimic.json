@@ -1,0 +1,44 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.chest_mimic.geo",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 1,
+				"visible_bounds_offset": [0, 0.5, 0]
+			},
+			"bones": [
+				{
+					"name": "body",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-7, 0, -7], "size": [14, 10, 14], "uv": [0, 0]},
+						{"origin": [-5.5, 10, -5.5], "size": [11, 2, 11], "uv": [42, 0]}
+					]
+				},
+				{
+					"name": "lid",
+					"parent": "body",
+					"pivot": [0, 9, 7],
+					"cubes": [
+						{"origin": [-7, 9, -7], "size": [14, 5, 14], "uv": [0, 24]},
+						{"origin": [-1.5, 8, -8], "size": [3, 4, 1], "uv": [0, 0]},
+						{"origin": [-6, 6, -6], "size": [12, 3, 12], "uv": [0, 43]}
+					]
+				},
+				{
+					"name": "tongue",
+					"parent": "body",
+					"pivot": [0, 10, 4],
+					"rotation": [-5, 0, 0],
+					"cubes": [
+						{"origin": [-3, 8, -5], "size": [6, 2, 9], "uv": [36, 66]}
+					]
+				}
+			]
+		}
+	]
+}

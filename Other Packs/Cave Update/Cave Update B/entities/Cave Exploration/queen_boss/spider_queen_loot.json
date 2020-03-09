@@ -1,0 +1,40 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "boi:spider_queen_loot",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false,
+	  "scripts": {
+	    "animate": [ "walk" ]
+	  },
+	  "animations": {
+	    "walk": "controller.animation.spideregg_loot"
+    }
+  },
+	"components": {
+	  "minecraft:type_family": {
+	    "family": [ "despawn" ]
+	  },
+      "minecraft:spawn_entity": [
+        {
+          "min_wait_time": 0,
+          "max_wait_time": 0,
+          "spawn_entity": "minecraft:xp_orb",
+          "single_use": true,
+          "num_to_spawn": 60,
+          "should_leash": true
+        }
+      ],
+      "minecraft:loot": {
+        "table": "loot_tables/entities/spiderqueen.json"
+      },
+	  "minecraft:health": {
+	    "value": 1
+	  },
+	  "minecraft:physics": {
+     }
+ 	 }
+  }
+}

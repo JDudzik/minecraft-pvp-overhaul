@@ -1,0 +1,53 @@
+﻿entity.unknown.name= 
+
+entity.boi:zombie_miner.name=an Undead Miner
+entity.boi:motherspider.name=a Brood Spider
+entity.boi:spider_baby.name=a Spiderling
+entity.boi:spider_baby_egg.name=a Spiderling
+entity.boi:spider_queen.name=a Spider Matriarch
+entity.boi:iron_mimic.name=Mimic
+entity.boi:gold_mimic.name=Mimic
+
+item.spawn_egg.entity.boi:zombie_miner.name=Spawn Undead Miner
+item.spawn_egg.entity.boi:miner_trapped.name=Spawn Trapped Miner
+item.spawn_egg.entity.boi:spideregg.name=Spawn Spider Egg
+item.spawn_egg.entity.boi:spider_baby_egg.name=Spawn Spiderling
+item.spawn_egg.entity.boi:motherspider.name=Spawn Brood Spider
+item.spawn_egg.entity.boi:spider_shooter.name=Spawn Bristle Spider
+item.spawn_egg.entity.boi:spider_queen_spawn.name=Spider Matriarch Egg
+item.spawn_egg.entity.boi:glow_worm.name=Spawn Glow Worm
+item.spawn_egg.entity.boi:vase.name=Vase
+item.spawn_egg.entity.boi:iron_mimic_spawn.name=Spawn Iron Chest Mimic
+item.spawn_egg.entity.boi:gold_mimic_spawn.name=Spawn Gold Chest Mimic
+item.spawn_egg.entity.boi:boss_spiderling_reward.name=Friendly Spider Nest
+
+item.spawn_egg.entity.boi:crawler_coal.name=Spawn Coal Crawler
+item.spawn_egg.entity.boi:crawler_redstone.name=Spawn Redstone Crawler
+item.spawn_egg.entity.boi:crawler_lapis.name=Spawn Lapis Crawler
+item.spawn_egg.entity.boi:crawler_iron.name=Spawn Iron Crawler
+item.spawn_egg.entity.boi:crawler_gold.name=Spawn Gold Crawler
+item.spawn_egg.entity.boi:crawler_diamond.name=Spawn Diamond Crawler
+
+item.boi:prismarite_ingot.name=Prismarite Ingot
+item.boi:spider_heart.name=Spider Heart
+item.boi:queen_spawn.name=Summon Spider Matriarch
+item.boi:gold_key.name=Gold Key
+item.boi:iron_key.name=Rusty Iron Key
+item.boi:glow_goo.name=Glow Worm Goo
+
+tile.boi:desert_stone.name=Desert Stone
+tile.boi:desert_coal.name=Desert Coal Ore
+tile.boi:desert_iron.name=Desert Iron Ore
+tile.boi:desert_gold.name=Desert Gold Ore
+tile.boi:desert_redstone.name=Desert Redstone Ore
+tile.boi:desert_lapis.name=Desert Lapis Ore
+tile.boi:desert_diamond.name=Desert Diamond Ore
+tile.boi:prismarine_ore.name=Prismarine Ore
+tile.boi:prismarine_crystal_ore.name=Prismarine Crystal Ore
+tile.boi:moss_stone.name=Mossy Stone
+tile.boi:snow_stone.name=Ice Stone    
+tile.boi:queen_trophy.name=Spider Matriarch Spawn Block
+tile.boi:glow_block.name=Goo Lantern
+tile.boi:fire_stone.name=Flame Stone
+
+entity.shulker.name=

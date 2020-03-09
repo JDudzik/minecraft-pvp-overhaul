@@ -34,15 +34,19 @@ function announce(message, paddingColor, mainColor) {
 }
 
 
-function tags(recipient, target) {
+function tags(recipient, target, showData = false) {
   commands.cmd(`tag ${target || recipient} list`, (params) => {
     const allTags = params.message.match(/.+?\shas\s\d+?\stags:\s(.+?)$/);
     if (allTags && allTags.length >= 2) {
       const tagArray = allTags[1].split(', ');
       const indexOfDataTag = tagArray.findIndex(tag => tag[2] === "{") || -1;
-      if (indexOfDataTag !== -1) { tagArray.splice(indexOfDataTag, 1); }
 
-      commands.msgPlayer(recipient, `§6${target || recipient}§r tags: ${tagArray.join(',  ')}`);
+      if (showData) {
+        commands.msgPlayer(recipient, `§6${target || recipient}§r data tag: ${tagArray[indexOfDataTag]}`);
+      } else {
+        if (indexOfDataTag !== -1) { tagArray.splice(indexOfDataTag, 1); }
+        commands.msgPlayer(recipient, `§6${target || recipient}§r tags: ${tagArray.join(',  ')}`);
+      }
     }
     else {
       commands.msgPlayer(recipient, `§6${target || recipient}§r Does not have any tags, Or something broke`);

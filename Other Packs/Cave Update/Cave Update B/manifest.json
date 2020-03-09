@@ -1,0 +1,24 @@
+{
+    "format_version": 1,
+    "header": {
+        "description": "Cave Update V2 Behaviors. Made by the Big Onion Institute",
+        "name": "Cave Update B",
+        "uuid": "a213c354-77fb-4c8f-8194-8418d03b4b98",
+        "version": [0, 0, 1],
+        "min_engine_version": [ 1, 8, 0 ]
+    },
+    "modules": [
+        {
+            "description": "Example vanilla behavior pack",
+            "type": "data",
+            "uuid": "4fbcb6fd-db6c-4d61-af7b-8ae6c8bb3dd2",
+            "version": [0, 0, 1]
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "86d296b0-9dca-4134-af87-331d64d691f7",
+            "version": [0, 0, 1]
+        }
+    ]
+}

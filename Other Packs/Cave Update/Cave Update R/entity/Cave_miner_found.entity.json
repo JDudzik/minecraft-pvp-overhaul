@@ -1,0 +1,87 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "boi:miner_found",
+      "materials": {
+        "default": "villager_v2",
+        "masked": "villager_v2_masked"
+      },
+      "textures": {
+        // Base Textures - Vanilla Minecraft only has one such texture, rename these for resource packs desiring variety
+        "base": "textures/entity/cave/miner/villager",
+        "base2": "textures/entity/villager2/villager",
+        "base3": "textures/entity/villager2/villager",
+        "base4": "textures/entity/villager2/villager",
+        "base5": "textures/entity/villager2/villager",
+        "base6": "textures/entity/villager2/villager",
+
+        // Biome Layer
+        "desert": "textures/entity/cave/miner/biomes/biome_plains",
+        "jungle": "textures/entity/cave/miner/biomes/biome_plains",
+        "plains": "textures/entity/cave/miner/biomes/biome_plains",
+        "savanna": "textures/entity/cave/miner/biomes/biome_plains",
+        "snow": "textures/entity/cave/miner/biomes/biome_plains",
+        "swamp": "textures/entity/cave/miner/biomes/biome_plains",
+        "taiga": "textures/entity/cave/miner/biomes/biome_plains",
+
+        // Profession Layer
+        "armorer": "textures/entity/cave/miner/biomes/biome_plains",
+        "butcher": "textures/entity/cave/miner/biomes/biome_plains",
+        "cartographer": "textures/entity/cave/miner/biomes/biome_plains",
+        "cleric": "textures/entity/cave/miner/biomes/biome_plains",
+        "farmer": "textures/entity/cave/miner/biomes/biome_plains",
+        "fisherman": "textures/entity/cave/miner/biomes/biome_plains",
+        "fletcher": "textures/entity/cave/miner/biomes/biome_plains",
+        "leatherworker": "textures/entity/cave/miner/biomes/biome_plains",
+        "librarian": "textures/entity/cave/miner/biomes/biome_plains",
+        "shepherd": "textures/entity/cave/miner/biomes/biome_plains",
+        "tool_smith": "textures/entity/cave/miner/biomes/biome_plains",
+        "weapon_smith": "textures/entity/cave/miner/biomes/biome_plains",
+        "stonemason": "textures/entity/cave/miner/biomes/biome_plains",
+        "nitwit": "textures/entity/cave/miner/biomes/biome_plains",
+        "unskilled": "textures/entity/cave/miner/biomes/biome_plains",
+
+        // Levels Layer
+        "level_iron": "textures/entity/villager2/levels/level_iron",
+        "level_gold": "textures/entity/villager2/levels/level_gold",
+        "level_diamond": "textures/entity/villager2/levels/level_diamond"
+      },
+      "geometry": {
+        "default": "geometry.villager_v2"
+      },
+      "scripts": {
+        "scale": "0.9375",
+        "pre_animation": [
+          "variable.num_professions = 15;",
+          "variable.num_tiers = 3;",
+          "variable.profession_index = (query.variant < variable.num_professions ? query.variant : 0);",
+          "variable.level_index = query.trade_tier == 0 ? 0 : (query.trade_tier == query.max_trade_tier ? 2 : 1);"
+        ]
+      },
+      "animations": {
+        "general": "animation.villager.general",
+        "look_at_target": "animation.common.look_at_target",
+        "move": "animation.villager.move",
+        "raise_arms": "animation.villager.raise_arms",
+        "baby_transform": "animation.villager.baby_transform",
+        "get_in_bed": "animation.villager.get_in_bed"
+      },
+      "animation_controllers": [
+        { "general": "controller.animation.villager_v2.general" },
+        { "move": "controller.animation.villager_v2.move" },
+        { "raise_arms": "controller.animation.villager_v2.raise_arms" },
+        { "baby": "controller.animation.villager_v2.baby" }
+      ],
+      "render_controllers": [
+        "controller.render.villager_v2_base",
+        "controller.render.villager_v2_masked",
+        "controller.render.villager_v2_level"
+      ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 14
+      }
+    }
+  }
+}

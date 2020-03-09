@@ -1,0 +1,24 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+    "identifier": "boi:glow_block"
+    },
+
+    
+    "tags": [ "crafting_table" ],
+    "pattern": [
+      "GG",
+      "GG"
+    ],
+    "key": {
+      "G": {
+        "item": "boi:glow_goo"
+      }
+    },
+    "result": {
+      "item": "boi:glow_block",
+      "count": 1
+    }
+  }
+}

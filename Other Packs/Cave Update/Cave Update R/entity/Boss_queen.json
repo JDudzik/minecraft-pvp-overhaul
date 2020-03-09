@@ -1,0 +1,39 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "boi:spider_queen",
+      "materials": {
+        "default": "spider",
+        "invisible": "spider_invisible"
+      },
+      "textures": {
+        "default": "textures/entity/cave/spiderqueen"
+      },
+      "geometry": {
+        "default": "geometry.spiderqueen"
+      },
+      "scripts": {
+        "scale": "0.9375"
+      },
+      "animations": {
+        "general": "animation.spider.default_leg_pose",
+        "casting": "animation.spidermother.shake-a",
+        "look_at_target": "animation.spider.look_at_target",
+        "move": "animation.spider.walk"
+      },
+      "animation_controllers": [
+        { "general": "controller.animation.spider_queen.general.v1.0" },
+        { "move": "controller.animation.villager.move" }
+      ],
+      "particle_effects": {
+        "spell": "minecraft:evocation_fang_particle"
+      },
+      "render_controllers": [ "controller.render.evoker" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 40
+      }
+    }
+  }
+}

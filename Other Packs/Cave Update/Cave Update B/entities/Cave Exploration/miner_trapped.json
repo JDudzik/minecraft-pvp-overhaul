@@ -1,0 +1,148 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "boi:miner_trapped",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false,
+	  "runtime_identifier": "minecraft:shulker"
+    },
+    "component_groups": {
+      "break": {
+        "minecraft:spawn_entity": {
+          "min_wait_time": 0,
+          "max_wait_time": 0,
+          "spawn_sound": "plop",
+          "spawn_entity": "boi:miner_lost",
+          "single_use": "true"
+      },
+      "minecraft:despawn": {
+        }
+      }
+    },
+    "components": {
+      "minecraft:damage_sensor": {
+        "on_damage": {
+"spawn_items": { "table": "loot_tables/entities/sheep_shear.json" },
+          "play_sounds": "shear",
+          "event": "break"
+        },
+        "deals_damage": false
+      },
+      "minecraft:type_family": {
+        "family": [ "spideregg" ]
+      },
+
+      "minecraft:breathable": {
+        "totalSupply": 15,
+        "suffocateTime": 0
+      },
+      "minecraft:health": {
+        "value": 4,
+        "max": 4
+      },
+      "minecraft:collision_box": {
+        "width": 1,
+        "height": 1
+      },
+      "minecraft:behavior.send_event": {
+        "priority": 3,
+        "event_choices": [
+          {
+            "min_activation_range": 0.0,
+            "max_activation_range": 16.0,
+            "cooldown_time": 5.0,
+            "cast_duration": 3.0,
+            "particle_color": "#FFB38033",
+            "weight": 3,
+            "filters": { 
+                "all_of": [
+                  { "test" :  "is_family", "subject" : "other", "value" :  "sheep"},
+                  { "test" :  "is_color", "subject" : "other", "value" :  "blue"}
+                ] 
+            },
+            "start_sound_event": "cast.spell",
+            "sequence": [
+              {
+                "base_delay": 2.0,
+                "event": "wololo",
+                "sound_event": "prepare.wololo"
+              }
+            ]
+          }
+        ]
+      },
+      "minecraft:behavior.avoid_mob_type": {
+        "priority": 5,
+        "entity_types": [
+          {
+            "filters": { "test" :  "is_family", "subject" : "other", "value" :  "player"},
+            "max_dist": 8,
+            "walk_speed_multiplier": 0.6,
+            "sprint_speed_multiplier": 1.0
+          }
+        ]
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 8,
+        "speed_multiplier": 0.6
+      },
+      "minecraft:behavior.nearest_attackable_target": {
+        "priority": 2,
+        "entity_types": [
+          {
+            "filters": {  
+                "any_of": [
+                  { "test" :  "is_family", "subject" : "other", "value" :  "player"},
+                  { "test" :  "is_family", "subject" : "other", "value" :  "snowgolem"},
+                  { "test" :  "is_family", "subject" : "other", "value" :  "irongolem"},
+                  { "test" :  "is_family", "subject" : "other", "value" :  "wandering_trader"}
+                ] 
+            },
+            "max_dist": 20
+          },
+          {
+            "filters": {
+              "all_of": [
+                { "test": "is_family", "subject": "other", "value": "villager" },
+                { "test": "has_component", "subject": "other", "operator": "!=", "value": "minecraft:is_baby" }
+              ]
+            },
+            "max_dist": 20
+          }
+        ],
+        "must_see": true
+      },
+
+      "minecraft:behavior.look_at_player": {
+        "priority": 9,
+        "look_distance": 3.0,
+        "probability": 1.0
+      },
+      "minecraft:behavior.look_at_entity": {
+        "priority": 10,
+        "look_distance": 8.0,
+        "filters": { "test" :  "is_family", "subject" : "other", "value" :  "mob" }
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 1
+      },
+      "minecraft:physics": {
+      },
+      "minecraft:follow_range": {
+        "value": 64
+      }
+    },
+    "events": {
+      "break": {
+        "add": {
+          "component_groups": [
+            "break"
+          ]
+        }
+      }
+    }
+  }
+}
+

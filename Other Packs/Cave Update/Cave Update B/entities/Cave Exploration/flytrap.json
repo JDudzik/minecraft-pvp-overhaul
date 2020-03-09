@@ -1,0 +1,198 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "boi:flytrap",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false,
+      "runtime_identifier": "minecraft:shulker"
+    },
+    "component_groups": {
+      "minecraft:hostile": {
+        "minecraft:movement": {
+          "value": 0.3
+        },
+        "minecraft:behavior.delayed_attack": {
+          "priority": 4,
+          "reach_multiplier": 1.5,
+          "attack_duration": 1.75,
+          "hit_delay_pct": 0.5,
+          "track_target": true,
+          "sound_event": "attack.strong"
+        },
+        "minecraft:behavior.random_stroll": {
+          "priority": 6,
+          "speed_multiplier": 0.4
+        },
+        "minecraft:behavior.look_at_player": {
+          "priority": 7,
+          "look_distance": 6,
+          "angle_of_view_horizontal": 45,
+          "probability": 1
+        },
+        "minecraft:behavior.look_at_entity": {
+          "priority": 10,
+          "look_distance": 8,
+          "angle_of_view_horizontal": 45,
+          "filters": {
+            "test": "is_family",
+            "subject": "other",
+            "value": "mob"
+          }
+        },
+        "minecraft:behavior.hurt_by_target": {
+          "priority": 2,
+          "entity_types": {
+            "filters": {
+              "test": "is_family",
+              "subject": "other",
+              "operator": "!=",
+              "value": "illager"
+            },
+            "max_dist": 64
+          }
+        },
+        "minecraft:behavior.nearest_attackable_target": {
+          "entity_types": [
+            {
+              "filters": {
+                "any_of": [
+                  {
+                    "subject": "other",
+                    "test": "is_family",
+                    "value": "player"
+                  },
+                  {
+                    "subject": "other",
+                    "test": "is_family",
+                    "value": "irongolem"
+                  }
+                ]
+              },
+              "max_dist": 16
+            },
+            {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "villager"
+                  },
+                  {
+                    "test": "has_component",
+                    "subject": "other",
+                    "operator": "!=",
+                    "value": "minecraft:is_baby"
+                  }
+                ]
+              },
+              "max_dist": 16
+            }
+          ],
+          "must_see": true,
+          "priority": 3,
+          "within_radius": 16
+        },
+        "minecraft:behavior.mount_pathing": {
+          "priority": 5,
+          "speed_multiplier": 1.25,
+          "target_dist": 0,
+          "track_target": true
+        }
+      }
+    },
+    "components": {
+      "minecraft:experience_reward": {
+        "on_death": "query.last_hit_by_player ? 20 : 0"
+      },
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:ravager_blocked": {
+        "knockback_strength": 3,
+        "reaction_choices": [
+          {
+            "weight": 1,
+            "value": {
+              "event": "minecraft:dipp",
+              "target": "self"
+            }
+          },
+          {
+            "weight": 1
+          }
+        ]
+      },
+      "minecraft:attack": {
+        "damage": 8
+      },
+      "minecraft:breathable": {
+        "suffocate_time": 0,
+        "total_supply": 15
+      },
+      "minecraft:collision_box": {
+        "height": 1,
+        "width": 1
+      },
+      "minecraft:health": {
+        "max": 3,
+        "value": 3
+      },
+      "minecraft:hurt_on_condition": {
+        "damage_conditions": [
+          {
+            "filters": {
+              "test": "in_lava",
+              "subject": "self",
+              "operator": "==",
+              "value": true
+            },
+            "cause": "lava",
+            "damage_per_tick": 4
+          }
+        ]
+      },
+      "minecraft:loot": {
+        "table": "loot_tables/entities/ravager.json"
+      },
+      "minecraft:nameable": {},
+      "minecraft:physics": {},
+      "minecraft:follow_range": {
+        "value": 64
+      },
+      "minecraft:type_family": {
+        "family": [
+          "monster",
+          "illager",
+          "ravager",
+          "mob"
+        ]
+      },
+      "minecraft:jump.static": {},
+      "minecraft:movement": {
+        "value": 0
+      },
+      "minecraft:movement.basic": {},
+      "minecraft:navigation.walk": {
+        "avoid_damage_blocks": true,
+        "can_path_over_water": true,
+        "can_sink": false
+      },
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "add": {
+          "component_groups": [
+            "minecraft:hostile"
+          ]
+        }
+      }
+    }
+  }
+}

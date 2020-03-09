@@ -1,0 +1,24 @@
+{ 
+   "format_version": "1.8.0",
+   "minecraft:client_entity": { 
+      "description": { 
+         "identifier": "npc:newcomermc",
+         "spawn_egg": {
+            "base_color": "#FFFFFF",
+            "overlay_color": "#FF00D0"
+         },
+         "materials": { 
+            "default": "entity_alphatest" 
+            },
+         "textures": { 
+            "default": "textures/NewcomerMC"
+            }, 
+         "geometry": { 
+            "default": "geometry.steve" 
+            },
+         "render_controllers": [ 
+              "controller.render.wave"
+              ]
+         }
+      }
+}

@@ -1,0 +1,18 @@
+{
+    "format_version": 1,
+    "header": {
+        "description": "Cave Update V2 Resources. Made by the Big Onion Institute",
+        "name": "Cave Update R",
+        "uuid": "86d296b0-9dca-4134-af87-331d64d691f7",
+        "version": [0, 0, 1],
+        "min_engine_version": [1, 2, 6]
+    },
+    "modules": [
+        {
+            "description": "Cave Update V2 Resources. Made by the Big Onion Institute",
+            "type": "resources",
+            "uuid": "c56a0b28-6193-4324-993c-d361bdd70cb6",
+            "version": [0, 0, 1]
+        }
+    ]
+}

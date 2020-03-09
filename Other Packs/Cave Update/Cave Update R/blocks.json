@@ -1,0 +1,228 @@
+{
+  "format_version": [
+    1,
+    0,
+    9
+  ],
+   "boi:moss_stone": {
+    "isotropic": true,
+    "textures": "moss_stone",
+    "sound": "stone"
+   },
+   "boi:snow_stone": {
+    "textures": "snow_stone",
+    "sound": "stone"
+   },
+   "boi:desert_stone": {
+    "textures": "desert_stone",
+    "sound": "stone"
+   },
+   "boi:stone_stalactite": {
+    "textures": "stone",
+    "blockshape": "hopper",
+    "sound": "stone"
+   },
+   "boi:desert_coal": {
+    "textures": "desert_coal",
+    "sound": "stone"
+   },
+   "boi:desert_diamond": {
+    "textures": "desert_diamond",
+    "blockshape": "square",
+    "sound": "stone"
+   },
+   "boi:desert_iron": {
+    "textures": "desert_iron",
+    "sound": "stone"
+   },
+   "boi:desert_gold": {
+    "textures": "desert_gold",
+    "sound": "stone"
+   },
+   "boi:desert_lapis": {
+    "textures": "desert_lapis",
+    "sound": "stone"
+   },
+   "boi:desert_redstone": {
+    "textures": "desert_redstone",
+    "sound": "stone"
+   },
+   "boi:prismarine_crystal_ore": {
+    "textures": "prismarine_crystal_ore",
+    "sound": "stone"
+   },
+   "boi:prismarine_ore": {
+    "textures": "prismarine_ore",
+    "sound": "stone"
+   },
+   "boi:queen_trophy": {
+		"textures": {
+			"side": "queen_trophy",
+			"up": "queen_trophy_top",
+			"down": "queen_trophy_top"
+		},
+    "sound": "cloth"
+   },
+
+   "boi:glow_lantern": {
+    "textures": "prismarine_ore",
+    "sound": "glass"
+   },
+   "boi:sandy_cobblestone": {
+    "textures": "sandy_cobblestone",
+    "sound": "stone"
+   },
+   "boi:fire_stone": {
+    "textures": "fire_stone",
+    "sound": "stone"
+   },
+   "boi:glow_block": {
+    "isotropic": true,
+    "textures": "glow_block",
+    "sound": "slime"
+   },
+   "boi:spawn_stone": {
+    "textures": "stone",
+    "sound": "stone"
+   },
+   "boi:desert_spawn_stone": {
+    "textures": "desert_stone",
+    "sound": "stone"
+   },
+   "boi:snow_spawn_stone": {
+    "textures": "snow_stone",
+    "sound": "stone"
+   },
+
+
+
+
+
+
+
+
+
+
+	"boi:tudor_block": {
+		"textures": "tudor_block",
+		"sound": "stone"
+	},
+	"boi:tudor_pillar": {
+		"textures": "tudor_pillar",
+		"sound": "stone"
+	},
+	"boi:tudor_cross": {
+		"textures": "tudor_cross",
+		"sound": "stone"
+	},
+	"boi:cobblestone_brick": {
+		"textures": "cobblestone_brick",
+		"sound": "stone"
+	},
+	"boi:cobblestone_brick_mossy": {
+		"textures": "cobblestone_brick_mossy",
+		"sound": "stone"
+	},
+	"boi:netherbrick_pillar": {
+		"textures": {
+			"side": "netherbrick_pillar",
+			"up": "netherbrick_pillar_top",
+			"down": "netherbrick_pillar_top"
+		},
+		"sound": "stone"
+	},
+	"boi:netherbrick_chiseled": {
+		"textures": "netherbrick_pillar_top",
+		"sound": "stone"
+	},
+	"boi:chain_block": {
+		"textures": "chain",
+		"blockshape": "stem",
+		"sound": "stone"
+	},
+	"boi:obsidian_brick": {
+		"textures": "obsidian_brick",
+		"sound": "stone"
+	},
+	"boi:obsidian_pillar": {
+		"textures": {
+			"side": "obsidian_pillar",
+			"up": "obsidian_pillar_top",
+			"down": "obsidian_pillar_top"
+		},
+		"sound": "stone"
+	},
+	"boi:mushroom_planks_light": {
+		"textures": "mushroom_planks1",
+		"sound": "wood"
+	},
+	"boi:mushroom_planks_red": {
+		"textures": "mushroom_planks2",
+		"sound": "wood"
+	},
+	"boi:mushroom_planks_dark": {
+		"textures": "mushroom_planks3",
+		"sound": "wood"
+	},
+	"boi:mushroom_pillar_brown": {
+		"textures": {
+			"side": "mushroom_pillar1",
+			"up": "mushroom_pillar1_top",
+			"down": "mushroom_pillar1_top"
+		},
+		"sound": "wood"
+	},
+	"boi:mushroom_pillar_red": {
+		"textures": {
+			"side": "mushroom_pillar2",
+			"up": "mushroom_pillar2_top",
+			"down": "mushroom_pillar2_top"
+		},
+		"sound": "wood"
+	},
+	"boi:skull_lantern": {
+		"textures": "skull_lantern",
+		"blockshape": "lantern",
+		"sound": "stone"
+	},
+	"boi:rope": {
+		"textures": "rope",
+		"blockshape": "double_side_fence",
+		"sound": "stone"
+	},
+	"boi:chain": {
+		"textures": {
+			"north": "chain",
+			"south": "chain",
+			"east": "chain2",
+			"west": "chain",
+			"up": "chain",
+			"down": "chain"
+		},
+		"blockshape": "kelp",
+		"sound": "lantern"
+	},
+	"boi:snow_brick": {
+		"textures": "snow_brick",
+		"sound": "snow",
+		"blockshape": "wall",
+		"brightness_gamma": 300.45
+	},
+	"boi:pot": {
+		"textures": "pot",
+		"blockshape": "lantern",
+		"sound": "stone"
+	},
+	"boi:bedrock_cobblestone": {
+		"textures": "bedrock_cobblestone",
+		"sound": "stone"
+	},
+
+
+
+
+	"bieldd:algodao": {
+		"textures": "algodao",
+		"sound": "stone"
+	}
+}

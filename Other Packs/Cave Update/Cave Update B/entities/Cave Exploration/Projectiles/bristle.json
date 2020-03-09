@@ -1,0 +1,48 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "boi:bristle",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false,
+	  "runtime_identifier": "minecraft:arrow"
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [ "enemy" ]
+      },
+      "minecraft:collision_box": {
+        "width": 0.15,
+        "height": 0.15
+      },
+        "minecraft:projectile": {
+          "onHit": {
+            "impact_damage": {
+              "damage": 2,
+              "knockback": false,
+              "semirandomdiffdamage": false
+            },
+          "remove_on_hit": { },
+          "particle_on_hit": {
+            "particle_type": "largesmoke",
+            "num_particles": 6,
+            "on_entity_hit": true,
+            "on_other_hit": true
+           }
+          },
+          "hitSound": "bow.hit",
+          "power": 1.58,
+          "gravity": 0.04,
+          "uncertaintyBase": 16,
+          "uncertaintyMultiplier": 4,
+          "anchor": 1,
+          "shouldbounce": true,
+          "offset": [ 0, -0.9, 0 ]
+        },
+	    "minecraft:physics": {
+      }
+    }
+  }
+}
+

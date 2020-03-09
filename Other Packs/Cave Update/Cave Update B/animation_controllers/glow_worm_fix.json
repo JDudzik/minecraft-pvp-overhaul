@@ -1,0 +1,32 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.glow_worm_fix": {
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "walking": "(1.0)"
+            }
+          ],
+          "on_entry": [
+            "/fill ~14~14~14 ~-14~-14~-14 air 0 replace light_block"
+
+
+          ]
+        },
+        "walking": {
+          "transitions": [
+            {
+              "default": "(1.0)"
+            }
+          ],
+          "on_entry": [
+            "/fill ~14~14~14 ~-14~-14~-14 air 0 replace light_block",
+"/kill @s"
+          ]
+        }
+      }
+    }
+  }
+}

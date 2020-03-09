@@ -1,0 +1,23 @@
+{
+  "format_version": "1.8.0",
+  "animation_controllers": {
+    "controller.animation.glow_worm.move": {
+      "states": {
+        "default": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            { "default_leg_pose": [] },
+            {
+              "walk": [
+                {
+                  "0.0": 0.0,
+                  "2.0": 2.0
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

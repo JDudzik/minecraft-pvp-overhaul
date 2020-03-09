@@ -1,0 +1,314 @@
+//bridge-file-version: #23
+{
+	"format_version": "1.8.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "boi:dungeon_randomizer",
+			"is_spawnable": false,
+			"is_summonable": true,
+			"is_experimental": false,
+			"scripts": {
+				"animate": [
+					"walk"
+				]
+			},
+			"animations": {
+				"walk": "controller.animation.halloween_monster"
+			}
+		},
+		"components": {
+			"minecraft:health": {
+				"value": 1
+			},
+			"minecraft:physics": {},
+			"minecraft:environment_sensor": [
+				{
+					"on_environment": {
+						"filters": {
+							"test": "on_ground",
+							"subject": "self",
+							"operator": "equals",
+							"value": true
+						},
+						"event": "daytime"
+					}
+				},
+				{
+					"on_environment": {
+						"filters": {
+							"test": "on_ground",
+							"subject": "self",
+							"operator": "equals",
+							"value": false
+						},
+						"event": "doom"
+					}
+				}
+			]
+		},
+		"component_groups": {
+			"spider_hole": {
+				"minecraft:spawn_entity": {
+					"min_wait_time": 0,
+					"max_wait_time": 0,
+					"spawn_sound": "plop",
+					"spawn_entity": "boi:dungeon1",
+					"single_use": true
+				},
+				"minecraft:despawn": {
+					"filters": {
+						"all_of": [
+							{
+								"subject": "self"
+							}
+						]
+					}
+				}
+			},
+			"3vases": {
+				"minecraft:spawn_entity": {
+					"min_wait_time": 0,
+					"max_wait_time": 0,
+					"spawn_sound": "plop",
+					"spawn_entity": "boi:dungeon_vases",
+					"single_use": true
+				},
+				"minecraft:despawn": {
+					"filters": {
+						"all_of": [
+							{
+								"subject": "self"
+							}
+						]
+					}
+				}
+			},
+			"common_chest": {
+				"minecraft:spawn_entity": {
+					"min_wait_time": 0,
+					"max_wait_time": 0,
+					"spawn_sound": "plop",
+					"spawn_entity": "boi:dungeon_chest_common",
+					"single_use": true
+				},
+				"minecraft:despawn": {
+					"filters": {
+						"all_of": [
+							{
+								"subject": "self"
+							}
+						]
+					}
+				}
+			},
+			"end_portal": {
+				"minecraft:spawn_entity": {
+					"min_wait_time": 0,
+					"max_wait_time": 0,
+					"spawn_sound": "plop",
+					"spawn_entity": "boi:dungeon_end_portal",
+					"single_use": true
+				},
+				"minecraft:despawn": {
+					"filters": {
+						"all_of": [
+							{
+								"subject": "self"
+							},
+							{
+								"subject": "self"
+							},
+							{
+								"subject": "self"
+							},
+							{
+								"subject": "self"
+							}
+						]
+					}
+				}
+			},
+			"nether_portal": {
+				"minecraft:spawn_entity": {
+					"min_wait_time": 0,
+					"max_wait_time": 0,
+					"spawn_sound": "plop",
+					"spawn_entity": "boi:dungeon_nether_portal",
+					"single_use": true
+				},
+				"minecraft:despawn": {
+					"filters": {
+						"all_of": [
+							{
+								"subject": "self"
+							},
+							{
+								"subject": "self"
+							}
+						]
+					}
+				}
+			},
+			"nether_portal_large": {
+				"minecraft:spawn_entity": {
+					"min_wait_time": 0,
+					"max_wait_time": 0,
+					"spawn_sound": "plop",
+					"spawn_entity": "boi:dungeon_nether_portal_large",
+					"single_use": true
+				},
+				"minecraft:despawn": {
+					"filters": {
+						"all_of": [
+							{
+								"subject": "self"
+							},
+							{
+								"subject": "self"
+							}
+						]
+					}
+				}
+			},
+			"rare_chest": {
+				"minecraft:spawn_entity": {
+					"min_wait_time": 0,
+					"max_wait_time": 0,
+					"spawn_sound": "plop",
+					"spawn_entity": "boi:dungeon_chest_rare",
+					"single_use": true
+				},
+				"minecraft:despawn": {
+					"filters": {
+						"all_of": [
+							{
+								"subject": "self"
+							},
+							{
+								"subject": "self"
+							}
+						]
+					}
+				}
+			},
+			"common_chest_alt": {
+				"minecraft:spawn_entity": {
+					"min_wait_time": 0,
+					"max_wait_time": 0,
+					"spawn_sound": "plop",
+					"spawn_entity": "boi:dungeon_chest_common_alt",
+					"single_use": true
+				},
+				"minecraft:despawn": {
+					"filters": {
+						"all_of": [
+							{
+								"subject": "self"
+							}
+						]
+					}
+				}
+			},
+			"rare_chest_alt": {
+				"minecraft:spawn_entity": {
+					"min_wait_time": 0,
+					"max_wait_time": 0,
+					"spawn_sound": "plop",
+					"spawn_entity": "boi:dungeon_chest_rare_alt",
+					"single_use": true
+				},
+				"minecraft:despawn": {
+					"filters": {
+						"all_of": [
+							{
+								"subject": "self"
+							},
+							{
+								"subject": "self"
+							}
+						]
+					}
+				}
+			},
+			"common_rare_alt": {}
+		},
+		"events": {
+			"daytime": {
+				"randomize": [
+					{
+						"add": {
+							"component_groups": [
+								"spider_hole"
+							]
+						},
+						"weight": 18
+					},
+					{
+						"add": {
+							"component_groups": [
+								"3vases"
+							]
+						},
+						"weight": 40
+					},
+					{
+						"add": {
+							"component_groups": [
+								"common_chest"
+							]
+						},
+						"weight": 25
+					},
+					{
+						"add": {
+							"component_groups": [
+								"rare_chest"
+							]
+						},
+						"weight": 7
+					},
+					{
+						"add": {
+							"component_groups": [
+								"end_portal"
+							]
+						},
+						"weight": 5
+					},
+					{
+						"add": {
+							"component_groups": [
+								"nether_portal_large"
+							]
+						},
+						"weight": 3
+					},
+					{
+						"add": {
+							"component_groups": [
+								"nether_portal"
+							]
+						},
+						"weight": 4
+					},
+					{
+						"weight": 15,
+						"add": {
+							"component_groups": [
+								"common_chest_alt"
+							]
+						}
+					},
+					{
+						"weight": 20,
+						"add": {
+							"component_groups": [
+								"common_rare_alt"
+							]
+						}
+					}
+				]
+			}
+		}
+	}
+}

@@ -1,0 +1,27 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+    "identifier": "boi:moss_stone"
+    },
+
+    
+    "tags": [ "crafting_table" ],
+    "pattern": [
+      "RS"
+    ],
+    "key": {
+      "R": {
+        "item": "minecraft:stone",
+        "data": 0
+      },
+      "S": {
+        "item": "minecraft:vine"
+      }
+    },
+    "result": {
+      "item": "boi:moss_stone",
+      "count": 1
+    }
+  }
+}

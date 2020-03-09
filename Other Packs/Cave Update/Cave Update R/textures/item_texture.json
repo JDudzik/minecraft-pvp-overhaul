@@ -1,0 +1,63 @@
+{
+  "resource_pack_name": "vanilla",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "prismarite_ingot": {
+      "textures": "textures/items/Boi_prismarite_ingot"
+    },
+    "spider_heart": {
+      "textures": "textures/items/Boi_spider_heart"
+    },
+    "spawn_zombie_miner": {
+      "textures": "textures/items/Boi_spawn_zombie_miner"
+    },
+    "spawn_spiderling": {
+      "textures": "textures/items/Boi_spawn_spiderling"
+    },
+    "spawn_matriarch": {
+      "textures": "textures/items/Boi_spawn_matriarch"
+    },
+    "spawn_spideregg": {
+      "textures": "textures/items/Boi_spawn_spideregg"
+    },
+    "spawn_trapped_miner": {
+      "textures": "textures/items/Boi_spawn_trapped_miner"
+    },
+    "glow_goo": {
+      "textures": "textures/items/glow_goo"
+    },
+    "iron_key": {
+      "textures": "textures/items/Boi_iron_key"
+    },
+    "gold_key": {
+      "textures": "textures/items/Boi_gold_key"
+    },
+    "spawn_vase": {
+      "textures": "textures/items/spawn_vase"
+    },
+    "spawn_glow_worm": {
+      "textures": "textures/items/spawn_glow_worm"
+    },
+    "spawn_iron_mimic": {
+      "textures": "textures/items/spawn_iron_mimic"
+    },
+    "spawn_gold_mimic": {
+      "textures": "textures/items/spawn_gold_mimic"
+    },
+    "spawn_spiderling_reward": {
+      "textures": "textures/items/spawn_spiderling_reward"
+    },
+
+
+
+
+
+
+
+
+
+    "azzwole": {
+      "textures": "textures/items/azzwole"
+    }
+  }
+}

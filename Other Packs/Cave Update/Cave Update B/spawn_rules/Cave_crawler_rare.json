@@ -1,0 +1,56 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:spawn_rules": {
+    "description": {
+      "identifier": "boi:crawler_redstone",
+      "population_control": "pillager"
+    },
+    "conditions": [
+      {
+        "minecraft:spawns_underground": {
+        },
+
+        "minecraft:brightness_filter": {
+          "min": 0,
+          "max": 15,
+          "adjust_for_weather": true
+        },
+
+        "minecraft:height_filter": {
+          "min": 0,
+          "max": 30
+        },
+        "minecraft:weight": {
+          "default": 60
+        },
+        
+        "minecraft:herd": {
+          "min_size": 1,
+          "max_size": 2
+        },
+        "minecraft:permute_type": [
+          {
+            "weight": 30
+          },
+          {
+            "weight": 35,
+            "entity_type": "boi:crawler_gold"
+          },
+          {
+            "weight": 30,
+            "entity_type": "boi:crawler_lapis"
+          },
+          {
+            "weight": 30,
+            "entity_type": "boi:crawler_diamond"
+          }
+        ],
+
+
+        "minecraft:biome_filter": [
+          { "test": "has_biome_tag", "operator":"==", "value": "monster"}
+        ]
+      }
+    ]
+  }
+}

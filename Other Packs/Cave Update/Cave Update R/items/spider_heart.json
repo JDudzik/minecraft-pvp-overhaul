@@ -1,0 +1,14 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "boi:spider_heart",
+      "category": "Items"
+    },
+    "components": {
+      "minecraft:icon": "spider_heart",
+      "minecraft:use_animation": "eat",
+      "minecraft:render_offsets": "apple"
+    }
+  }
+}

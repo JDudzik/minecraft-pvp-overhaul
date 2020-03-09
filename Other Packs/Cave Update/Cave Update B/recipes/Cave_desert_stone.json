@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+    "identifier": "boi:desert_stone"
+    },
+
+    
+    "tags": [ "crafting_table" ],
+    "pattern": [
+      "RS",
+      "SR"
+    ],
+    "key": {
+      "R": {
+        "item": "minecraft:stone",
+        "data": 0
+      },
+      "S": {
+        "item": "minecraft:sand"
+      }
+    },
+    "result": {
+      "item": "boi:desert_stone",
+      "count": 4
+    }
+  }
+}

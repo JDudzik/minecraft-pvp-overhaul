@@ -1,0 +1,14 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_furnace": {
+    "description": {
+    "identifier": "boi:furnace_gold_ore"
+    },
+
+    
+    "tags": ["furnace", "blast_furnace"],
+    "input": "boi:desert_gold",
+    "output": "minecraft:gold_ingot"
+  }
+  
+}

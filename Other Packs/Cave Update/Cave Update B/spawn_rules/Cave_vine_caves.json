@@ -1,0 +1,61 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:spawn_rules": {
+    "description": {
+      "identifier": "generate:vine_caves",
+      "population_control": "pillager"
+    },
+    "conditions": [
+      {
+        "minecraft:spawns_on_surface": {
+        },
+        "minecraft:spawns_underground": {
+        },
+
+        "minecraft:brightness_filter": {
+          "min": 0,
+          "max": 15,
+          "adjust_for_weather": true
+        },
+
+        "minecraft:weight": {
+          "default": 800
+        },
+        
+        "minecraft:herd": {
+          "min_size": 1,
+          "max_size": 1
+        },
+        "minecraft:biome_filter": {
+          "test": "has_biome_tag", "operator": "==", "value": "jungle"
+        }
+      },
+      {
+        "minecraft:spawns_on_surface": {
+        },
+        "minecraft:spawns_underground": {
+        },
+
+        "minecraft:brightness_filter": {
+          "min": 0,
+          "max": 15,
+          "adjust_for_weather": true
+        },
+
+        "minecraft:weight": {
+          "default": 780
+        },
+        
+        "minecraft:herd": {
+          "min_size": 1,
+          "max_size": 1
+        },
+        "minecraft:biome_filter": [
+          {
+            "test": "has_biome_tag", "operator": "==", "value": "jungle"
+          }
+        ]
+      }
+    ]
+  }
+}

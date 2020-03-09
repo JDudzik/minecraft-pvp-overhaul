@@ -1,0 +1,51 @@
+//bridge-file-version: #5
+{
+	"format_version": 1.1,
+	"minecraft:item": {
+		"description": {
+			"identifier": "boi:queen_spawn",
+			"runtime_identifier": "minecraft:iron_sword"
+		},
+		"components": {
+			"minecraft:stacked_by_data": true,
+			"minecraft:foil": false,
+			"minecraft:seed": {
+				"crop_result": "boi:queen_trophy",
+				"plant_at": [
+					"minecraft:sand",
+					"minecraft:grass",
+					"minecraft:stone",
+					"minecraft:dirt",
+					"minecraft:planks",
+					"minecraft:log",
+					"minecraft:log2",
+					"minecraft:brick_block",
+					"minecraft:cobblestone",
+					"minecraft:mycelium",
+					"minecraft:sandstone",
+					"minecraft:red_sandstone",
+					"minecraft:podzol",
+					"minecraft:leaves",
+					"minecraft:leaves2",
+					"minecraft:snow",
+					"minecraft:snow_layer",
+					"minecraft:prismarine",
+					"minecraft:stonebrick",
+					"boi:desert_stone",
+					"boi:snow_stone",
+					"boi:fire_stone",
+					"minecraft:mossy_cobblestone",
+					"minecraft:clay",
+					"minecraft:hardened_clay",
+					"minecraft:stained_hardened_clay",
+					"minecraft:grass_path",
+					"minecraft:ice",
+					"minecraft:blue_ice",
+					"minecraft:packed_ice",
+					"minecraft:obsidian"
+				]
+			},
+			"minecraft:block": "boi:queen_trophy"
+		}
+	}
+}

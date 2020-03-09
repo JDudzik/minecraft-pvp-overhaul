@@ -6,7 +6,7 @@ import entities from '../helpers/entities';
 import commands from '../helpers/commands';
 const cmd = commands.cmd;
 
-const tagsToIgnore = `tag=!in_safe_zone,tag=!no_pvp_player`;
+const tagsToIgnore = `tag=!in_safe_zone,tag=!no_pvp_player,m=!c`;
 
 
 function arrow_rain(name, stack, entity) {
@@ -51,8 +51,8 @@ function blink(name, stack, entity, dist = 20) {
 
 
 function coin_tablet(name, stack, entity) {
-  commands.addMoney(name, 500);
-  commands.msgPlayer(name, `§a+§e500 Coins`);
+  commands.addMoney(name, 100);
+  commands.msgPlayer(name, `§a+§e100 Coins`);
 }
 
 
@@ -104,6 +104,13 @@ function locate_home_point(name, stack, entity) {
   if (coords) {
     cmd(commands.execAs(name, `tp ~~~ facing ${coords.x} ${coords.y} ${coords.z}`));
   }
+}
+
+
+function hidden_region(name, stack, entity) {
+  cmd(commands.execAs(name, `say test1`));
+
+  delay.create(5, () => cmd(commands.execAs(name, `say test2`)));
 }
 
 

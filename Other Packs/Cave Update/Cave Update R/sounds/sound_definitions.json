@@ -1,0 +1,269 @@
+{
+  "ambient.weather.thunder": {
+    "category": "weather",
+    "min_distance": 100.0,
+    "sounds": [
+      {
+        "name": "sounds/ambient/weather/thunder1",
+        "load_on_low_memory": true
+      },
+      "sounds/ambient/weather/thunder2",
+      "sounds/ambient/weather/thunder3"
+    ]
+  },
+  "ambient.weather.lightning.impact": {
+    "category": "weather",
+    "min_distance": 100.0,
+    "sounds": [
+      "sounds/random/explode1",
+      "sounds/random/explode2",
+      "sounds/random/explode3",
+      "sounds/random/explode4"
+    ]
+  },
+  "ambient.weather.rain": {
+    "category": "weather",
+    "min_distance": 100.0,
+    "sounds": [
+      {
+        "name": "sounds/ambient/weather/rain1",
+        "volume": 0.02,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/weather/rain2",
+        "volume": 0.02
+      },
+      {
+        "name": "sounds/ambient/weather/rain3",
+        "volume": 0.02
+      },
+      {
+        "name": "sounds/ambient/weather/rain4",
+        "volume": 0.02
+      }
+    ]
+  },
+
+
+  "mob.queen.say": {
+    "category": "hostile",
+    "sounds": [
+      "sounds/monster_sounds/queen2",
+      "sounds/monster_sounds/queen3",      	 	 		     
+	 "sounds/monster_sounds/queen4",
+      {
+        "name": "sounds/monster_sounds/queen1",
+        "load_on_low_memory": true
+      }
+    ]
+  },
+  "mob.mimic.say": {
+    "category": "hostile",
+    "sounds": [
+      "sounds/monster_sounds/mimic1",
+      "sounds/monster_sounds/mimic2",      	 	 		     
+	 "sounds/monster_sounds/mimic3",
+      {
+        "name": "sounds/monster_sounds/mimic1",
+        "load_on_low_memory": true
+      }
+    ]
+  },
+  "mob.mimic.death": {
+    "category": "hostile",
+    "sounds": [
+      "sounds/monster_sounds/mimic_death",
+      {
+        "name": "sounds/monster_sounds/mimic_death",
+        "load_on_low_memory": true
+      }
+    ]
+  },
+
+
+
+
+  "boi.amb.cave_sounds": {
+    "category": "music",
+    "min_distance": 100.0,
+    "sounds": [
+      {
+        "name": "sounds/ambient/boi/cave1",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave2",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave3",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave4",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave5",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave6",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave7",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave8",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave9",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave10",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave11",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave12",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave13",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave14",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave15",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave16",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave17",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave18",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave19",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave20",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/cave20",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      }
+    ]
+  },
+  "boi.amb.forest_ambience": {
+    "category": "music",
+    "min_distance": 100.0,
+    "sounds": [
+      {
+        "name": "sounds/ambient/boi/treeswind1",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/forestbirds1",
+        "volume": 0.9,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/forestbirds1",
+        "volume": 0.9,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/forestbirds2long",
+        "volume": 0.5,
+        "load_on_low_memory": true
+      }
+    ]
+  },
+  "boi.music.queen": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "sounds/cave_music/queen_theme",
+        "stream": true,
+        "volume": 0.15,
+        "load_on_low_memory": true
+      }
+    ]
+  },
+  "boi.music.queen_end": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "sounds/cave_music/queen_theme_end",
+        "stream": true,
+        "volume": 0.15,
+        "load_on_low_memory": true
+      }
+    ]
+  },
+
+
+  "boi.amb.forestnight_ambience": {
+    "category": "music",
+    "min_distance": 100.0,
+    "sounds": [
+      {
+        "name": "sounds/ambient/boi/treeswind1",
+        "volume": 0.2,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/forestbirds1",
+        "volume": 0.4,
+        "load_on_low_memory": true
+      },
+      {
+        "name": "sounds/ambient/boi/forestcrickets1",
+        "volume": 0.4,
+        "load_on_low_memory": true
+      }
+    ]
+  }
+}

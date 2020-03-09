@@ -1,0 +1,38 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:spawn_rules": {
+    "description": {
+      "identifier": "boi:crawler_iron",
+      "population_control": "pillager"
+    },
+    "conditions": [
+      {
+        "minecraft:spawns_underground": {
+        },
+
+        "minecraft:brightness_filter": {
+          "min": 0,
+          "max": 15,
+          "adjust_for_weather": true
+        },
+
+        "minecraft:height_filter": {
+          "min": 0,
+          "max": 45
+        },
+        "minecraft:weight": {
+          "default": 40
+        },
+        
+        "minecraft:herd": {
+          "min_size": 1,
+          "max_size": 2
+        },
+
+        "minecraft:biome_filter": [
+          { "test": "has_biome_tag", "operator":"==", "value": "monster"}
+        ]
+      }
+    ]
+  }
+}

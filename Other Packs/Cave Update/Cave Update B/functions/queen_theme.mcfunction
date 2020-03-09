@@ -1,0 +1,1 @@
+playsound boi.music.queen @a [r=64]

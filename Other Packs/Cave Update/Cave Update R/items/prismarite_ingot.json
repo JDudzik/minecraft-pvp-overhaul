@@ -1,0 +1,13 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "boi:prismarite_ingot",
+      "category": "Items"
+    },
+    "components": {
+      "minecraft:icon": "prismarite_ingot",
+      "minecraft:render_offsets": "apple"
+    }
+  }
+}

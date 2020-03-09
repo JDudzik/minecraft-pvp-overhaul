@@ -1,0 +1,189 @@
+//bridge-file-version: #24
+{
+	"format_version": "1.8.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "boi:dungeon_compatability",
+			"is_spawnable": false,
+			"is_summonable": true,
+			"is_experimental": false,
+			"scripts": {
+				"animate": [
+					"walk"
+				]
+			},
+			"animations": {
+				"walk": "controller.animation.halloween_monster"
+			}
+		},
+		"components": {
+			"minecraft:health": {
+				"value": 1
+			},
+			"minecraft:physics": {},
+			"minecraft:environment_sensor": [
+				{
+					"on_environment": {
+						"filters": {
+							"test": "on_ground",
+							"subject": "self",
+							"operator": "equals",
+							"value": true
+						},
+						"event": "daytime"
+					}
+				}
+			]
+		},
+		"component_groups": {
+			"cave_update": {
+				"minecraft:spawn_entity": {
+					"min_wait_time": 0,
+					"max_wait_time": 0,
+					"spawn_sound": "plop",
+					"spawn_entity": "boi:dungeon_randomizer",
+					"single_use": true
+				},
+				"minecraft:despawn": {
+					"filters": {
+						"all_of": [
+							{
+								"subject": "self"
+							}
+						]
+					}
+				}
+			},
+			"dungeon_update": {
+				"minecraft:spawn_entity": {
+					"min_wait_time": 0,
+					"max_wait_time": 0,
+					"spawn_sound": "plop",
+					"spawn_entity": "boi:dungeon_update_randomizer",
+					"single_use": true
+				},
+				"minecraft:despawn": {
+					"filters": {
+						"all_of": [
+							{
+								"subject": "self"
+							}
+						]
+					}
+				}
+			},
+			"addon_2": {
+				"minecraft:spawn_entity": {
+					"min_wait_time": 0,
+					"max_wait_time": 0,
+					"spawn_sound": "plop",
+					"spawn_entity": "boi:dungeon_addon_2",
+					"single_use": true
+				},
+				"minecraft:despawn": {
+					"filters": {
+						"all_of": [
+							{
+								"subject": "self"
+							}
+						]
+					}
+				}
+			},
+			"addon_3": {
+				"minecraft:spawn_entity": {
+					"min_wait_time": 0,
+					"max_wait_time": 0,
+					"spawn_sound": "plop",
+					"spawn_entity": "boi:dungeon_addon_3",
+					"single_use": true
+				},
+				"minecraft:despawn": {
+					"filters": {
+						"all_of": [
+							{
+								"subject": "self"
+							},
+							{
+								"subject": "self"
+							},
+							{
+								"subject": "self"
+							},
+							{
+								"subject": "self"
+							}
+						]
+					}
+				}
+			},
+			"addon_4": {
+				"minecraft:spawn_entity": {
+					"min_wait_time": 0,
+					"max_wait_time": 0,
+					"spawn_sound": "plop",
+					"spawn_entity": "boi:dungeon_addon_4",
+					"single_use": true
+				},
+				"minecraft:despawn": {
+					"filters": {
+						"all_of": [
+							{
+								"subject": "self"
+							},
+							{
+								"subject": "self"
+							}
+						]
+					}
+				}
+			}
+		},
+		"events": {
+			"daytime": {
+				"randomize": [
+					{
+						"add": {
+							"component_groups": [
+								"cave_update"
+							]
+						},
+						"weight": 70
+					},
+					{
+						"add": {
+							"component_groups": [
+								"dungeon_update"
+							]
+						},
+						"weight": 27
+					},
+					{
+						"add": {
+							"component_groups": [
+								"addon_2"
+							]
+						},
+						"weight": 4
+					},
+					{
+						"add": {
+							"component_groups": [
+								"addon_3"
+							]
+						},
+						"weight": 2
+					},
+					{
+						"add": {
+							"component_groups": [
+								"addon_4"
+							]
+						},
+						"weight": 1
+					}
+				]
+			}
+		}
+	}
+}

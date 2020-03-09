@@ -1,0 +1,2 @@
+function admin__night_vision
+function admin__invisibility

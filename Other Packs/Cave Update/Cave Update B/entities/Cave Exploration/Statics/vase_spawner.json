@@ -1,0 +1,100 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "boi:vase_spawner",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false,
+      "runtime_identifier": "minecraft:shulker"
+    },
+    "component_groups": {
+      "break": {
+        "minecraft:spawn_entity": {
+          "min_wait_time": 0,
+          "max_wait_time": 0,
+          "spawn_sound": "plop",
+          "spawn_entity": "boi:spideregg_loot",
+          "single_use": "true"
+        },
+        "minecraft:despawn": {}
+      },
+      "despawn": {
+      "minecraft:spawn_entity": [
+        {
+          "min_wait_time": 0,
+          "max_wait_time": 0,
+          "spawn_entity": "boi:vase",
+          "single_use": true,
+          "num_to_spawn": 1,
+          "should_leash": false
+        }
+      ],
+        "minecraft:despawn": {}
+      }
+    },
+    "components": {
+      "minecraft:timer": {
+        "looping": false,
+        "random_time_choices": [
+          {
+            "weight": 50,
+            "value": 1
+          },
+          {
+            "weight": 50,
+            "value": 1
+          }
+        ],
+        "time_down_event": {
+          "event": "minecraft:start_despawn",
+          "target": "self"
+        }
+      },
+      "minecraft:damage_sensor": [
+        {
+          "on_damage": {
+          },
+          "deals_damage": false
+        }
+      ],
+      "minecraft:type_family": {
+        "family": [
+          "spideregg"
+        ]
+      },
+      "minecraft:breathable": {
+        "totalSupply": 15,
+        "suffocateTime": 0
+      },
+      "minecraft:health": {
+        "value": 4,
+        "max": 4
+      },
+      "minecraft:collision_box": {
+        "width": 1,
+        "height": 1
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 1
+      },
+      "minecraft:physics": {}
+    },
+    "events": {
+      "minecraft:start_despawn": {
+        "add": {
+          "component_groups": [
+            "despawn"
+          ]
+        }
+      },
+      "break": {
+        "add": {
+          "component_groups": [
+            "break"
+          ]
+        }
+      }
+    }
+  }
+}

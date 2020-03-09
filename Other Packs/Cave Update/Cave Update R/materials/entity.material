@@ -1,0 +1,10 @@
+{
+  "materials": {
+    "version": "1.8.0",
+    "skeleturtle:entity": {}
+    "cow2:entity": {}
+    "witherwolf:entity" {}
+    "gull:entity": {}
+    "goldgolem:entity": {}
+  }
+}

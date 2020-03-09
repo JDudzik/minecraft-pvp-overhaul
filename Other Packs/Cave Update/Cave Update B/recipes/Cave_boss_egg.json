@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+    "identifier": "minecraft:spawn_egg"
+    },
+
+    
+    "tags": [ "crafting_table" ],
+    "pattern": [
+      "S#S",
+      "#S#",
+      "S#S"
+    ],
+    "key": {
+      "S": {
+        "item": "minecraft:string"
+      },
+      "#": {
+        "item": "boi:spider_heart"
+      }
+    },
+    "result": {
+      "item": "boi:queen_spawn",
+        "data": 0
+    }
+  }
+}

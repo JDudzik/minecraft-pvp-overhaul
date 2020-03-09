@@ -1,0 +1,282 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "boi:miner_lost",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+    "component_groups": {
+      "saving":{
+      "minecraft:movement": {
+        "value": 0.18
+      },
+        "minecraft:transformation": {
+          "into": "boi:miner_found"
+        }
+    },
+      "minecraft:wolf_adult": {},
+      "minecraft:wolf_wild": {
+        "minecraft:tameable": {
+          "probability": 1,
+          "tameItems": [
+            "chicken",
+            "cooked_chicken",
+            "beef",
+            "cooked_beef",
+            "muttonRaw",
+            "muttonCooked",
+            "porkchop",
+            "cooked_porkchop",
+            "rabbit",
+            "bread",
+            "melon",
+            "apple",
+            "carrot",
+            "potato",
+            "mushroom_stew",
+            "rabbit_stew",
+            "cookie",
+            "baked_potato",
+            "pumpkin_pie",
+            "dried_kelp",
+            "cake",
+            "beetroot",
+            "beetroot_soup",
+            "cooked_rabbit",
+            "rotten_flesh"
+          ],
+          "tame_event": {
+            "event": "minecraft:on_tame",
+            "target": "self"
+          }
+        }
+      },
+      "minecraft:wolf_tame": {
+        "minecraft:is_tamed": {},
+        "minecraft:health": {
+          "value": 20,
+          "max": 20
+        },
+        "minecraft:color": {
+          "value": 14
+        },
+        "minecraft:behavior.follow_owner": {
+          "priority": 6,
+          "speed_multiplier": 1,
+          "start_distance": 10,
+          "stop_distance": 2
+        },
+        "minecraft:attack": {
+          "damage": 4
+        },
+        "minecraft:behavior.breed": {
+          "priority": 7
+        },
+        "minecraft:sittable": {}
+      }
+    },
+    "components": {
+        "minecraft:environment_sensor": {
+          "on_environment": {
+            "filters": {
+              "test": "is_in_village",
+              "subject": "self",
+              "operator": "equals",
+              "value": true
+            },
+            "event": "saving"
+          }
+        },
+      "minecraft:breathable": {
+        "totalSupply": 15,
+        "suffocateTime": 0
+      },
+      "minecraft:type_family": {
+        "family": [
+          "villager"
+        ]
+      },
+      "minecraft:collision_box": {
+        "width": 0.6,
+        "height": 1.8
+      },
+      "minecraft:movement": {
+        "value": 0.3
+      },
+      "minecraft:movement.basic": {},
+      "minecraft:jump.static": {},
+      "minecraft:can_climb": {},
+      "minecraft:health": {
+        "value": 8,
+        "max": 8
+      },
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 8,
+        "speed_multiplier": 1
+      },
+      "minecraft:physics": {},
+      "minecraft:navigation.walk": {
+        "can_path_over_water": true,
+        "avoid_damage_blocks": true
+      },
+      "minecraft:healable": {
+        "items": [
+          {
+            "item": "porkchop",
+            "heal_amount": 3
+          },
+          {
+            "item": "cooked_porkchop",
+            "heal_amount": 8
+          },
+          {
+            "item": "fish",
+            "heal_amount": 2
+          },
+          {
+            "item": "salmon",
+            "heal_amount": 2
+          },
+          {
+            "item": "clownfish",
+            "heal_amount": 1
+          },
+          {
+            "item": "pufferfish",
+            "heal_amount": 1
+          },
+          {
+            "item": "cooked_fish",
+            "heal_amount": 5
+          },
+          {
+            "item": "cooked_salmon",
+            "heal_amount": 6
+          },
+          {
+            "item": "beef",
+            "heal_amount": 3
+          },
+          {
+            "item": "cooked_beef",
+            "heal_amount": 8
+          },
+          {
+            "item": "chicken",
+            "heal_amount": 2
+          },
+          {
+            "item": "cooked_chicken",
+            "heal_amount": 6
+          },
+          {
+            "item": "muttonRaw",
+            "heal_amount": 2
+          },
+          {
+            "item": "muttonCooked",
+            "heal_amount": 6
+          },
+          {
+            "item": "rotten_flesh",
+            "heal_amount": 4
+          },
+          {
+            "item": "rabbit",
+            "heal_amount": 3
+          },
+          {
+            "item": "cooked_rabbit",
+            "heal_amount": 5
+          },
+          {
+            "item": "rabbit_stew",
+            "heal_amount": 10
+          }
+        ]
+      },
+      "minecraft:behavior.stay_while_sitting": {
+        "priority": 3
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 6,
+        "target_distance": 6,
+        "probability": 0.02
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 3
+      }
+    },
+    "events": {
+      "saving": {
+        "add": {
+          "component_groups": [
+            "saving"
+          ]
+        }
+      },
+      "minecraft:entity_spawned": {
+        "randomize": [
+          {
+            "weight": 1,
+            "remove": {},
+            "add": {
+              "component_groups": [
+                "minecraft:wolf_adult",
+                "minecraft:wolf_wild"
+              ]
+            }
+          },
+          {
+            "weight": 0,
+            "remove": {},
+            "add": {
+              "component_groups": [
+                "minecraft:wolf_baby",
+                "minecraft:wolf_wild"
+              ]
+            }
+          }
+        ]
+      },
+      "minecraft:entity_born": {
+        "remove": {},
+        "add": {
+          "component_groups": [
+                "minecraft:wolf_adult",
+                "minecraft:wolf_wild"
+          ]
+        }
+      },
+      "minecraft:ageable_set_baby": {
+        "remove": {
+          "component_groups": [
+            "minecraft:wolf_adult"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "minecraft:wolf_baby"
+          ]
+        }
+      },
+      "minecraft:on_tame": {
+        "remove": {
+          "component_groups": [
+            "minecraft:wolf_wild"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "minecraft:wolf_tame"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,99 @@
+//bridge-file-version: #23
+{
+	"format_version": "1.8.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "boi:spider_queen_theme_spawner",
+			"is_spawnable": false,
+			"is_summonable": true,
+			"is_experimental": false,
+			"scripts": {
+				"animate": [
+					"walk"
+				]
+			},
+			"animations": {
+				"walk": "controller.animation.queen_theme_spawner"
+			}
+		},
+		"components": {
+			"minecraft:type_family": {
+				"family": [
+					"despawn"
+				]
+			},
+			"minecraft:health": {
+				"value": 1000
+			},
+			"minecraft:physics": {},
+			"minecraft:timer": {
+				"looping": false,
+				"time": [
+					0.1,
+					0.1
+				],
+				"time_down_event": {
+					"event": "first_song"
+				}
+			},
+			"minecraft:collision_box": {
+				"width": 0.1,
+				"height": 0.1
+			}
+		},
+		"component_groups": {
+			"first": {
+				"minecraft:spawn_entity": [
+					{
+						"spawn_entity": "boi:spider_queen_theme",
+						"single_use": true,
+						"max_wait_time": 0,
+						"min_wait_time": 0,
+						"num_to_spawn": 1
+					}
+				],
+				"minecraft:timer": {
+					"looping": false,
+					"time": [
+						1,
+						1
+					],
+					"time_down_event": {
+						"event": "repeat"
+					}
+				}
+			},
+			"repeat": {
+				"minecraft:spawn_entity": [
+					{
+						"spawn_entity": "boi:spider_queen_theme",
+						"single_use": false,
+						"max_wait_time": 157,
+						"min_wait_time": 157
+					}
+				]
+			}
+		},
+		"events": {
+			"first_song": {
+				"add": {
+					"component_groups": [
+						"first"
+					]
+				}
+			},
+			"repeat": {
+				"add": {
+					"component_groups": [
+						"repeat"
+					]
+				},
+				"remove": {
+					"component_groups": [
+						"first"
+					]
+				}
+			}
+		}
+	}
+}

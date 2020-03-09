@@ -1,0 +1,191 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "boi:crawler_coal",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+    "component_groups": {
+      "tamed_spawn": {
+      "minecraft:movement": {
+        "value": 0.19
+      },
+      "minecraft:spawn_entity": [
+        {
+          "min_wait_time": 0,
+          "max_wait_time": 0,
+          "spawn_item": "bucket",
+          "single_use": true,
+          "num_to_spawn": 1
+        }
+      ],
+      "minecraft:timer": {
+        "looping": false,
+        "random_time_choices": [
+          { "weight": 50, "value": 1 },
+          { "weight": 50, "value": 2 }
+        ],
+        "time_down_event": {
+          "event": "tamed",
+          "target": "self"
+        }
+      },
+
+      "minecraft:underwater_movement": {
+        "value": 0.19
+      }
+        },
+      "tame": {
+      "minecraft:movement": {
+        "value": 0.19
+      },
+
+      "minecraft:spawn_entity": [
+        {
+          "min_wait_time": 60,
+          "max_wait_time": 800,
+          "spawn_item": "coal",
+          "single_use": false,
+          "num_to_spawn": 2
+        }
+      ],
+      "minecraft:underwater_movement": {
+        "value": 0.19
+      }
+        },
+      "despawn": {
+      "minecraft:despawn": {
+        }
+      }
+    },
+    "components": {
+      "minecraft:breathable": {
+        "totalSupply": 15,
+        "suffocateTime": 0
+      },
+      "minecraft:nameable": {
+      },
+
+      "minecraft:loot": {
+        "table": "loot_tables/entities/Cave_crawler_coal.json"
+      },
+
+      "minecraft:type_family": {
+        "family": [ "crawler", "arthropod"]
+      },
+      "minecraft:collision_box": {
+        "width": 0.4,
+        "height": 0.3
+      },
+
+        "minecraft:interact": [
+          {
+            "on_interact": {
+              "filters": { 
+                "all_of": [
+                  { "test": "is_family", "subject" : "other", "value" :  "player"},
+                  { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "bucket:0"}
+                ] 
+              }
+            },
+            "use_item": true,
+            "transform_to_item": "spawn_egg:284",
+            "play_sounds": "milk",
+            "interact_text": "action.interact.milk",
+            "event": "despawn",
+            "target": "self"
+          }
+        ],
+      "minecraft:movement": {
+        "value": 0.29
+      },
+      "minecraft:underwater_movement": {
+        "value": 0.29
+      },
+        "minecraft:scale": {
+          "value": 1.2
+        },
+      "minecraft:navigation.climb": {
+        "can_path_over_water": true
+      },
+      "minecraft:movement.basic": {
+        
+      },
+      "minecraft:jump.static": {
+      },
+      "minecraft:can_climb": {
+      },
+		  "minecraft:health": {
+        "value": 8,
+        "max": 8
+      },
+
+      "minecraft:spawn_entity": [
+        {
+          "min_wait_time": 60,
+          "max_wait_time": 800,
+          "spawn_item": "coal",
+          "single_use": false,
+          "num_to_spawn": 2
+        }
+      ],
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+
+      "minecraft:behavior.avoid_mob_type": {
+        "priority": 5,
+        "entity_types": [
+          {
+            "filters": { "test" :  "is_family", "subject" : "other", "value" :  "player"},
+            "max_dist": 8,
+            "walk_speed_multiplier": 1.2,
+            "sprint_speed_multiplier": 1.2
+          }
+        ]
+      },
+
+      "minecraft:behavior.random_stroll": {
+        "priority": 6,
+        "speed_multiplier": 1
+      },
+	    "minecraft:physics": {
+      }
+    },
+    "events": {
+      "minecraft:entity_born": {
+        "remove": {
+        },
+        "add": {
+          "component_groups": [
+            "tamed_spawn"
+          ]
+        }
+      },
+      "tamed": {
+        "remove": {
+          "component_groups": [
+            "tamed_spawn"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "tame"
+          ]
+        }
+      },
+      "despawn": {
+        "add": {
+          "component_groups": [
+            "despawn"
+          ]
+        }
+      }
+    }
+  }
+}
+
+
+

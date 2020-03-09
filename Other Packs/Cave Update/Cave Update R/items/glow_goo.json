@@ -1,0 +1,14 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "boi:glow_goo",
+      "category": "Items"
+    },
+    "components": {
+      "minecraft:icon": "glow_goo",
+      "minecraft:use_animation": "eat",
+      "minecraft:render_offsets": "apple"
+    }
+  }
+}

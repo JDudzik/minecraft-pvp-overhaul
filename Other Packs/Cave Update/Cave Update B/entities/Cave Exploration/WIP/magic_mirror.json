@@ -1,0 +1,37 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "boi:magic_mirror",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false,
+	  "scripts": {
+	    "animate": [ "walk" ]
+	  },
+	  "animations": {
+	    "walk": "controller.animation.magic_mirror"
+    }
+  },
+	"components": {
+      "minecraft:spawn_entity": [
+        {
+          "min_wait_time": 0,
+          "max_wait_time": 0,
+          "spawn_entity": "boi:magic_mirror_reset",
+          "single_use": true,
+          "num_to_spawn": 1,
+          "should_leash": false
+        }
+      ],
+	  "minecraft:type_family": {
+	    "family": [ "despawn" ]
+	  },
+	  "minecraft:health": {
+	    "value": 1
+	  },
+	  "minecraft:physics": {
+     }
+ 	 }
+  }
+}

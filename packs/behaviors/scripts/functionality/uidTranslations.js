@@ -10,7 +10,7 @@ const uidToName = {
 
 	// Hostiles
 	'minecraft:zombie': 'zombie',
-	'minecraft:zombie_village_v2': 'zombie villager',
+	'minecraft:zombie_villager_v2': 'zombie villager',
 	'minecraft:husk': 'husk',
 	'minecraft:drowned': 'drowned',
 	'minecraft:skeleton': 'skeleton',
@@ -26,11 +26,29 @@ const uidToName = {
 	'minecraft:phantom': 'phantom',
 	'minecraft:magma_cube': 'magma cube',
 	'minecraft:stray': 'stray',
+	'minecraft:vex': 'vex',
+	'minecraft:evocation_illager': 'evoker',
+	'minecraft:vindicator': 'vindicator',
+	'minecraft:shulker': 'shulker',
+	'minecraft:pillager': 'pillager',
+	'minecraft:ravager': 'ravager',
+
+	// Addon Mobs
+	'boi:spider_shooter': 'bristle spider',
+	'boi:gold_mimic_spawn': 'gold chest mimic',
+	'boi:gold_mimic': 'gold chest mimic',
+	'boi:motherspider': 'brood spider',
+	'boi:iron_mimic_spawn': 'iron chest mimic',
+	'boi:iron_mimic': 'iron chest mimic',
+	'boi:spider_baby_egg': 'spiderling',
+	'boi:spider_baby': 'spiderling',
+	'boi:zombie_miner': 'zombie miner',
+	'boi:spider_queen': 'spider matriarch',
 }
 
 const uidToValue = {
 	'minecraft:zombie': 30,
-	'minecraft:zombie_village_v2': 30,
+	'minecraft:zombie_villager_v2': 30,
 	'minecraft:husk': 60,
 	'minecraft:drowned': 30,
 	'minecraft:skeleton': 60,
@@ -46,6 +64,24 @@ const uidToValue = {
 	'minecraft:phantom': 125,
 	'minecraft:magma_cube': 50,
 	'minecraft:stray': 125,
+	'minecraft:vex': 30,
+	'minecraft:evocation_illager': 160,
+	'minecraft:vindicator': 100,
+	'minecraft:shulker': 60,
+	'minecraft:pillager': 60,
+	'minecraft:ravager': 185,
+
+	// Addon Mobs
+	'boi:spider_shooter': 60,
+	'boi:gold_mimic_spawn': 125,
+	'boi:gold_mimic': 125,
+	'boi:motherspider': 125,
+	'boi:iron_mimic_spawn': 80,
+	'boi:iron_mimic': 80,
+	'boi:spider_baby_egg': 3,
+	'boi:spider_baby': 3,
+	'boi:zombie_miner': 40,
+	'boi:spider_queen': 400,
 }
 
 

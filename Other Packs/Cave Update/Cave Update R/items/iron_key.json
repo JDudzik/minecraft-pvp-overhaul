@@ -1,0 +1,13 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "boi:iron_key",
+      "category": "Items"
+    },
+    "components": {
+      "minecraft:icon": "iron_key",
+      "minecraft:render_offsets": "apple"
+    }
+  }
+}

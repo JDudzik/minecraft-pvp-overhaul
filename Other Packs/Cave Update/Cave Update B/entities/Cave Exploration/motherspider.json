@@ -1,0 +1,288 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "boi:motherspider",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false,
+      "runtime_identifier": "minecraft:spider"
+    },
+
+    "component_groups": {
+      "boss": {
+      "minecraft:movement": {
+        "value": 0.18
+      },
+        "minecraft:transformation": {
+          "into": "boi:spider_queen_spawn"
+        }
+      },
+      "despawn": {
+      "minecraft:despawn": {
+        }
+      }
+    },
+
+
+    "components": {
+      "minecraft:nameable": {
+      },
+      "minecraft:interact": [
+        {
+          "on_interact": {
+            "filters": {
+                "all_of": [
+				  { "test": "has_equipment", "subject": "other", "domain": "hand", "value": "boi:queen_spawn"},
+                  { "test" :  "is_family", "subject" : "other", "value" :  "player"},
+                  { "test" :  "has_ability","subject" : "other", "value" :  "instabuild"}
+                ]
+            },
+            "event": "boss"
+          },
+          "use_item": true
+        }
+      ],
+      "minecraft:timer": {
+        "looping": false,
+        "random_time_choices": [
+          { "weight": 50, "value": 300 },
+          { "weight": 50, "value": 360 }
+        ],
+        "time_down_event": {
+          "event": "minecraft:start_despawn",
+          "target": "self"
+        }
+      },
+      "minecraft:ravager_blocked": {
+        "knockback_strength": 3.0,
+        "reaction_choices": [
+          {
+            "weight": 1,
+            "value": {
+              "event": "minecraft:become_stunned",
+              "target": "self"
+            }
+          },
+          {
+            // Default, large knockback case
+            "weight": 1
+          }
+        ]
+      },
+      "minecraft:type_family": {
+        "family": [ "motherspider", "monster", "arthropod" ]
+      },
+        "minecraft:scale": {
+          "value": 1.4
+        },
+      "minecraft:damage_sensor": [
+        {
+          "on_damage": {
+            "filters": {
+              "test": "is_family",
+              "subject": "other",
+              "value": "arthropod"
+            }
+          },
+          "deals_damage": false
+        }
+      ],
+      "minecraft:breathable": {
+        "totalSupply": 15,
+        "suffocateTime": 0
+      },
+      "minecraft:loot": {
+        "table": "loot_tables/entities/motherspider.json"
+      },
+      "minecraft:fall_damage": {
+        "value": 0.0
+      },
+      "minecraft:collision_box": {
+        "width": 1.0,
+        "height": 0.9
+      },
+      "minecraft:health": {
+        "value": 40,
+        "max": 40
+      },
+      "minecraft:movement": {
+        "value": 0.25
+      },
+      "minecraft:navigation.climb": {
+        "can_path_over_water": true
+      },
+      "minecraft:movement.basic": {
+      },
+      "minecraft:jump.static": {
+      },
+      "minecraft:can_climb": {
+      },
+      "minecraft:knockback_resistance": {
+        "value": 0.3
+      },
+
+      "minecraft:behavior.nearest_attackable_target": {
+        "priority": 5,
+        "within_radius": 16,
+        "entity_types": [
+          {
+            "filters": {
+              "any_of": [
+                {
+                  "test": "is_family",
+                  "subject": "other",
+                  "value": "player"
+                },
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "snowgolem"
+                  },
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "irongolem"
+                  }
+              ]
+            },
+            "max_dist": 26
+          }
+        ],
+        "must_see": false
+      },
+
+      "minecraft:behavior.melee_attack": {
+        "priority": 3,
+        "speed_multiplier": 1,
+        "reach_multiplier": 1,
+        "track_target": true
+      },
+      "minecraft:attack": {
+        "damage": 4,
+          "effect_name": "poison",
+          "effect_duration": 10
+      },
+      "minecraft:behavior.float": {
+        "priority": 2
+      },
+      "minecraft:behavior.summon_entity": {
+        "priority": 1,
+
+        "summon_choices": [
+          {
+            "weight": 1,
+            "cooldown_time": 8.0,
+            "do_casting": true,
+            "cast_duration": 2.0,
+            "particle_color": "#FFB3B3CC",
+            "sequence": [
+              {
+                "shape": "circle",
+                "target": "self",
+                "base_delay": 0.0,
+                "delay_per_summon": 0.2,
+                "num_entities_spawned": 3,
+                "entity_type": "boi:spider_baby",
+                "summon_cap": 5,
+                "summon_cap_radius": 32.0,
+                "size": 1.0,
+                "sound_event": "prepare.summon"
+              }
+            ]
+          },
+          {
+            "weight": 2,
+            "cooldown_time": 5.0,
+            "do_casting": true,
+            "cast_duration": 1.5,
+            "particle_color": "#FFB3B3CC",
+            "sequence": [
+              {
+                "shape": "circle",
+                "target": "self",
+                "base_delay": 0.0,
+                "delay_per_summon": 0.2,
+                "num_entities_spawned": 2,
+                "entity_type": "boi:spider_baby",
+                "summon_cap": 5,
+                "summon_cap_radius": 32.0,
+                "size": 1.0,
+                "sound_event": "prepare.summon"
+              }
+            ]
+          }
+        ]
+      },
+      "minecraft:behavior.mount_pathing": {
+        "priority": 5,
+        "speed_multiplier": 1.25,
+        "target_dist": 0.0,
+        "track_target": true
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 6,
+        "speed_multiplier": 0.8
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 7,
+        "look_distance": 6.0,
+        "probability": 0.02
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 7
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 1
+      },
+      "minecraft:rideable": {
+        "seat_count": 1,
+        "family_types": [
+          "zombie"
+        ],
+        "seats": {
+          "position": [ 0.0, 0.54, -0.1 ]
+        }
+      },
+      "minecraft:physics": {
+      }
+    },
+    "events": {
+      "minecraft:scheduled": {
+        "add": {
+          "component_groups": [
+            "managed"
+          ]
+        }
+      },
+      "minecraft:start_despawn": {
+        "add": {
+          "component_groups": [
+            "despawn"
+          ]
+        }
+      },
+      "boss": {
+        "add": {
+          "component_groups": [
+            "boss"
+          ]
+        }
+      },
+      "minecraft:become_scared": {
+        "add": {
+          "component_groups": [
+            "minecraft:scared"
+          ]
+        }
+      },
+      "minecraft:become_calm": {
+        "remove": {
+          "component_groups": [
+            "minecraft:scared"
+          ]
+        }
+      }
+    }
+  }
+}

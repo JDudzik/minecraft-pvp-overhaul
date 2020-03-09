@@ -1,0 +1,111 @@
+{
+  "resource_pack_name": "vanilla",
+  "texture_name": "atlas.terrain",
+  "padding": 8,
+  "num_mip_levels": 4,
+  "texture_data": {
+    "moss_stone": {
+      "textures": [
+        "textures/blocks/Boi_moss_stone"
+      ]
+    },
+    "snow_stone": {
+      "textures": [
+        "textures/blocks/Boi_snow_stone"
+      ]
+    },
+    "desert_stone": {
+      "textures": [
+        "textures/blocks/Boi_desert_stone"
+      ]
+    },
+    "sandy_cobblestone": {
+      "textures": [
+        "textures/blocks/sandy_cobblestone"
+      ]
+    },
+    "desert_coal": {
+      "textures": [
+        "textures/blocks/Boi_desert_coal"
+      ]
+    },
+
+    "desert_diamond": {
+      "textures": [
+        "textures/blocks/Boi_desert_diamond"
+      ]
+    },
+
+    "desert_iron": {
+      "textures": [
+        "textures/blocks/Boi_desert_iron"
+      ]
+    },
+
+    "desert_gold": {
+      "textures": [
+        "textures/blocks/Boi_desert_gold"
+      ]
+    },
+
+    "desert_lapis": {
+      "textures": [
+        "textures/blocks/Boi_desert_lapis"
+      ]
+    },
+
+    "desert_redstone": {
+      "textures": [
+        "textures/blocks/Boi_desert_redstone"
+      ]
+    },
+    "prismarine_ore": {
+      "textures": [
+        "textures/blocks/Boi_prismarine_ore"
+      ]
+    },
+    "prismarine_crystal_ore": {
+      "textures": [
+        "textures/blocks/Boi_prismarine_crystal_ore"
+      ]
+    },
+    "queen_trophy_top": {
+      "textures": [
+        "textures/blocks/Boi_queen_trophy_top"
+      ]
+    },
+
+
+
+    "pot": {
+      "textures": [
+        "textures/blocks/pot"
+      ]
+    },
+    "bedrock_cobblestone": {
+      "textures": [
+        "textures/blocks/bedrock_cobblestone"
+      ]
+    },
+    "fire_stone": {
+      "textures": [
+        "textures/blocks/fire_stone"
+      ]
+    },
+    "glow_block": {
+      "textures": [
+        "textures/blocks/glow_block"
+      ]
+    },
+
+
+
+
+
+    "queen_trophy": {
+      "textures": [
+        "textures/blocks/Boi_queen_trophy"
+      ]
+    }
+  }
+}

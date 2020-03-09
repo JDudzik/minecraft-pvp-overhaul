@@ -1,0 +1,109 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "boi:crawler_redstone",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+    "components": {
+      "minecraft:nameable": {},
+      "minecraft:interact": [
+        {
+          "on_interact": {
+            "filters": {
+              "all_of": [
+                {
+                  "test": "is_family",
+                  "subject": "other",
+                  "value": "player"
+                },
+                {
+                  "test": "has_equipment",
+                  "subject": "other",
+                  "value": "bucket:0",
+                  "domain": "hand"
+                }
+              ]
+            }
+          },
+          "use_item": true,
+          "transform_to_item": "spawn_egg:284",
+          "play_sounds": "milk",
+          "interact_text": "action.interact.milk",
+          "event": "despawn",
+          "target": "self"
+        }
+      ],
+      "minecraft:type_family": {
+        "family": [
+          "crawler",
+          "arthropod"
+        ]
+      },
+      "minecraft:breathable": {
+        "totalSupply": 15,
+        "suffocateTime": 0
+      },
+      "minecraft:loot": {
+        "table": "loot_tables/entities/Cave_crawler_redstone.json"
+      },
+      "minecraft:collision_box": {
+        "width": 0.4,
+        "height": 0.3
+      },
+      "minecraft:health": {
+        "value": 8,
+        "max": 8
+      },
+      "minecraft:movement": {
+        "value": 0.29
+      },
+      "minecraft:navigation.climb": {
+        "can_path_over_water": true
+      },
+      "minecraft:movement.basic": {},
+      "minecraft:jump.static": {},
+      "minecraft:can_climb": {},
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 6,
+        "speed_multiplier": 1
+      },
+      "minecraft:physics": {},
+      "minecraft:underwater_movement": {
+        "value": 0.29
+      },
+      "minecraft:scale": {
+        "value": 1.2
+      },
+      "minecraft:spawn_entity": [
+        {
+          "min_wait_time": 6,
+          "max_wait_time": 400,
+          "spawn_item": "redstone",
+          "single_use": false,
+          "num_to_spawn": 3
+        }
+      ],
+      "minecraft:behavior.avoid_mob_type": {
+        "priority": 5,
+        "entity_types": [
+          {
+            "filters": {
+              "test": "is_family",
+              "subject": "other",
+              "value": "player"
+            },
+            "max_dist": 8,
+            "walk_speed_multiplier": 1.2,
+            "sprint_speed_multiplier": 1.2
+          }
+        ]
+      }
+    }
+  }
+}

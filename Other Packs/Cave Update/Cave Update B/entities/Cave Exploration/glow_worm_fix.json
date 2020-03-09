@@ -1,0 +1,27 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "boi:glow_worm_fix",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": true,
+	  "scripts": {
+	    "animate": [ "walk" ]
+	  },
+	  "animations": {
+	    "walk": "controller.animation.glow_worm_fix"
+    }
+  },
+	"components": {
+	  "minecraft:type_family": {
+	    "family": [ "despawn" ]
+	  },
+	  "minecraft:health": {
+	    "value": 100
+	  },
+	  "minecraft:physics": {
+     }
+ 	 }
+  }
+}

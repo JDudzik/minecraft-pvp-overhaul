@@ -1,0 +1,28 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+    "identifier": "boi:snow_stone"
+    },
+
+    
+    "tags": [ "crafting_table" ],
+    "pattern": [
+      "RS",
+      "SR"
+    ],
+    "key": {
+      "R": {
+        "item": "minecraft:stone",
+        "data": 0
+      },
+      "S": {
+        "item": "minecraft:ice"
+      }
+    },
+    "result": {
+      "item": "boi:snow_stone",
+      "count": 4
+    }
+  }
+}

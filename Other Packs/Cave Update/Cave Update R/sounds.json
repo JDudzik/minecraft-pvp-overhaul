@@ -1,0 +1,332 @@
+{
+  "entity_sounds": {
+    "defaults": {
+      "volume": 1,
+      "pitch": [
+        0.8,
+        1.2
+      ],
+      "events": {
+        "fall.big": {
+          "sound": "damage.fallbig",
+          "volume": 0.75,
+          "pitch": 1
+        },
+        "fall.small": {
+          "sound": "damage.fallsmall",
+          "volume": 0.75,
+          "pitch": 1
+        },
+        "unlock.chest": {
+          "sound": "damage.fallbig",
+          "volume": 0.75,
+          "pitch": 1
+        },
+        "splash": {
+          "sound": "random.splash",
+          "pitch": [
+            0.6,
+            1.4
+          ]
+        },
+        "swim": {
+          "sound": "random.swim",
+          "pitch": [
+            0.6,
+            1.4
+          ]
+        },
+        "fizz": {
+          "sound": "random.fizz",
+          "volume": 0.7,
+          "pitch": [
+            1.2,
+            2
+          ]
+        },
+        "drink": {
+          "sound": "random.drink",
+          "volume": 0.5,
+          "pitch": [
+            0.9,
+            1
+          ]
+        },
+        "eat": {
+          "sound": "random.eat",
+          "volume": [
+            0.5,
+            1.5
+          ],
+          "pitch": [
+            0.8,
+            1.2
+          ]
+        },
+        "ambient": "",
+        "flop": "",
+        "hurt": "game.player.hurt",
+        "death": "game.player.die",
+        "ambient.in.water": "",
+        "hurt.in.water": "",
+        "death.in.water": ""
+      }
+    },
+    "entities": {
+      "boi:zombie_miner": {
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1.2
+        ],
+        "events": {
+          "ambient": "mob.skeleton.say",
+          "hurt": {
+            "sound": "mob.skeleton.hurt",
+            "volume": 0.7
+          },
+          "death": "mob.skeleton.death",
+          "step": {
+            "sound": "mob.skeleton.step",
+            "volume": 1,
+            "pitch": 1
+          }
+        }
+      },
+
+
+      "boi:vase_loot": {
+        "volume": 0,
+        "pitch": [
+          1.0,
+          1.0
+        ],
+        "events": {
+          "ambient": "mob.spider.say",
+          "hurt": "dig.cloth",
+          "death": "mob.spider.death",
+          "step": {
+            "sound": "mob.spider.step",
+            "volume": 0.5,
+            "pitch": 1.4
+          }
+        }
+      },
+      "boi:vase": {
+        "volume": 1,
+        "pitch": [
+          1.0,
+          1.0
+        ],
+        "events": {
+          "ambient": "mob.spider.gay",
+          "hurt": "dig.stone",
+          "death": "dig.stone",
+          "step": {
+            "sound": "mob.spider.step",
+            "volume": 0.5,
+            "pitch": 1.4
+          }
+        }
+      },
+      "boi:glow_worm_fix": {
+        "volume": 0,
+        "pitch": [
+          1.0,
+          1.0
+        ],
+        "events": {
+          "ambient": "mob.spider.say",
+          "hurt": "dig.cloth",
+          "death": "mob.spider.death",
+          "step": {
+            "sound": "mob.spider.step",
+            "volume": 0.5,
+            "pitch": 1.4
+          }
+        }
+      },
+      "boi:glow_worm": {
+        "volume": 0.05,
+        "pitch": [ 1.56, 1.74 ],
+        "events": {
+          "ambient": "mob.bat.hurt",
+          "hurt": "mob.bat.hurt",
+          "death": "mob.bat.idle",
+          "takeoff": {
+            "sound": "mob.bat.takeoff",
+            "volume": 0.05,
+            "pitch": [ 0.8, 1.2 ]
+          }
+        }
+      },
+
+
+
+
+
+      "boi:motherspider": {
+        "volume": 1,
+        "pitch": [
+          0.5,
+          0.8
+        ],
+        "events": {
+          "ambient": "mob.spider.say",
+          "hurt": "mob.spider.say",
+          "death": "mob.spider.death",
+          "step": {
+            "sound": "mob.spider.step",
+            "volume": 1,
+            "pitch": 1
+          }
+        }
+      },
+      "boi:spider_queen": {
+        "volume": 20,
+        "pitch": [
+          1.0,
+          0.8
+        ],
+        "events": {
+          "ambient": "mob.queen.say",
+          "hurt": "mob.queen.say",
+          "death": "mob.spider.death",
+          "step": {
+            "sound": "mob.spider.step",
+            "volume": 1,
+            "pitch": 1
+          }
+        }
+      },
+      "boi:spider_baby": {
+        "volume": 1,
+        "pitch": [
+          1.5,
+          1.8
+        ],
+        "events": {
+          "ambient": "mob.spider.say",
+          "hurt": "mob.spider.say",
+          "death": "mob.spider.death",
+          "step": {
+            "sound": "mob.spider.step",
+            "volume": 0.5,
+            "pitch": 1.4
+          }
+        }
+      },
+      "boi:spider_baby_egg": {
+        "volume": 1,
+        "pitch": [
+          1.5,
+          1.8
+        ],
+        "events": {
+          "ambient": "mob.spider.say",
+          "hurt": "mob.spider.say",
+          "death": "mob.spider.death",
+          "step": {
+            "sound": "mob.spider.step",
+            "volume": 0.5,
+            "pitch": 1.4
+          }
+        }
+      },
+      "boi:boss_spiderling": {
+        "volume": 1,
+        "pitch": [
+          1.0,
+          1.0
+        ],
+        "events": {
+          "ambient": "mob.spider.say",
+          "hurt": "dig.cloth",
+          "death": "mob.spider.death",
+          "step": {
+            "sound": "mob.spider.step",
+            "volume": 0.5,
+            "pitch": 1.4
+          }
+        }
+      },
+      "boi:miner_found": {
+        "volume": 1,
+        "pitch": [
+          0.8,
+          1
+        ],
+        "events": {
+          "ambient": "mob.villager.idle",
+          "hurt": "mob.villager.hit",
+          "death": "mob.villager.death",
+          "death.to.zombie": "mob.villager.death",
+          "haggle": "mob.villager.haggle",
+          "haggle.yes": "mob.villager.yes",
+          "haggle.no": "mob.villager.no"
+        }
+      },
+      "boi:miner_lost": {
+        "volume": 1,
+        "pitch": [
+          1,
+          1.1
+        ],
+        "events": {
+          "ambient": "mob.villager.idle",
+          "hurt": "mob.villager.hit",
+          "death": "mob.villager.death",
+          "death.to.zombie": "mob.villager.death",
+          "haggle": "mob.villager.haggle",
+          "haggle.yes": "mob.villager.yes",
+          "haggle.no": "mob.villager.no"
+        }
+      },
+
+
+      "boi:iron_mimic": {
+        "volume": 3,
+        "pitch": [
+          0.8,
+          1.1
+        ],
+        "events": {
+          "ambient": "mob.mimic.say",
+          "hurt": "mob.mimic.say",
+          "death": "mob.mimic.death"
+        }
+      },
+      "boi:gold_mimic": {
+        "volume": 3,
+        "pitch": [
+          0.8,
+          1.1
+        ],
+        "events": {
+          "ambient": "mob.mimic.say",
+          "hurt": "mob.mimic.say",
+          "death": "mob.mimic.death"
+        }
+      },
+
+
+
+      "boi:miner_trapped": {
+        "volume": 1,
+        "pitch": [
+          1,
+          1.1
+        ],
+        "events": {
+          "ambient": "mob.villager.no",
+          "hurt": "mob.villager.hit",
+          "death": "mob.villager.death",
+          "death.to.zombie": "mob.villager.death",
+          "haggle": "mob.villager.haggle",
+          "haggle.yes": "mob.villager.yes",
+          "haggle.no": "mob.villager.no"
+        }
+      }
+    }
+  }
+}

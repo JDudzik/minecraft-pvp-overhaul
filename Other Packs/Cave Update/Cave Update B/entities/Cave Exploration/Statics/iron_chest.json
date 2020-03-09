@@ -1,0 +1,190 @@
+//bridge-file-version: #3
+{
+	"format_version": "1.13.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "boi:iron_chest",
+			"is_spawnable": false,
+			"is_summonable": true,
+			"is_experimental": false,
+			"runtime_identifier": "minecraft:shulker",
+			"scripts": {
+				"animate": [
+					"walk"
+				]
+			},
+			"animations": {
+				"walk": "controller.animation.item_tp"
+			}
+		},
+		"components": {
+			"minecraft:type_family": {
+				"family": [
+					"minecart",
+					"inanimate"
+				]
+			},
+			"minecraft:collision_box": {
+				"width": 0.9,
+				"height": 0.9
+			},
+			"minecraft:health": {
+				"value": 1,
+				"max": 1
+			},
+			"minecraft:is_stackable": {
+				"value": true
+			},
+			"minecraft:physics": {},
+			"minecraft:pushable": {
+				"is_pushable": false,
+				"is_pushable_by_piston": true
+			}
+		},
+		"component_groups": {
+			"locked": {
+				"minecraft:interact": {
+					"interactions": [
+						{
+							"cooldown": 2.5,
+							"use_item": false,
+							"hurt_item": 2,
+							"play_sounds": "shulkerbox.open",
+							"interact_text": "action.interact.shear",
+							"on_interact": {
+								"filters": {
+									"any_of": [
+										{
+											"test": "has_equipment",
+											"subject": "other",
+											"domain": "hand",
+											"value": "boi:iron_key"
+										},
+										{
+											"test": "has_equipment",
+											"subject": "other",
+											"domain": "hand",
+											"value": "boi:gold_key"
+										}
+									]
+								},
+								"event": "unlock",
+								"target": "self"
+							}
+						}
+					]
+				},
+				"minecraft:inventory": {
+					"container_type": "container",
+					"inventory_size": 27,
+					"can_be_siphoned_from": false,
+					"private": true
+				},
+				"minecraft:timer": {
+					"time_down_event": {
+						"event": "loot_spawn"
+					},
+					"looping": false,
+					"time": [
+						1,
+						1
+					]
+				},
+				"minecraft:damage_sensor": {
+					"triggers": [
+						{
+							"cause": "all",
+							"deals_damage": false
+						}
+					]
+				}
+			},
+			"unlocked": {
+				"minecraft:inventory": {
+					"container_type": "container",
+					"inventory_size": 27,
+					"can_be_siphoned_from": true,
+					"private": false
+				},
+				"minecraft:damage_sensor": {
+					"on_damage": {
+						"spawn_items": {
+							"table": "loot_tables/entities/sheep_shear.json"
+						},
+						"play_sounds": "shear",
+						"event": "break"
+					},
+					"deals_damage": false
+				}
+			},
+			"loot": {
+				"minecraft:spawn_entity": [
+					{
+						"min_wait_time": 0,
+						"max_wait_time": 0,
+						"spawn_entity": "boi:iron_loot",
+						"single_use": true,
+						"num_to_spawn": 1,
+						"should_leash": false
+					}
+				],
+				"minecraft:timer": {
+					"looping": false,
+					"time_down_event": {
+						"event": "loot_end"
+					},
+					"time": [
+						2,
+						2
+					]
+				},
+				"minecraft:item_hopper": {}
+			},
+			"break": {
+				"minecraft:despawn": {}
+			}
+		},
+		"events": {
+			"minecraft:entity_born": {
+				"add": {
+					"component_groups": [
+						"locked"
+					]
+				}
+			},
+			"unlock": {
+				"add": {
+					"component_groups": [
+						"unlocked"
+					]
+				},
+				"remove": {
+					"component_groups": [
+						"locked"
+					]
+				}
+			},
+			"loot_spawn": {
+				"add": {
+					"component_groups": [
+						"loot"
+					]
+				}
+			},
+			"loot_end": {
+				"remove": {
+					"component_groups": [
+						"loot"
+					]
+				}
+			},
+			"break": {
+				"add": {
+					"component_groups": [
+						"break"
+					]
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,38 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "boi:crawler_coal_tamed",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false
+  },
+	"components": {
+	  "minecraft:type_family": {
+	    "family": [ "despawn" ]
+	  },
+      "minecraft:spawn_entity": [
+        {
+          "min_wait_time": 0,
+          "max_wait_time": 0,
+          "spawn_entity": "boi:crawler_coal",
+          "single_use": true,
+          "num_to_spawn": 1,
+          "should_leash": false
+        }
+      ],
+	  "minecraft:health": {
+	    "value": 1
+	  },
+	  "minecraft:despawn": {
+	    "filters": {
+		  "all_of": [
+		    { "test": "is_family", "subject": "self", "value": "despawn" }
+		  ]
+		 }
+	  },
+	  "minecraft:physics": {
+     }
+ 	 }
+  }
+}

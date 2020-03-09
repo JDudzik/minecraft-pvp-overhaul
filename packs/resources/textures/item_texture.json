@@ -25,6 +25,9 @@
     },
     "pvpcontrols:save_home_point": {
       "textures": "textures/items/pvpcontrols_save_home_point"
+    },
+    "pvpcontrols:hide_region": {
+      "textures": "textures/items/pvpcontrols_hide_region"
     }
   }
 }

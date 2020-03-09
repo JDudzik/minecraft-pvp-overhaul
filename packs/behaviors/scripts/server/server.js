@@ -10,6 +10,7 @@ import restrictions from '../functionality/restrictions';
 import tag_commands from '../functionality/tag_commands';
 import global_storage from '../helpers/global_storage';
 import xray_anticheat from '../functionality/xray_anticheat';
+import zones from '../functionality/zones';
 import {moneyAboveNegatives, numberWithCommas, emit, printBlockCoords} from '../helpers/misc';
 const cmd = commands.cmd;
 
@@ -26,6 +27,8 @@ system.initialize = function () {
 	system.listenForEvent('minecraft:piston_moved_block', e => onPistonMovedBlock(e));
 	system.listenForEvent('minecraft:player_destroyed_block', e => onDestroyedBlock(e));
 	system.listenForEvent('minecraft:block_interacted_with', e => onBlockInteractedWith(e));
+
+	system.listenForEvent('minecraft:player_attacked_entity', e => onTest(e));
 
 
 
@@ -46,6 +49,7 @@ system.update = function() {
 	// Any logic that needs to happen every tick on the server.
 	currTick++;
 
+	// Every 0.05 seconds (every tick)
 	delay.checkRapidActions(currTick); // Checks EVERY game tick. do NOT add actions to this list that will have long delays
 
 	if (currTick % 5 === 0) { // Every 0.25 seconds
@@ -55,6 +59,10 @@ system.update = function() {
 	if (currTick % 30 === 0) { // Every 1.5 seconds
 		tag_commands.watchCommandEntity();
 		global_storage.watchGlobalDataEntity();
+	}
+
+	if (currTick % 120 === 0) { // Every 3 seconds
+		zones.updatePlayerZoneTags('in_hidden_region', 'hidden_region');
 	}
 }
 
@@ -139,21 +147,20 @@ function onEntityDeath(params) {
 				const deadPlayerName = entities.getPlayerName(deadEntity);
 				const killerName = entities.getPlayerName(killer);
 
-				let killValue = 5000;
+				let killValue = 2500;
 				let penaltyMessage = `§cYou have been killed by §l${killerName}§r§c! §fYou have lost §e${numberWithCommas(killValue)} Coins`;
 				let rewardMessage = `§aYou have killed §l${deadPlayerName}§r§a! §rYou have gained §e${numberWithCommas(killValue)} Coins`;
-				commands.testMoney(deadPlayerName, killValue, '*', (params) => {
+				commands.testMoney(deadPlayerName, 4000, '*', (params) => {
 					// if (params.success) {
 				  //   No need to do anything, just use the defaults if the value check was a success!
 					// }
 					if (!params.success) {
 						const deadPlayerMoney = params.message.match(/Score\s(.+?)\sis\sNOT\sin\srange/)[1];
-						log(deadPlayerMoney);
 
-						if (deadPlayerMoney < 5000) {
+						if (deadPlayerMoney < 2500) {
 							killValue = 1000;
 							penaltyMessage = `§cYou have been killed by §l${killerName}§r§c! §fYou have lost §e${numberWithCommas(killValue)} Coins`;
-							rewardMessage = `§aYou have killed an impoverished player! §rYou have only gained §e${numberWithCommas(killValue)} Coins`;
+							rewardMessage = `§aYou have killed a poor player! §rYou have only gained §e${numberWithCommas(killValue)} Coins`;
 						}
 						if (deadPlayerMoney < 1000) {
 							killValue = deadPlayerMoney;
@@ -169,7 +176,7 @@ function onEntityDeath(params) {
 					});
 
 					commands.msgPlayer(killerName, rewardMessage);
-					commands.addMoney(killerName, killValue );
+					commands.addMoney(killerName, killValue);
 				});
 		}
 
@@ -177,7 +184,7 @@ function onEntityDeath(params) {
 		if (deadEntityIsPlayer) {
 			  if (!killer || killer.__identifier__ !== 'minecraft:player') {
 						const deadPlayerName = entities.getPlayerName(deadEntity);
-						const penaltyValue = 1000;
+						const penaltyValue = 750;
 
 						delay.create(50, () => {
 							commands.msgPlayer(deadPlayerName, `§cYou have died! §fYou have lost §e${numberWithCommas(penaltyValue)} Coins`)
@@ -224,4 +231,9 @@ function addToBlockHistory(entity, position, blockIdentifier, action) {
 	});
 
   storage.updateDataTag(entity, dataTag);
+}
+
+
+function onTest(params) {
+	log(params);
 }

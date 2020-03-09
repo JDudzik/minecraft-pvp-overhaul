@@ -1,0 +1,13 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "boi:gold_key",
+      "category": "Items"
+    },
+    "components": {
+      "minecraft:icon": "gold_key",
+      "minecraft:render_offsets": "apple"
+    }
+  }
+}

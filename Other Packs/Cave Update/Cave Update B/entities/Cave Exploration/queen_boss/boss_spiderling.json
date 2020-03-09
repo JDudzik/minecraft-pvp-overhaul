@@ -1,0 +1,222 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "boi:boss_spiderling",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false,
+      "runtime_identifier": "minecraft:shulker"
+
+  },
+    "component_groups": {
+      "minecraft:cow_baby": {
+        "minecraft:is_baby": {
+        },
+        "minecraft:scale_by_age": {
+          "start_scale": 0.3,
+          "end_scale": 1
+        },
+        "minecraft:ageable": {
+          "duration": 6,
+          "feedItems": "wheat",
+          "grow_up": {
+            "event": "minecraft:ageable_grow_up",
+            "target": "self"
+          }
+        },
+
+        "minecraft:behavior.follow_parent": {
+          "priority": 6,
+          "speed_multiplier": 1.1
+        }
+      },
+
+      "spawn": {
+      "minecraft:behavior.summon_entity": {
+        "priority": 1,
+
+        "summon_choices": [
+          {
+            "weight": 1,
+            "cooldown_time": 12.0,
+            "do_casting": true,
+            "cast_duration": 2.0,
+            "particle_color": "#FFB3B3CC",
+            "sequence": [
+              {
+                "shape": "circle",
+                "target": "self",
+                "base_delay": 0.0,
+                "delay_per_summon": 0.5,
+                "num_entities_spawned": 3,
+                "entity_type": "boi:spider_baby",
+                "summon_cap": 15,
+                "summon_cap_radius": 16.0,
+                "size": 1.0,
+                "sound_event": "prepare.summon"
+              }
+            ]
+          },
+          {
+            "weight": 2,
+            "cooldown_time": 9.0,
+            "do_casting": true,
+            "cast_duration": 1.5,
+            "particle_color": "#FFB3B3CC",
+            "sequence": [
+              {
+                "shape": "circle",
+                "target": "self",
+                "base_delay": 0.0,
+                "delay_per_summon": 0.5,
+                "num_entities_spawned": 2,
+                "entity_type": "boi:spider_baby",
+                "summon_cap": 15,
+                "summon_cap_radius": 16.0,
+                "size": 1.0,
+                "sound_event": "prepare.summon"
+              }
+            ]
+          }
+        ]
+      },
+      "minecraft:behavior.avoid_mob_type": {
+        "priority": 5,
+        "entity_types": [
+          {
+            "filters": { "test" :  "is_family", "subject" : "other", "value" :  "player"},
+            "max_dist": 8,
+            "walk_speed_multiplier": 0.6,
+            "sprint_speed_multiplier": 1.0
+          }
+        ]
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 8,
+        "speed_multiplier": 0.6
+      },
+      "minecraft:behavior.nearest_attackable_target": {
+        "priority": 2,
+        "entity_types": [
+          {
+            "filters": {  
+                "any_of": [
+                  { "test" :  "is_family", "subject" : "other", "value" :  "player"},
+                  { "test" :  "is_family", "subject" : "other", "value" :  "snowgolem"},
+                  { "test" :  "is_family", "subject" : "other", "value" :  "irongolem"},
+                  { "test" :  "is_family", "subject" : "other", "value" :  "wandering_trader"}
+                ] 
+            },
+            "max_dist": 30
+          },
+          {
+            "filters": {
+              "all_of": [
+                { "test": "is_family", "subject": "other", "value": "villager" },
+                { "test": "has_component", "subject": "other", "operator": "!=", "value": "minecraft:is_baby" }
+              ]
+            },
+            "max_dist": 30
+          }
+        ],
+        "must_see": true
+      }
+}
+    },
+
+
+    "components": {
+      "minecraft:type_family": {
+        "family": [ "spider_queen", "monster", "arthropod", "boss" ]
+      },
+      "minecraft:collision_box": {
+        "width": 1,
+        "height": 1
+      },
+      "minecraft:health": {
+        "value": 1,
+        "max": 1
+      },
+      "minecraft:movement": {
+        "value": 0.001
+      },
+      "minecraft:knockback_resistance": {
+        "value": 1.0
+      },
+      "minecraft:physics": {
+      }
+    },
+
+    "events": {
+      "minecraft:entity_spawned": {
+        "randomize": [
+          {
+            "weight": 0,
+            "add": {
+              "component_groups": [
+                "minecraft:cow_adult"
+              ]
+            }
+          },
+          {
+            "weight": 1,
+            "add": {
+              "component_groups": [
+                "minecraft:cow_baby"
+              ]
+            }
+          }
+        ]
+      },
+
+      "minecraft:entity_born": {
+        "add": {
+          "component_groups": [
+            "minecraft:cow_baby"
+          ]
+        }
+      },
+
+      "minecraft:entity_transformed": {
+        "remove": {
+        },
+        "add": {
+          "component_groups": [
+            "minecraft:cow_baby"
+          ]
+        }
+      },
+
+      "minecraft:ageable_grow_up": {
+        "remove": {
+          "component_groups": [
+            "minecraft:cow_baby"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "spawn"
+          ]
+        }
+      },
+
+      "minecraft:on_leash": {
+        "add": {
+          "component_groups": [
+            "minecraft:cow_leashed"
+          ]
+        }
+      },
+      "minecraft:on_unleash": {
+        "remove": {
+          "component_groups": [
+            "minecraft:cow_leashed"
+          ]
+        }
+      }
+    }
+  }
+}
+
+
