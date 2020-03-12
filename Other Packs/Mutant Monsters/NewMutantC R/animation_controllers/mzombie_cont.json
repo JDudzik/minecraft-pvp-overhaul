@@ -1,0 +1,256 @@
+{
+  "format_version": "1.8.0",
+  "animation_controllers": {
+
+    "controller.animation.test.general": {
+      "states": {
+        "default": {
+          "animations": [
+            { "mzombie_general": [] },
+            { "mzombie_general_2": [] },
+            { "look_at_target": [] }
+          ]
+        }
+      }
+    },
+    "controller.animation.mzombie.baby_big_head": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "baby": "query.is_baby" }
+          ]
+        },
+        "baby": {
+          "animations": [ { "mzombie_big_head": [] } ],
+          "transitions": [
+            { "default": "!query.is_baby" }
+          ]
+        }
+      }
+    },
+
+    
+    
+
+    
+    "controller.animation.mzombie.general": {
+      "states": {
+        "default": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            { "mzombie_general": [] },
+            { "mzombie_general_2": [] },
+            { "move": [ { "0.0": 0.0, "1.0": 1.0  }]  },
+            { "look_at_target": [] }
+          ],
+          "transitions": [
+            { "roaring": "query.is_roaring == 1" },
+            { "smash": "query.is_delayed_attacking == 1" },
+            { "stunned": "query.is_stunned == 1" },
+            { "casting": "query.is_casting" }
+          ]
+        },
+        
+        "casting": {
+          "animations": [
+            { "look_at_target_head": [] },
+            { "mzombie_general_2": [] },
+            { "casting": [] }
+          ],
+
+          "transitions": [
+            { "default": "!query.is_casting" }
+          ]
+        },
+        "smash": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations":  [
+              { "mzombie_smash": [] } ,
+            { "move_smash": [ { "0.0": 0.0, "1.0": 1.0  }]  }
+
+     ],
+          "transitions": [
+              
+           { "default": "query.is_delayed_attacking == 0" }
+          ]
+        },
+        "roaring": {
+          "animations": [
+            { "look_at_target_head": [] },
+            { "mzombie_general_2": [] },
+            { "roaring": [] }
+          ],
+					"particle_effects" : [
+						{
+							"effect" : "stun_particles",
+							"locator" : "stun"
+						}
+					],
+          "transitions": [
+            { "default": "query.is_roaring == 0" }
+          ]
+        },
+
+        "stunned": {
+          "animations": [
+            { "mzombie_general_2": [] },
+            { "stunned": [] }
+          ],
+          "particle_effects": [
+            {
+              "effect": "stun_particles",
+              "locator": "stun"
+            }
+          ],
+          "transitions": [
+            { "default": "query.is_stunned == 0" }
+          ]
+        }
+      }
+    },
+    
+    
+    
+    "controller.animation.mdrowned.general": {
+      "states": {
+        "default": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            { "mzombie_general": [] },
+            { "mzombie_general_2": [] },
+            { "move": [ { "0.0": 0.0, "1.0": 1.0  }]  },
+            { "look_at_target": [] }
+          ],
+          "transitions": [
+            { "roaring": "query.is_roaring == 1" },
+            { "smash": "query.is_delayed_attacking == 1" },
+            { "stunned": "query.is_stunned == 1" },
+            { "casting": "query.is_casting" },
+            { "bow_and_arrow": "query.is_powered" }
+          ]
+        },
+        
+        "casting": {
+          "animations": [
+            { "look_at_target_head": [] },
+            { "mzombie_general_2": [] },
+            { "casting": [] }
+          ],
+
+          "transitions": [
+            { "default": "!query.is_casting" }
+          ]
+        },
+        "bow_and_arrow": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            { "look_at_target": [] },
+            { "move_legs": [ { "0.0": 0.0, "1.0": 1.0  }]  },
+            { "mzombie_general": [] },
+            { "mzombie_general_2": [] },
+            { "bow_and_arrow": [] }
+          ],
+
+          "transitions": [
+            { "default": "!query.is_powered" }
+          ]
+        },
+        "smash": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations":  [
+              { "mzombie_smash": [] } ,
+            { "move_smash": [ { "0.0": 0.0, "1.0": 1.0  }]  }
+
+     ],
+          "transitions": [
+              
+           { "default": "query.is_delayed_attacking == 0" }
+          ]
+        },
+        "roaring": {
+          "animations": [
+            { "look_at_target_head": [] },
+            { "mzombie_general_2": [] },
+            { "roaring": [] }
+          ],
+					"particle_effects" : [
+						{
+							"effect" : "stun_particles",
+							"locator" : "stun"
+						}
+					],
+          "transitions": [
+            { "default": "query.is_roaring == 0" }
+          ]
+        },
+        
+        "stunned": {
+          "animations": [
+            { "mzombie_general_2": [] },
+            { "stunned": [] }
+          ],
+          "particle_effects": [
+            {
+              "effect": "stun_particles",
+              "locator": "stun"
+            }
+          ],
+          "transitions": [
+            { "default": "query.is_stunned == 0" }
+          ]
+        }
+      }
+    },
+    
+    "controller.animation.mzombie.attack_bare_hand": {
+      "states": {
+        "default": {
+          "transitions": [ 
+            { "is_bare_hand": "variable.is_holding_left != 1.0" }
+          ]
+        },
+        "is_bare_hand": {
+          "animations": [ { "attack_bare_hand": [] } ],
+          "transitions": [ 
+            { "default": "variable.is_holding_left == 1.0" }
+          ]
+        }
+      }
+    },
+    
+    "controller.animation.mzombie.movetest": {
+      "states": {
+        "default": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            {
+              "move": [
+                {
+                  "0.0": 0.0,
+                  "1.0": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.mzombie.baby": {
+      "states": {
+        "baby": {
+          "parameters": [ "query.is_baby" ],
+          "animations": [
+            {
+              "baby_transform": [
+                {
+                  "0.0": 0.0,
+                  "1.0": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+} 

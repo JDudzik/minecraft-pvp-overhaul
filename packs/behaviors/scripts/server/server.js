@@ -23,12 +23,12 @@ system.initialize = function () {
 	// Set up any events you wish to listen to
 	system.listenForEvent('minecraft:entity_death', e => onEntityDeath(e));
 	system.listenForEvent('minecraft:entity_use_item', e => onUsedItem(e));
-	system.listenForEvent('minecraft:entity_created', e => onEntityCreated(e));
 	system.listenForEvent('minecraft:piston_moved_block', e => onPistonMovedBlock(e));
 	system.listenForEvent('minecraft:player_destroyed_block', e => onDestroyedBlock(e));
 	system.listenForEvent('minecraft:block_interacted_with', e => onBlockInteractedWith(e));
 
-	system.listenForEvent('minecraft:player_attacked_entity', e => onTest(e));
+	// system.listenForEvent('minecraft:entity_created', e => onEntityCreated(e));
+	// system.listenForEvent('minecraft:player_attacked_entity', e => onPlayerAttackedEntity(e));
 
 
 
@@ -61,8 +61,8 @@ system.update = function() {
 		global_storage.watchGlobalDataEntity();
 	}
 
-	if (currTick % 120 === 0) { // Every 3 seconds
-		zones.updatePlayerZoneTags('in_hidden_region', 'hidden_region');
+	if ((currTick - 10) % 30 === 0) { // Every 1.5 seconds, offset by 10
+		zones.updatePlayerZoneTags('in_hidden_region', 'hidden_region', `a hidden region`);
 	}
 }
 
@@ -132,6 +132,7 @@ function onPistonMovedBlock(params) {
 function onEntityDeath(params) {
 		const deadEntity = params.data.entity;
 		const deadEntityIsPlayer = deadEntity.__identifier__ === 'minecraft:player';
+		const deadEntityIsVase = deadEntity.__identifier__ === 'boi:vase';
 		const entityValue = entities.getEntityValue(deadEntity);
 		const killer = params.data.killer;
 
@@ -193,6 +194,15 @@ function onEntityDeath(params) {
 						})
 				}
 		}
+
+		// A player has killed a vase
+		if (deadEntityIsVase && killer.__identifier__ === 'minecraft:player') {
+			if (entities.hasTag(deadEntity, 'hidden_region')) {
+				const killerName = entities.getPlayerName(killer);
+				commands.giveItem(killerName, `pvpcontrols:hide_region`);
+				commands.msgPlayer(killerName, `§aYou have picked up the "§bHide Region§a" item`);
+			}
+		}
 }
 
 
@@ -234,6 +244,14 @@ function addToBlockHistory(entity, position, blockIdentifier, action) {
 }
 
 
-function onTest(params) {
-	log(params);
-}
+// function onPlayerAttackedEntity(params) {
+// 	if (params.data.attacked_entity.__identifier__ === 'minecraft:armor_stand') {
+// 		if (entities.hasTag(params.data.attacked_entity, 'hidden_region')) {
+// 			const playerName = entities.getPlayerName(params.data.player);
+//
+// 			system.destroyEntity(params.data.attacked_entity);
+// 			commands.giveItem(playerName, `pvpcontrols:hide_region`);
+// 			commands.msgPlayer(playerName, `§aYou have picked up the "§bHide Region§a" item`);
+// 		}
+// 	}
+// }

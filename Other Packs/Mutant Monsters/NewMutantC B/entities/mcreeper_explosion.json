@@ -1,0 +1,161 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "mutant:mcreeper_explosion",
+      "is_spawnable": false,
+      "is_summonable": false,
+      "is_experimental": false
+    },
+
+     "component_groups": {
+
+        
+
+    
+
+
+      "minecraft:explosion": {
+      "minecraft:movement": {
+        "value": 0.26
+      },
+             "minecraft:variant": {
+          "value": 0
+        }
+      }
+      },
+
+    
+    "components": {
+			"minecraft:damage_sensor": {
+					"deals_damage": false
+				},
+
+        "minecraft:explode": {
+          "fuseLength": 1.695,
+          "fuseLit": true,
+          "power": 8,
+     "play_sounds": "ignite",
+          "causesFire": false,
+   "destroyAffectedByGriefing": true
+        },
+
+   
+      "minecraft:collision_box": {
+        "width": 0.2,
+        "height": 0.2
+      },
+      "minecraft:nameable": {
+      },
+    
+        "minecraft:behavior.find_mount": {
+          "priority": 3,
+          "within_radius": 32,
+          "avoid_water": true,
+          "start_delay": 0,
+          "target_needed": true,
+          "mount_distance": 20.0
+        },
+      "minecraft:type_family": {
+        "family": [ "creeper_ride" ,  "mcreeperblowup" ]
+      },
+
+      "minecraft:health": {
+        "value": 3,
+        "max": 3
+      }
+    },
+
+
+
+    "events": {
+     "minecraft:entity_spawned": {
+        "randomize": [
+
+               {
+            "weight": 45,
+            "remove": {
+            },
+            "add": {
+              "component_groups": [
+                "minecraft:explosion"
+              ]
+            }
+          }
+        ]
+      },
+
+
+      "minecraft:start_explosion": {
+        "randomize": [
+               {
+            "weight": 45,
+            "remove": {
+            },
+            "add": {
+              "component_groups": [
+                "minecraft:explosion"
+              ]
+            }
+          }
+        ]
+      },
+      
+
+      "minecraft:scale_adult": {
+        "add": {
+          "component_groups": [
+            "minecraft:scale_adult"
+        
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "minecraft:0_adult"
+          ]
+        }
+      },
+
+      "minecraft:start_adult": {
+        "remove": {
+          "component_groups": [
+            "minecraft:scale_adult"
+        
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "minecraft:size_adult"
+          ]
+        }
+      },
+
+
+
+      "minecraft:start_roar": {
+        "add": {
+          "component_groups": [
+            "roaring"
+        
+          ]
+        }
+
+      },
+      "minecraft:end_roar": {
+        "add": {
+          "component_groups": [
+            "damage"
+        
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "roaring"
+          ]
+        }
+      }
+
+      
+    }
+  }
+}

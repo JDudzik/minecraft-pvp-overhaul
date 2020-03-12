@@ -1,0 +1,24 @@
+{
+  "resource_pack_name": "vanilla",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "mutant_spawn_eggs": {
+      "textures": [
+    "textures/mitems/spawn_mcreeper",
+        "textures/mitems/spawn_mdrowned",
+        "textures/mitems/spawn_mzombiepig",
+        "textures/mitems/spawn_mhusk",
+        "textures/mitems/spawn_mzombie",
+        "textures/mitems/spawn_mskeleton",
+        "textures/mitems/spawn_mstray",
+        "textures/mitems/spawn_mwitherskeleton",
+        "textures/mitems/spawn_mwolf"
+      ]
+      
+  
+    },
+    "chemical_x": {
+      "textures": "textures/mitems/chemical_x"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.mcreeper_armor_roar": {
+      "geometry": "Geometry.roar",
+
+      "materials": [ { "*": "Material.roar" } ],
+      "textures": [ "Texture.roar" ],
+      "overlay_color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 2.0
+      },
+      "part_visibility": [ { "*": "query.is_roaring" } ],
+      "uv_anim": {
+        "offset": [
+          "(query.is_roaring ? (Math.cos(query.life_time * 10.1) * 2) : 0.0)",
+          "(query.is_roaring ? (Math.cos (query.life_time * 11.62) * 2) : 0.0)"
+        ],
+          "scale": [ 1.0, 1.0 ]
+      },
+      "light_color_multiplier": 0.55,
+      "ignore_lighting": true
+    }
+  }
+}
+
+

@@ -4,22 +4,14 @@
     "name": "PvP Controls Resources",
     "description": "Functions and tools for a dedicated PvP server",
     "uuid": "6e202be4-ba41-4a9b-91ec-04eae0524b5c",
-    "version": [
-      1,
-      0,
-      7
-    ]
+    "version": [ 1, 0, 9 ]
   },
   "modules": [
     {
       "description": "Resources for PvP Controls",
       "type": "resources",
       "uuid": "0c051018-da59-4b58-9b1c-951446973972",
-      "version": [
-        1,
-        0,
-        7
-      ]
+      "version": [ 1, 0, 9 ]
     }
   ]
 }

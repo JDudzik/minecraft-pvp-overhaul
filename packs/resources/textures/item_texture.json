@@ -14,8 +14,8 @@
     "pvpcontrols:balloonify": {
       "textures": "textures/items/pvpcontrols_balloonify"
     },
-    "pvpcontrols:locator": {
-      "textures": "textures/items/pvpcontrols_locator"
+    "pvpcontrols:tracker": {
+      "textures": "textures/items/pvpcontrols_tracker"
     },
     "pvpcontrols:mob_squad": {
       "textures": "textures/items/pvpcontrols_mob_squad"

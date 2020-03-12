@@ -1,0 +1,23 @@
+{
+    "format_version": 1,
+    "header": {
+        "description": "Add-On by JujuStyle7",
+        "name": "New Mutant Creatures",
+        "uuid": "9134de5b-4110-4358-b480-f0979814d972",
+        "version": [1, 14, 0]
+    },
+    "modules": [
+        {
+        "description": "Add-On by JujuStyle7",
+            "type": "data",
+            "uuid": "743761cd-a0e6-4cb5-9768-7da7618837dc",
+            "version": [1, 14, 0]
+        }
+    ],
+    "dependencies": [
+        {
+    "uuid": "dba37e59-091a-4726-b66a-a08d7de5a8e3",
+    "version": [1, 14, 0]
+        }
+    ]
+}

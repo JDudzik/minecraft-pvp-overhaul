@@ -15,23 +15,23 @@ const hasComponent = (entity, component) => system.hasComponent(entity, componen
 const isValid = entity => system.isValidEntity(entity);
 
 
-const addTag = (entity, tag) => {
+const addTag = (entity, selectedTag) => {
   const entityTags = system.getComponent(entity, "minecraft:tag");
   entityTags.data.push(tag);
   system.applyComponentChanges(entity, entityTags);
 }
-const remTag = (entity, tag) => {
+const remTag = (entity, selectedTag) => {
   const entityTags = system.getComponent(entity, "minecraft:tag");
-  const index = entityTags.data.findIndex(tag => tag) || -1;
-  if (index !== -1) {
+  const index = entityTags.data.findIndex(tag => tag === selectedTag);
+  if (index !== -1 && index !== undefined) {
     entityTags.data.splice(index, 1, stringedData);
     system.applyComponentChanges(entity, entityTags);
   }
 }
-const hasTag = (entity, tag) => {
+const hasTag = (entity, selectedTag) => {
   const entityTags = system.getComponent(entity, "minecraft:tag");
-  const index = entityTags.data.findIndex(tag => tag) || -1;
-  return index !== -1;
+  const index = entityTags.data.findIndex(tag => tag === selectedTag);
+  return index !== -1 && index !== undefined;
 }
 
 

@@ -1,0 +1,119 @@
+{
+  "format_version": "1.8.0",
+  "animation_controllers": {
+
+    "controller.animation.test.general": {
+      "states": {
+        "default": {
+          "animations": [
+            { "mzombiepig_general": [] },
+            { "mzombiepig_general_2": [] },
+            { "look_at_target": [] }
+          ]
+        }
+      }
+    },
+    "controller.animation.mzombiepig.baby_big_head": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "baby": "query.is_baby" }
+          ]
+        },
+        "baby": {
+          "animations": [ { "mzombiepig_big_head": [] } ],
+          "transitions": [
+            { "default": "!query.is_baby" }
+          ]
+        }
+      }
+    },
+    
+    "controller.animation.mzombiepig.general": {
+      "states": {
+        "default": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            { "mzombiepig_general": [] },
+            { "mzombiepig_general_2": [] },
+            { "move": [ { "0.0": 0.0, "1.0": 1.0  }]  },
+            { "look_at_target": [] }
+          ],
+          "transitions": [
+            { "casting": "query.is_casting" }
+          ]
+        },
+        "casting": {
+          "animations": [
+            { "look_at_target_head": [] },
+            { "mzombiepig_general_2": [] },
+            { "casting": [] }
+          ],
+          "particle_effects": [
+            {
+              "effect": "spell",
+              "locator": "left_hand"
+            },
+            {
+              "effect": "spell",
+              "locator": "right_hand"
+	    }
+          ],
+          "transitions": [
+            { "default": "!query.is_casting" }
+          ]
+        }
+      }
+    },
+    "controller.animation.mzombiepig.attack_bare_hand": {
+      "states": {
+        "default": {
+          "transitions": [ 
+            { "is_bare_hand": "variable.is_holding_left != 1.0" }
+          ]
+        },
+        "is_bare_hand": {
+          "animations": [ { "attack_bare_hand": [] } ],
+          "transitions": [ 
+            { "default": "variable.is_holding_left == 1.0" }
+          ]
+        }
+      }
+    },
+    
+    "controller.animation.mzombiepig.movetest": {
+      "states": {
+        "default": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            {
+              "move": [
+                {
+                  "0.0": 0.0,
+                  "1.0": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.mzombiepig.baby": {
+      "states": {
+        "baby": {
+          "parameters": [ "query.is_baby" ],
+          "animations": [
+            {
+              "baby_transform": [
+                {
+                  "0.0": 0.0,
+                  "1.0": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+} 

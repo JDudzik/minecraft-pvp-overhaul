@@ -10,7 +10,7 @@ const tagsToIgnore = `tag=!in_safe_zone,tag=!no_pvp_player,m=!c`;
 
 
 function arrow_rain(name, stack, entity) {
-  cmd(commands.execAs(name, `testfor @a[rm=2,r=75,c=5,${tagsToIgnore}]`), (params) => {
+  cmd(commands.execAs(name, `testfor @a[rm=2,r=75,c=5,tag=!in_hidden_region,${tagsToIgnore}]`), (params) => {
     if (params.success) {
       for (let i = 0; i < 20; i++) {
         delay.create(i*6, () => arrowVolley(name));
@@ -32,7 +32,7 @@ function arrowVolley(playerName) {
     const randX = Math.random() * (maxRadius - minRadius) + minRadius;
     const randY = Math.random() * (maxRadius - minRadius) + baseHeight;
     const randZ = Math.random() * (maxRadius - minRadius) + minRadius;
-    cmd(`execute @a[name="${playerName}"] ~~~ execute @a[rm=2,r=75,c=5,${tagsToIgnore}] ~~~ summon arrow ~${randX} ~${randY} ~${randZ}`)
+    cmd(`execute @a[name="${playerName}"] ~~~ execute @a[rm=2,r=75,c=5,tag=!in_hidden_region,${tagsToIgnore}] ~~~ summon arrow ~${randX} ~${randY} ~${randZ}`)
   }
 }
 
@@ -66,11 +66,11 @@ function balloonify(name, stack, entity) {
 }
 
 
-function locator(name, stack, entity) {
-  cmd(commands.execAs(name, `tp ~~~ facing @p[rm=10,c=1,${tagsToIgnore}]`), (params) => {
+function tracker(name, stack, entity) {
+  cmd(commands.execAs(name, `tp ~~~ facing @p[rm=10,c=1,tag=!in_hidden_region,${tagsToIgnore}]`), (params) => {
     if (!params.success) {
-      commands.giveItem(name, 'pvpcontrols:locator');
-      commands.msgPlayer(name, `§cThere are no players who are locatable!`);
+      commands.giveItem(name, 'pvpcontrols:tracker');
+      commands.msgPlayer(name, `§cThere are no players who are trackable!`);
     }
   });
 }
@@ -107,10 +107,9 @@ function locate_home_point(name, stack, entity) {
 }
 
 
-function hidden_region(name, stack, entity) {
-  cmd(commands.execAs(name, `say test1`));
-
-  delay.create(5, () => cmd(commands.execAs(name, `say test2`)));
+function hide_region(name, stack, entity) {
+  cmd(commands.execAs(name, `summon boi:vase "§aHidden Region"`));
+  delay.create(3, () => cmd(commands.execAs(name, `tag @e[type=boi:vase,r=15,c=1] add hidden_region`)));
 }
 
 
@@ -143,8 +142,8 @@ export default {
     action: balloonify,
     disabled_in_safe_zone: true,
   },
-  'pvpcontrols:locator': {
-    action: locator,
+  'pvpcontrols:tracker': {
+    action: tracker,
     disabled_in_safe_zone: true,
   },
   'pvpcontrols:mob_squad': {
@@ -159,8 +158,12 @@ export default {
     action: save_home_point,
     disabled_in_safe_zone: true,
   },
+  'pvpcontrols:hide_region': {
+    action: hide_region,
+    disabled_in_safe_zone: true,
+  },
   'minecraft:ender_pearl': {
     action: ender_pearl,
     disabled_in_safe_zone: false,
-  }
+  },
 }

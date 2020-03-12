@@ -1,0 +1,28 @@
+{
+	"format_version": "1.8.0",
+	"render_controllers": {
+    "controller.render.mzombie": {
+               "arrays": {
+
+        "materials": {
+          "Array.materials": [ "Material.default", "Material.open", "Material.aa12" ]
+        },
+        "geometries": {
+          "Array.geos": [ "Geometry.default", "Geometry.open", "Geometry.aa12" ]
+        },
+				"textures": {
+					"Array.skins": [
+						"Texture.default",
+						"Texture.open",
+						"Texture.aa12"
+					]
+				}
+			},
+      "geometry": "Array.geos[query.variant]",
+			"materials": [{
+				"*": "Array.materials[query.variant]"
+			}],
+			"textures": ["Array.skins[query.variant]"]
+		}
+	}
+}

@@ -1,0 +1,16 @@
+{
+  "format_version": "1.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "mutant:chemical_x",
+      "category": "Equipment"
+    },
+
+    "components": {
+      "minecraft:icon": "chemical_x",
+      "minecraft:hover_text_color": "light_purple",
+
+      "minecraft:render_offsets": "apple"
+    }
+  }
+}

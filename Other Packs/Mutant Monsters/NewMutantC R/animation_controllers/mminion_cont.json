@@ -1,0 +1,72 @@
+{
+  "format_version": "1.8.0",
+  "animation_controllers": {
+
+
+
+    "controller.animation.mminion.drowned_general": {
+      "states": {
+        "default": {
+          "animations": [
+            { "zombie_attack_bare_hand": [] }
+],
+          "transitions": [
+            { "roaring": "query.is_roaring == 1" }
+          ]
+        },
+        
+        "roaring": {
+          "animations": [
+
+            { "roaring": [] },
+            { "summoned_pop": [] }
+          ],
+          "particle_effects": [
+            {
+              "effect": "spell",
+              "locator": "left_hand"
+            },
+            {
+              "effect": "spell",
+              "locator": "right_hand"
+	    }
+          ],
+          "transitions": [
+            { "default": "query.is_roaring == 0" }
+          ]
+        }
+      }
+    },
+    "controller.animation.mminion.general": {
+      "states": {
+        "default": {
+          "animations": [
+            { "zombie_attack_bare_hand": [] }
+],
+          "transitions": [
+            { "roaring": "query.is_roaring == 1" }
+          ]
+        },
+        
+        "roaring": {
+          "animations": [
+            { "roaring": [] }
+          ],
+          "particle_effects": [
+            {
+              "effect": "spell",
+              "locator": "left_hand"
+            },
+            {
+              "effect": "spell",
+              "locator": "right_hand"
+	    }
+          ],
+          "transitions": [
+            { "default": "query.is_roaring == 0" }
+          ]
+        }
+      }
+    }
+  }
+} 

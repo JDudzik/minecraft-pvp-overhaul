@@ -1,0 +1,50 @@
+
+item.mutant:chemical_x.name=Chemical X
+
+item.spawn_egg.entity.mutant:mutant_husk.name=Spawn Mutant Husk
+entity.mutant:mutant_husk.name=Mutant Husk
+
+item.spawn_egg.entity.mutant:mutant_zombie.name=Spawn Mutant Zombie
+entity.mutant:mutant_zombie.name=Mutant Zombie
+
+entity.mutant:mutant_zombie_pigman.name=Mutant Zombie Pigman
+item.spawn_egg.entity.mutant:mutant_zombie_pigman.name=Spawn Mutant Zombie Pigman
+
+entity.mutant:mutant_drowned.name=Mutant Drowned
+item.spawn_egg.entity.mutant:mutant_drowned.name=Spawn Mutant Drowned
+
+item.spawn_egg.entity.mutant:mutant_wolf.name=Spawn Mutant Wolf
+entity.mutant:mutant_wolf.name=Mutant Wolf
+
+item.spawn_egg.entity.mutant:mutant_wither_skeleton.name=Spawn Mutant Wither Skeleton
+entity.mutant:mutant_wither_skeleton.name=Mutant Wither Skeleton
+
+item.spawn_egg.entity.mutant:mutant_skeleton.name=Spawn Mutant Skeleton
+entity.mutant:mutant_skeleton.name=Mutant Skeleton
+
+entity.mutant:mutant_stray.name=Mutant Stray
+item.spawn_egg.entity.mutant:mutant_stray.name=Spawn Mutant Stray
+
+entity.mutant:mutant_creeper.name=Mutant Creeper
+
+item.spawn_egg.entity.mutant:mutant_creeper.name=Spawn Mutant Creeper
+
+
+
+
+
+
+item.spawn_egg.entity.mutant:zombie_minion.name=Spawn Zombie Minion
+entity.mutant:zombie_minion.name=Zombie
+
+item.spawn_egg.entity.mutant:husk_minion.name=Spawn Minion Husk 
+entity.mutant:husk_minion.name=Husk
+
+entity.mutant:zombiepig_minion.name=Zombie Pigman
+item.spawn_egg.entity.mutant:zombiepig_minion.name=Spawn Zombie Pigman Minion
+
+entity.mutant:drowned_minion.name=Drowned
+
+item.spawn_egg.entity.mutant:drowned_minion.name=Spawn Drowned Minion
+
+

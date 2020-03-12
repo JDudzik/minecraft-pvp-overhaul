@@ -1,0 +1,217 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+    "animation.mstray.look_at_target": {
+      "loop": true,
+      "bones": {
+        "head": {
+          "relative_to": { "rotation": "entity" },
+          "rotation": [ "query.target_x_rotation - this", "query.target_y_rotation - this", 0.0 ]
+        },
+        "neck": {
+          "relative_to": { "rotation": "entity" },
+          "rotation": [ "query.target_x_rotation * 0.25", "query.target_y_rotation * 0.25", 0.0 ]
+        }
+        
+
+
+      }
+    },
+    "animation.mstray.look_at_target_head": {
+      "loop": true,
+      "bones": {
+        "head": {
+          "relative_to": { "rotation": "entity" },
+          "rotation": [ "query.target_x_rotation - this", "query.target_y_rotation - this", 0.0 ]
+ 
+        }
+      }
+    },
+    
+
+    "animation.mstray.attack_bare_hand": {
+      "loop": true,
+      "bones": {
+        "rightarm": {
+          "rotation": [
+            "Math.sin(1.0 - Math.pow(1.0 - variable.attack_time, -10.0) * 180.0) * (variable.is_brandishing_spear ? -1.0 : 1.0 )",
+            "variable.is_brandishing_spear ? 0.0 : variable.attack_body_rot_y * 2.0",
+            0.0
+          ]
+        },
+        "leftarm": {
+          "rotation": [
+            "Math.sin(1.0 - Math.pow(1.0 - variable.attack_time, 10.0) * 180.0) * (variable.is_brandishing_spear ? -1.0 : 1.0 )",
+            "variable.is_brandishing_spear ? 0.0 : variable.attack_body_rot_y * -2.0",
+            0.0
+          ]
+        }
+
+      }
+    },  
+		"animation.mstray.general": {
+			"loop": true,
+			"bones": {
+				"body_1": {
+					"rotation": [-10, 0, 0],
+					"position": [0, -1, 0]
+				},
+				"body_2": {
+					"rotation": [5, 0, 0]
+				},
+				"body_3": {
+					"rotation": [5, 0, 0]
+				},
+				"body_4": {
+					"rotation": [5, 0, 0]
+				},
+				"body_5": {
+					"rotation": [5, 0, 0]
+				},
+				"neck": {
+					"rotation": [25, 0, 0]
+				},
+				"head": {
+					"rotation": [-35, 0, 0]
+				},
+				"jaw": {
+					"rotation": [10, 0, 0]
+				},
+				"rightarm": {
+					"rotation": [0, 0, 15]
+				},
+				"rightarm2": {
+					"rotation": [-15, 0, 5]
+				},
+				"rightarm3": {
+					"rotation": [-20, 0, 0]
+				},
+				"leftarm": {
+					"rotation": [0, 0, -15]
+				},
+				"leftarm2": {
+					"rotation": [-15, 0, -5]
+				},
+				"leftarm3": {
+					"rotation": [-20, 0, 0]
+				},
+				"rightleg": {
+					"rotation": [-10, 0, 5],
+					"position": [0, -1, 0]
+				},
+				"rightleg2": {
+					"rotation": [15, 0, 0]
+				},
+				"leftleg": {
+					"rotation": [-10, 0, -5],
+					"position": [0, -1, 0]
+				},
+				"leftleg2": {
+					"rotation": [15, 0, 0]
+				}
+			}
+		},
+    "animation.mstray.general_2": {
+
+      
+      "loop": true,
+  
+      "bones": {
+
+        "leftarm": {
+          "rotation": ["Math.cos(query.life_time * 55) * -4", "Math.cos(query.life_time * 60) * -4","Math.cos(query.life_time * 75) * -4"]
+        },
+        "rightarm": {
+          "rotation": ["Math.cos(query.life_time * 50) * -4", "Math.cos(query.life_time * 65) * 4", "Math.cos(query.life_time * 75) * 4" ]
+        },
+    "body_1": {
+          "rotation": ["Math.cos(query.life_time * 70) * -2", 0, 0]
+        },
+        "body_3": {
+          "rotation": ["Math.cos(query.life_time * 75) * -2", 0, 0 ]
+        },
+        "jaw": {
+          "rotation": ["Math.cos(query.life_time * 75) * -2", 0, 0 ]
+        }
+      }
+    },	
+		
+    "animation.mstray.move": {
+      "anim_time_update": "query.modified_distance_moved",
+
+      "loop": true,
+  
+      "bones": {
+      	 	      "body_1": {
+          "rotation": [15, 0, 0]
+        },
+        "body_3": {
+          "rotation": [5, 0, 0]
+        },
+        "rightarm": {
+          "rotation": ["Math.cos(query.anim_time * 40 + 70) *15.0", 0, 0]
+        },
+        "leftarm": {
+          "rotation": ["Math.cos(query.anim_time * 40 + 70) *-15.0", 0, 0]
+        
+        },
+        "rightarm2": {
+          "rotation": ["Math.cos(query.anim_time * 40 + 70) *40.0", 0, 0]
+        },
+        "leftarm2": {
+          "rotation": ["Math.cos(query.anim_time * 40 + 70) *-40.0", 0, 0]
+        
+        },
+        "rightarm3": {
+          "rotation": ["Math.cos(query.anim_time * 40 + 70) *20.0", 0, 0]
+        },
+        "leftarm3": {
+          "rotation": ["Math.cos(query.anim_time * 40 + 70) *-20.0", 0, 0]
+        
+        },
+ 
+
+        "leftleg": {
+          "rotation": ["Math.cos(query.anim_time * 40 + 70) *40.0", 0, 5]
+        },
+        "rightleg": {
+          "rotation": ["Math.cos(query.anim_time * 40 + 70) *-40.0", 0, -5]
+        
+        },
+        "leftleg2": {
+          "rotation": ["Math.cos(query.anim_time * 40 + 70) *20.0", 0, 0]
+        },
+        "rightleg2": {
+          "rotation": ["Math.cos(query.anim_time * 40 + 70) *-20.0", 0, 0]
+        
+        }
+      }
+    },
+
+    "animation.mstray.big_head": {
+      "loop": true,
+      "bones": {
+        "head": { "scale": 1.4 },
+        
+        "rightleg2": { 
+        "scale": 1.15 ,
+    	"position": [0, 1, 0]  },
+        "rightleg": { "scale": 1.05 },
+        
+        "leftleg2": { 
+        "scale": 1.15 ,
+        "position": [0, 1, 0] },
+        
+        "leftleg": { "scale": 1.05  },
+        "rightarm2": { "scale": 0.9 },
+        "rightarm": { "scale": 1.15 },
+        "rightarm3": { "scale": 1.05, "position": [0, 0.125, 0] },
+        "leftarm2": { "scale": 0.9 },
+        "leftarm": { "scale": 1.15 },
+        "leftarm3": { "scale": 1.05, "position": [0, 0.125, 0] }
+      }
+    }
+  }
+}
+
+	

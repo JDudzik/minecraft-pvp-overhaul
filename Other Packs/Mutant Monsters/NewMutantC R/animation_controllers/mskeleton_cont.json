@@ -1,0 +1,216 @@
+{
+  "format_version": "1.8.0",
+  "animation_controllers": {
+
+    "controller.animation.test.general": {
+      "states": {
+        "default": {
+          "animations": [
+            { "mskeleton_general": [] },
+            { "mskeleton_general_2": [] },
+            { "look_at_target": [] }
+          ]
+        }
+      }
+    },
+    "controller.animation.mskeleton.baby_big_head": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "baby": "query.is_baby" }
+          ]
+        },
+        "baby": {
+          "animations": [ { "mskeleton_big_head": [] } ],
+          "transitions": [
+            { "default": "!query.is_baby" }
+          ]
+        }
+      }
+    },
+
+    "controller.animation.mskeleton.general": {
+      "states": {
+        "default": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            { "mskeleton_general": [] },
+            { "mskeleton_general_2": [] },
+            { "move": [ { "0.0": 0.0, "1.0": 1.0  }]  },
+            { "look_at_target": [] }
+          ],
+          "transitions": [
+            { "roaring": "query.is_roaring == 1" },
+            { "smash": "query.is_delayed_attacking == 1" },
+            { "stunned": "query.is_stunned == 1" },
+            { "bow_and_arrow": "query.is_powered" }
+          ]
+        },
+        "roaring": {
+          "animations": [
+            { "mskeleton_general_2": [] },
+            { "look_at_target": [] },
+            { "roaring": [] }
+          ],
+
+          "transitions": [
+            { "default": "query.is_roaring == 0" }
+          ]
+        },
+        "smash": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations":  [
+              { "mskeleton_smash": [] } ,
+            { "move_smash": [ { "0.0": 0.0, "1.0": 1.0  }]  }
+
+     ],
+          "transitions": [
+              
+           { "default": "query.is_delayed_attacking == 0" }
+          ]
+        },
+        "stunned": {
+          "animations": [
+            { "mskeleton_general_2": [] },
+            { "stunned": [] }
+          ],
+          "particle_effects": [
+            {
+              "effect": "stun_particles",
+              "locator": "stun"
+            }
+          ],
+          "transitions": [
+            { "default": "query.is_stunned == 0" }
+          ]
+        },
+        
+        "bow_and_arrow": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            { "look_at_target": [] },
+            { "move_legs": [ { "0.0": 0.0, "1.0": 1.0  }]  },
+            { "mskeleton_bow": [] },
+            { "mskeleton_general_3": [] },
+            { "bow_and_arrow": [] }
+          ],
+
+          "transitions": [
+            { "default": "!query.is_powered" }
+          ]
+        }
+      }
+    },
+    
+    "controller.animation.mwitherskeleton.general": {
+      "states": {
+        "default": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            { "mskeleton_general": [] },
+            { "mskeleton_general_2": [] },
+            { "move": [ { "0.0": 0.0, "1.0": 1.0  }]  },
+            { "look_at_target": [] }
+          ],
+          "transitions": [
+            { "roaring": "query.is_roaring == 1" },
+            { "stunned": "query.is_stunned == 1" },
+            { "wither_power": "query.is_powered" }
+          ]
+        },
+        "roaring": {
+          "animations": [
+            { "mskeleton_general_2": [] },
+            { "look_at_target": [] },
+            { "roaring": [] }
+          ],
+
+          "transitions": [
+            { "default": "query.is_roaring == 0" }
+          ]
+        },
+        
+        "stunned": {
+          "animations": [
+            { "mskeleton_general_2": [] },
+            { "stunned": [] }
+          ],
+          "particle_effects": [
+            {
+              "effect": "stun_particles",
+              "locator": "stun"
+            }
+          ],
+          "transitions": [
+            { "default": "query.is_stunned == 0" }
+          ]
+        },
+        
+        "wither_power": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            { "mskeleton_general": [] },
+            { "bow_and_arrow": [] },
+            { "mskeleton_general_2": [] },
+            { "move": [ { "0.0": 0.0, "1.0": 1.0  }]  },
+            { "look_at_target": [] }
+          ],
+
+          "transitions": [
+            { "default": "!query.is_powered" }
+          ]
+        }
+      }
+    },
+    "controller.animation.mskeleton.attack_bare_hand": {
+      "states": {
+        "default": {
+          "transitions": [ 
+            { "is_bare_hand": "variable.is_holding_left != 1.0" }
+          ]
+        },
+        "is_bare_hand": {
+          "animations": [ { "attack_bare_hand": [] } ],
+          "transitions": [ 
+            { "default": "variable.is_holding_left == 1.0" }
+          ]
+        }
+      }
+    },
+    
+    "controller.animation.mskeleton.movetest": {
+      "states": {
+        "default": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            {
+              "move": [
+                {
+                  "0.0": 0.0,
+                  "1.0": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.mskeleton.baby": {
+      "states": {
+        "baby": {
+          "parameters": [ "query.is_baby" ],
+          "animations": [
+            {
+              "baby_transform": [
+                {
+                  "0.0": 0.0,
+                  "1.0": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+} 

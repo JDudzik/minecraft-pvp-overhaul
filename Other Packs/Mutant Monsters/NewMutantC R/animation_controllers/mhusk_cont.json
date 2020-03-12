@@ -1,0 +1,140 @@
+{
+  "format_version": "1.8.0",
+  "animation_controllers": {
+
+    "controller.animation.test.general": {
+      "states": {
+        "default": {
+          "animations": [
+            { "mhusk_general": [] },
+            { "mhusk_general_2": [] },
+            { "look_at_target": [] }
+          ]
+        }
+      }
+    },
+    "controller.animation.mhusk.baby_big_head": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "baby": "query.is_baby" }
+          ]
+        },
+        "baby": {
+          "animations": [ { "mhusk_big_head": [] } ],
+          "transitions": [
+            { "default": "!query.is_baby" }
+          ]
+        }
+      }
+    },
+    
+    "controller.animation.mhusk.general": {
+      "states": {
+        "default": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            { "mhusk_general": [] },
+            { "mhusk_general_2": [] },
+            { "move": [ { "0.0": 0.0, "1.0": 1.0  }]  },
+            { "look_at_target": [] }
+          ],
+          "transitions": [
+            { "roaring": "query.is_roaring == 1" },
+            { "casting": "query.is_casting" }
+          ]
+        },
+        "casting": {
+          "animations": [
+            { "look_at_target_head": [] },
+            { "mhusk_general_2": [] },
+            { "casting": [] }
+          ],
+          "particle_effects": [
+            {
+              "effect": "spell",
+              "locator": "left_hand"
+            },
+            {
+              "effect": "spell",
+              "locator": "right_hand"
+	    }
+          ],
+          "transitions": [
+            { "default": "!query.is_casting" }
+          ]
+        },
+        "roaring": {
+          "animations": [
+            { "look_at_target_head": [] },
+            { "mhusk_general_2": [] },
+            { "roaring": [] }
+          ],
+          "particle_effects": [
+            {
+              "effect": "spell",
+              "locator": "left_hand"
+            },
+            {
+              "effect": "spell",
+              "locator": "right_hand"
+	    }
+          ],
+          "transitions": [
+            { "default": "query.is_roaring == 0" }
+          ]
+        }
+      }
+    },
+    "controller.animation.mhusk.attack_bare_hand": {
+      "states": {
+        "default": {
+          "transitions": [ 
+            { "is_bare_hand": "variable.is_holding_left != 1.0" }
+          ]
+        },
+        "is_bare_hand": {
+          "animations": [ { "attack_bare_hand": [] } ],
+          "transitions": [ 
+            { "default": "variable.is_holding_left == 1.0" }
+          ]
+        }
+      }
+    },
+    
+    "controller.animation.mhusk.movetest": {
+      "states": {
+        "default": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            {
+              "move": [
+                {
+                  "0.0": 0.0,
+                  "1.0": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.mhusk.baby": {
+      "states": {
+        "baby": {
+          "parameters": [ "query.is_baby" ],
+          "animations": [
+            {
+              "baby_transform": [
+                {
+                  "0.0": 0.0,
+                  "1.0": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+} 

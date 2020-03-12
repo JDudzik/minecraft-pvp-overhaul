@@ -1,0 +1,36 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:geometry": [
+    {
+      "description": {
+        "identifier": "geometry.marrow",
+        "texture_width": 32,
+        "texture_height": 32
+      },
+      "bones": [
+        {
+          "name": "body",
+          "pivot": [ 0.0, 1.0, 0.0 ],
+          "cubes": [
+            {
+              "origin": [ 0.0, -1.5, -4.0 ],
+              "size": [ 0, 5, 22 ],
+              "uv": {
+                "east": { "uv": [ 0, 0 ] }
+              },
+              "rotation": [ 0.0, 0.0, 45.0 ]
+            },
+            {
+              "origin": [ 0.0, -1.5, -4.0 ],
+              "size": [ 0, 5, 22 ],
+              "uv": {
+                "east": { "uv": [ 0, 0 ] }
+              },
+              "rotation": [ 0.0, 0.0, -45.0 ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

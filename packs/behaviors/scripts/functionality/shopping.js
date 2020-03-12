@@ -57,7 +57,8 @@ const kioskLocations = {
   '2012,8,3620': 'buy-coin_tablet-1',
   '2012,8,3624': 'buy-locate_home-1',
   '2012,8,3626': 'buy-save_home-1',
-  '2012,8,3622': 'buy-locator-6',
+  '2012,8,3622': 'buy-tracker-6',
+  '2012,8,3630': 'buy-hide_region-1',
 
   // Spawn Eggs
   '2018,8,3620': 'buy-spider-1',
@@ -384,13 +385,19 @@ const shopData = {
       }
     ],
   },
-  'buy-locator-6': {
+  'buy-tracker-6': {
     action: 'buy',
-    slug: 'pvpcontrols:locator',
-    data_id: 35,
-    pretty_name: 'Locator',
+    slug: 'pvpcontrols:tracker',
+    pretty_name: 'Trackers',
     quantity: 6,
     price: 3720,
+  },
+  'buy-hide_region-1': {
+    action: 'buy',
+    slug: 'pvpcontrols:hide_region',
+    pretty_name: 'Hide Region',
+    quantity: 1,
+    price: 20460,
   },
 
   // Spawn Eggs
@@ -721,7 +728,7 @@ export default {validateAndUseKiosk}
 
 
 
-// Gear store - 19:
+// Gear store - 21:
 // Offensive:
 // - iron, diamond sword
 // - Bow
@@ -736,7 +743,7 @@ export default {validateAndUseKiosk}
 // - chain, diamond chest
 // - chain, diamond pants
 // - chain, diamond boots
-// - diamond boots
+// - chain, diamond boots
 // - iron horse armor
 // - diamond horse armor
 // - shield

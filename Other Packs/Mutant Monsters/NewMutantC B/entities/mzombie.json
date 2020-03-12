@@ -1,0 +1,1491 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "mutant:mutant_zombie",
+
+
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+
+       "component_groups": {
+      "minecraft:look_to_start_drowned_transformation": {
+        "minecraft:environment_sensor": {
+          "triggers": {
+            "filters": {
+              "test": "is_underwater", "subject": "self", "operator": "==", "value": true
+            },
+            "event": "minecraft:start_transforming"
+          }
+        }
+      },
+      "minecraft:start_drowned_transformation": {
+        "minecraft:environment_sensor": {
+          "triggers": {
+            "filters": {
+              "test": "is_underwater", "subject": "self", "operator": "==", "value": false
+            },
+            "event": "minecraft:stop_transforming"
+          }
+        },
+        "minecraft:timer": {
+          "looping": false,
+          "time": 15,
+          "time_down_event": {
+            "event": "minecraft:convert_to_drowned"
+          }
+        }
+      },
+
+      "minecraft:convert_to_drowned": {
+        "minecraft:transformation": {
+          "into": "mutant:mutant_drowned<minecraft:as_adult>",
+          "transformation_sound": "convert_to_drowned",
+          "drop_equipment": true,
+          "delay": {
+            "value": 7
+          }
+        },
+        "minecraft:is_shaking": {
+        }
+      },
+
+      "minecraft:convert_to_baby_drowned": {
+        "minecraft:transformation": {
+          "into": "mutant:mutant_drowned<minecraft:as_baby>",
+          "transformation_sound": "convert_to_drowned",
+          "drop_equipment": true,
+          "delay": {
+            "value": 7
+          }
+        },
+        "minecraft:is_shaking": {
+        }
+      },
+         
+     "stage_2_roar": {
+        "minecraft:timer": {
+          "looping": false,
+          "time": 2.25,
+          "time_down_event": {
+            "event": "minecraft:end_stage_2_roar"
+          }
+        },
+  
+      "minecraft:movement": {
+        "value": 0.0
+      },
+      
+
+        "minecraft:behavior.knockback_roar": {
+          "priority": 1,
+          "duration": 2.25,
+          "attack_time": 0.55,
+          "knockback_damage": 5,
+          "knockback_strength": 3,
+          "knockback_range": 18,
+          "knockback_filters": {
+            "test": "is_family",
+            "subject": "other",
+            "operator": "!=",
+            "value": "mutantmonster"
+          },
+          "damage_filters": {
+            "test": "is_family",
+            "subject": "other",
+            "operator": "!=",
+            "value": "monster"
+          },
+
+          "cooldown_time": 30
+        }
+      },
+         
+     "angry_roar": {
+        "minecraft:timer": {
+          "looping": false,
+          "time": 2.25,
+          "time_down_event": {
+            "event": "minecraft:end_angry_roar"
+          }
+        },
+  
+      "minecraft:movement": {
+        "value": 0.0
+      },
+      
+      "minecraft:boss": {
+        "should_darken_sky": false,
+"name":"§l§2Mutant Zombie§r",
+        "hud_range": 0
+      },
+        "minecraft:behavior.knockback_roar": {
+          "priority": 1,
+          "duration": 2.25,
+          "attack_time": 0.55,
+          "knockback_damage": 9,
+          "knockback_strength": 6,
+          "knockback_range": 10,
+          "knockback_filters": {
+            "test": "is_family",
+            "subject": "other",
+            "operator": "!=",
+            "value": "mutantmonster"
+          },
+          "damage_filters": {
+            "test": "is_family",
+            "subject": "other",
+            "operator": "!=",
+            "value": "monster"
+          },
+
+          "cooldown_time": 30
+        }
+      },
+
+
+
+      "roaring": {
+        "minecraft:timer": {
+          "looping": false,
+          "time": 4.5,
+          "time_down_event": {
+            "event": "minecraft:end_roar"
+          }
+        },
+  
+
+        "minecraft:spell_effects": {
+
+          "add_effects": [
+            {
+              "effect": "resistance",
+              "amplifier": 1,
+              "visible": false,
+              "ambient": false,
+              "duration": 6
+            }, 
+
+            {
+              "effect": "regeneration",
+              "amplifier": 2,
+              "visible": false,
+              "ambient": false,
+              "duration": 6
+            }
+          ]
+        },
+
+        "minecraft:behavior.knockback_roar": {
+          "priority": 1,
+          "duration": 4.5,
+          "attack_time": 0.55,
+          "knockback_damage": 6,
+          "knockback_strength": 4,
+          "knockback_range": 7,
+          "knockback_filters": {
+            "test": "is_family",
+            "subject": "other",
+            "operator": "!=",
+            "value": "mutantmonster"
+          },
+          "damage_filters": {
+            "test": "is_family",
+            "subject": "other",
+            "operator": "!=",
+            "value": "monster"
+          },
+          "cooldown_time": 30
+        }
+      },
+
+
+      "summoning": {
+        "minecraft:timer": {
+          "looping": false,
+          "time": 2.5,
+          "time_down_event": {
+            "event": "minecraft:end_summon"
+          }
+        },
+
+
+        "minecraft:behavior.summon_entity": {
+          "priority": 1,
+          "probability": 100.0,
+          "summon_choices": [
+            {
+              "weight": 1,
+              "cooldown_time": 15.0,
+              "cast_duration": 2.5,
+              "do_casting":true,
+              "start_sound_event": "plop",
+              "sequence": [
+                {
+                  "shape": "circle",
+                  "target": "self",
+                  "base_delay": 0.0,
+                  "delay_per_summon": 0.1,
+                  "num_entities_spawned": 6,
+                  "entity_type": "mutant:zombie_minion",
+
+                  "size": 2.5,
+                  "sound_event": ""
+                }
+              ]
+            }
+          ]
+        }
+      },
+
+      "minecraft:mzombie_angry": {
+      "minecraft:movement": {
+        "value": 0.30
+      },
+        "minecraft:angry": {
+
+          "calm_event": {
+            "event": "minecraft:on_calm",
+            "target": "self"
+          }
+        },
+        "minecraft:timer": {
+          "looping": false,
+			"time": [8, 10],
+          "time_down_event": {
+            "event": "minecraft:start_roar"
+          }
+        },
+        "minecraft:on_target_acquired": {
+        }
+      },
+
+      "minecraft:mzombie_calm": {
+        "minecraft:behavior.nearest_attackable_target": {
+          "priority": 4,
+
+          "reselect_targets": true,
+          "entity_types": [
+            {
+              "filters": {
+                "any_of": [
+                  { "test" :  "is_family", "subject" : "other", "value" :  "villager"},
+                  { "test" :  "is_family", "subject" : "other", "value" :  "player"},
+                  { "test" :  "is_family", "subject" : "other", "value" :  "irongolem"},
+                  { "test" :  "is_family", "subject" : "other", "value" :  "snowgolem"},
+                  { "test" :  "is_family", "subject" : "other", "value" :  "turtle"}
+                ] 
+              },
+              "max_dist": 19
+            },
+            {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "baby_turtle"
+                  },
+                  {
+                    "test": "in_water",
+                    "subject": "other",
+                    "operator": "!=",
+                    "value": true
+                  }
+                ]
+              },
+              "max_dist": 19
+            }
+
+          ],
+          "must_see": true
+        },
+        "minecraft:on_target_acquired": {
+          "event": "minecraft:become_angry",
+          "target": "self"
+        }
+      
+    },
+    
+      "mutant_life_3": {
+        "minecraft:behavior.delayed_attack": {
+          "priority": 4,
+          "reach_multiplier": 1.35,
+          "speed_multiplier": 1.37,
+          "attack_duration": 1.67,
+          "hit_delay_pct": 0.6,
+          "track_target": true,
+          "sound_event": "attack.strong"
+        },
+      "minecraft:attack": {
+        "damage": 10
+      },
+      "minecraft:health": {
+        "value": 120,
+        "max": 120,
+        "min": 1
+      },
+
+        "minecraft:damage_sensor": [
+          {
+            "on_damage": {
+              "filters": { "test": "has_component", "value": "minecraft:is_sheared" }
+            },
+            "deals_damage": false
+          },
+          {
+            "on_damage": {
+              "filters": {
+			          "all_of": [
+			            {"test": "has_damage", "value": "fatal"},
+                  { "test" : "is_family", "subject" : "other", "value" : "mcreeperblowup"}
+			          ]
+              },
+              "event": "explosion_death"
+            },
+            "deals_damage": false
+          },
+          {
+            "on_damage": {
+              "filters": {
+			          "all_of": [
+
+			            {"test": "has_damage", "value": "fatal"}
+			          ]
+              },
+              "event": "life_3"
+            },
+            "deals_damage": false
+          }
+        ]
+      },
+      "stunned_life_3": {
+          
+      "minecraft:movement": {
+        "value": 0.0
+      },
+        "minecraft:is_stunned": {
+        },
+        "minecraft:timer": {
+          "looping": false,
+          "time": 3.25,
+          "time_down_event": {
+            "event": "start_life_2"
+          }
+        }
+      },
+      
+      "mutant_life_2": {
+
+        "minecraft:behavior.delayed_attack": {
+          "priority": 4,
+          "reach_multiplier": 1.37,
+          "speed_multiplier": 1.4,
+          "attack_duration": 1.67,
+          "hit_delay_pct": 0.6,
+          "track_target": true,
+          "sound_event": "attack.strong"
+        },
+      "minecraft:attack": {
+        "damage": 12
+      },
+      "minecraft:health": {
+        "value": 120,
+        "max": 120,
+        "min": 1
+      },
+        "minecraft:damage_sensor": [
+          {
+            "on_damage": {
+              "filters": { "test": "has_component", "value": "minecraft:is_sheared" }
+            },
+            "deals_damage": false
+          },
+          {
+            "on_damage": {
+              "filters": {
+			          "all_of": [
+			            {"test": "has_damage", "value": "fatal"},
+                  { "test" : "is_family", "subject" : "other", "value" : "mcreeperblowup"}
+			          ]
+              },
+              "event": "explosion_death"
+            },
+            "deals_damage": false
+          },
+          {
+            "on_damage": {
+              "filters": {
+			          "all_of": [
+
+			            {"test": "has_damage", "value": "fatal"}
+			          ]
+              },
+              "event": "life_2"
+            },
+            "deals_damage": false
+          }
+        ]
+      },
+      "stunned_life_2": {
+      "minecraft:movement": {
+        "value": 0.0
+      },
+        "minecraft:damage_sensor": [
+          {
+            "on_damage": {
+              "filters": { "test": "has_component", "value": "minecraft:is_sheared" }
+            },
+            "deals_damage": false
+          
+          }
+        ],
+        "minecraft:is_stunned": {
+        },
+        "minecraft:timer": {
+          "looping": false,
+          "time": 3.25,
+          "time_down_event": {
+            "event": "start_last_life"
+          }
+        }
+      },
+
+      
+     
+
+     
+      
+      "mutant_last_life": {
+        "minecraft:behavior.delayed_attack": {
+          "priority": 4,
+          "reach_multiplier": 1.4,
+          "speed_multiplier": 1.45,
+          "attack_duration": 1.67,
+          "hit_delay_pct": 0.6,
+          "track_target": true,
+          "sound_event": "attack.strong"
+        },
+      "minecraft:health": {
+        "value": 120,
+        "max": 120,
+        "min": 1
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 6,
+        "speed_multiplier": 1
+      },
+
+
+        "minecraft:damage_sensor": [
+          {
+            "on_damage": {
+              "filters": { "test": "has_component", "value": "minecraft:is_sheared" }
+            },
+            "deals_damage": false
+          },
+          {
+            "on_damage": {
+              "filters": {
+			          "all_of": [
+			            {"test": "has_damage", "value": "fatal"},
+                  { "test" : "is_family", "subject" : "other", "value" : "mcreeperblowup"}
+			          ]
+              },
+              "event": "explosion_death"
+            },
+            "deals_damage": false
+          },
+          {
+            "on_damage": {
+              "filters": {
+			          "all_of": [
+
+			            {"test": "has_damage", "value": "fatal"}
+			          ]
+              },
+              "event": "last_life"
+            },
+            "deals_damage": false
+          }
+        ]
+      },
+      "stunned_life_death": {
+      "minecraft:is_sheared": {
+      },
+      "minecraft:health": {
+        "value": 120,
+        "max": 120,
+        "min": 0
+      },
+      "minecraft:movement": {
+        "value": 0.0
+      },
+        "minecraft:is_stunned": {
+        },
+        "minecraft:timer": {
+          "looping": false,
+          "time": 7,
+          "time_down_event": {
+            "event": "start_last_life"
+          }
+        }
+      },
+      
+      "stunned_death": {
+      "minecraft:boss": {
+        "should_darken_sky": false,
+"name":"§l§0Mutant Zombie§r",
+        "hud_range": 0
+      },
+      "minecraft:is_sheared": {
+      },
+        "minecraft:is_stunned": {
+        },
+        "minecraft:timer": {
+          "looping": false,
+          "time": 5.25,
+          "time_down_event": {
+            "event": "start_death"
+          }
+        }
+      },
+      "anger_boss_healh":{
+      "minecraft:boss": {
+        "should_darken_sky": false,
+"name":"§l§4Mutant Zombie§r",
+        "hud_range": 7
+      }
+      } ,
+      "anger": {
+
+      "minecraft:attack": {
+        "damage": 15
+      },
+        "minecraft:spell_effects": {
+
+          "add_effects": [
+            {
+              "effect": "resistance",
+              "amplifier": 1,
+              "visible": false,
+              "ambient": false,
+              "duration": 999999
+            }, 
+
+            {
+              "effect": "regeneration",
+              "amplifier": 2,
+              "visible": false,
+              "ambient": false,
+              "duration": 999999
+            }
+          ]
+        },
+          "minecraft:is_charged": {
+          }
+},
+      "death": {
+        "minecraft:spell_effects": {
+
+          "add_effects": [
+              
+
+            {
+              "effect": "instant_damage",
+              "amplifier": 100,
+              "visible": false,
+              "ambient": false,
+              "duration": 999999
+            }
+          ]
+        }
+      },
+        
+      "heal_2": {
+        "minecraft:spell_effects": {
+
+          "add_effects": [
+            {
+              "effect": "resistance",
+              "amplifier": 150,
+              "visible": false,
+              "ambient": false,
+              "duration": 5.0
+            },
+            {
+              "effect": "regeneration",
+              "amplifier": 150,
+              "visible": false,
+              "ambient": false,
+              "duration": 5.0
+            }
+
+            
+          ]
+        },
+        "minecraft:timer": {
+          "looping": false,
+          "time": 5.0,
+          "time_down_event": {
+            "event": "end_health"
+          }
+        }
+        
+      },
+        
+        
+      "heal": {
+        "minecraft:spell_effects": {
+
+          "add_effects": [
+            {
+              "effect": "resistance",
+              "amplifier": 150,
+              "visible": false,
+              "ambient": false,
+              "duration": 3.0
+            },
+            {
+              "effect": "regeneration",
+              "amplifier": 250,
+              "visible": false,
+              "ambient": false,
+              "duration": 3.0
+            },
+            {
+              "effect": "instant_health",
+              "amplifier": 0,
+              "visible": false,
+              "ambient": false,
+              "duration": 2.0
+            }
+            
+          ]
+        },
+        "minecraft:timer": {
+          "looping": false,
+          "time": 4.75,
+          "time_down_event": {
+            "event": "end_health"
+          }
+        }
+        
+      },
+
+           
+           
+      "minecraft:mzombie_name": {
+      "minecraft:nameable": {
+        "default_trigger": {
+          "event": "minecraft:stop_aa12",
+          "target": "self"
+        },
+        "name_actions": [
+          {
+            "name_filter": "AA12YT",
+            "on_named": {
+              "event": "minecraft:start_aa12",
+              "target": "self"
+            }
+          }
+        ]
+      }
+    },
+    
+    
+    
+      "minecraft:mzombie_name_villager": {
+      "minecraft:nameable": {
+        "default_trigger": {
+          "event": "minecraft:stop_aa12_villager",
+          "target": "self"
+        },
+        "name_actions": [
+          {
+            "name_filter": "AA12YT",
+            "on_named": {
+              "event": "minecraft:start_aa12_villager",
+              "target": "self"
+            }
+          }
+        ]
+      }
+    },
+      "minecraft:mzombie_aa12": {
+      
+      
+             "minecraft:variant": {
+          "value": 2
+        }
+      },
+
+      "minecraft:mzombie_aa12_villager": {
+      
+      
+             "minecraft:variant": {
+          "value": 2
+        }
+      },
+      
+      
+      "minecraft:mzombie_normal": {
+      
+      
+             "minecraft:variant": {
+          "value": 0
+        }
+      },
+
+      "minecraft:mzombie_normal_villager": {
+      
+      
+             "minecraft:variant": {
+          "value": 1
+        }
+      },
+
+      "minecraft:mzombie_adult": {
+      "minecraft:movement": {
+        "value": 0.30
+      },
+      
+       
+             "minecraft:variant": {
+          "value": 0
+        }
+      },
+         "minecraft:mzombie_villager_adult": {
+      "minecraft:movement": {
+        "value": 0.30
+      },
+            "minecraft:variant": {
+          "value": 1
+        }
+      },
+      "minecraft:mzombie_baby": {
+        "minecraft:is_baby": {},
+      "minecraft:movement": {
+        "value": 0.32
+      },
+        "minecraft:scale": {
+          "value": 0.5
+        },
+             "minecraft:variant": {
+          "value": 0
+        }
+      },
+         "minecraft:mzombie_villager_baby": {
+        "minecraft:is_baby": {},
+      "minecraft:movement": {
+        "value": 0.32
+      },
+        "minecraft:scale": {
+          "value": 0.5
+        },
+            "minecraft:variant": {
+          "value": 1
+        }
+      }
+    
+    },
+
+
+    "components": {
+      "minecraft:boss": {
+        "should_darken_sky": false,
+"name":"§l§2Mutant Zombie§r",
+        "hud_range": 5
+      },
+      "minecraft:breathable": {
+        "totalSupply": 15,
+        "suffocateTime": -1,
+        "breathesWater": true
+      },
+      "minecraft:break_blocks": {
+        "breakable_blocks": [
+
+          "bamboo_sapling",
+          "beetroot",
+          "brown_mushroom",
+          "carrots",
+          "carved_pumpkin",
+          "chorus_flower",
+          "chorus_plant",
+          "lit_pumpkin",
+          "melon_stem",
+          "potatoes",
+          "pumpkin",
+          "pumpkin_stem",
+          "red_flower",
+          "red_mushroom",
+          "reeds",
+          "sapling",
+          "sweet_berry_bush",
+          "vine",
+          "waterlily",
+          "yellow_flower",
+          "bamboo",
+          "wheat",
+          "oak_stairs",
+          "spruce_stairs",
+          "dark_oak_stairs",
+          "birch_stairs",
+          "acacia_stairs",
+          "carved_pumpkin",
+          "leaves",
+          "leaves2",
+          "lit_pumpkin",
+          "melon_block",
+          "spruce_door",
+          "oak_door",
+          "birch_door",
+          "acacia_door",
+          "ice",
+          "dark_oak_door",
+          "turtle_egg",
+          "wood_planks",
+          "fence",
+          "redstone_wire",
+          "glass",
+          "glass_pane",
+          "slab",
+          "wool",
+          "bed",
+          "planks",
+          "ladder",
+          "scaffolding",
+          "trapdoor",
+          "acacia_trapdoor",
+          "planks_jungle",
+          "cactus"
+        ]
+      },
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      },
+
+        "minecraft:behavior.avoid_mob_type": {
+        "priority": 3,
+        "entity_types": [
+          {
+            "filters": { 
+                "any_of": [
+                  { "test" : "is_family", "subject" : "other", "value" : "mcreeperblowup"}
+                ]
+            },
+            "max_dist": 36,
+          "must_see": false,
+            "walk_speed_multiplier": 1.75,
+            "sprint_speed_multiplier": 1.75
+          }
+        ]
+      },
+
+       "minecraft:collision_box": {
+        "width": 1.25,
+        "height": 2.95
+      },
+      
+      "minecraft:damage_sensor": {
+        "triggers": {
+          "cause": "fall",
+          "deals_damage": false
+        }
+      },
+      "minecraft:knockback_resistance": {
+        "value": 0.9
+      },
+				"minecraft:environment_sensor": {
+					"on_environment": {
+						"filters": {
+							"test": "is_underwater",
+							"subject": "self",
+							"operator": "==",
+							"value": true
+						},
+          "event": "minecraft:start_transforming"
+        }
+      },
+      "minecraft:nameable": {
+      },
+      "minecraft:follow_range": {
+        "value": 56,
+        "max": 56
+      },
+        "minecraft:experience_reward": {
+          "on_death": "query.last_hit_by_player ? 34 : 26"
+        },
+      "minecraft:navigation.walk": {
+        "is_amphibious": true,
+        "can_pass_doors": true,
+        "can_open_doors": true,
+        "avoid_water": false,
+        "avoid_portals": true
+      },
+      "minecraft:movement.basic": {
+      },
+      "minecraft:jump.static": {
+      },
+      "minecraft:can_climb": {
+      },
+  
+      "minecraft:type_family": {
+        "family": [ "mzombie", "zombie","mutantmonster","monster" ]
+      },
+      "minecraft:loot": {
+        "table": "loot_tables/mutant_entities/mzombie.json"
+      },
+     
+
+
+
+      "minecraft:behavior.break_door": {
+        "priority": 1
+      },
+   
+
+     "minecraft:behavior.move_towards_restriction": {
+        "priority": 5
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 7,
+        "speed_multiplier": 1.0
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 8,
+        "look_distance": 6.0,
+        "probability": 0.02
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 9
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 1,
+        "entity_types": {
+          "filters": {
+            "test": "is_family",
+            "subject": "other",
+            "operator": "!=",
+            "value": "zombie"
+          },
+          "max_dist": 64
+        }
+      },
+      "minecraft:physics": {
+      }
+    },
+
+
+    "events": {
+      "minecraft:entity_spawned": {
+        "randomize": [
+          {
+            "weight": 29,
+            "remove": {
+            },
+            "add": {
+              "component_groups": [
+                "minecraft:mzombie_adult",
+"minecraft:mzombie_name",
+                "mutant_life_3",
+                "minecraft:mzombie_calm"
+              ]
+            }
+          },
+          {
+            "weight": 5,
+            "remove": {
+            },
+            "add": {
+              "component_groups": [
+                "minecraft:mzombie_baby",
+"minecraft:mzombie_name",
+                "mutant_life_3",
+                "minecraft:mzombie_calm"
+              ]
+
+            }
+          },
+   {
+            "weight": 3,
+            "remove": {
+            },
+            "add": {
+              "component_groups": [
+                "minecraft:mzombie_villager_adult",
+"minecraft:mzombie_name_villager",
+        
+                "mutant_life_3",
+                "minecraft:mzombie_calm"
+              ]
+            }
+          },
+          {
+            "weight": 1,
+            "remove": {
+            },
+            "add": {
+              "component_groups": [
+                "minecraft:mzombie_villager_baby",
+"minecraft:mzombie_name_villager",
+            
+                "mutant_life_3",
+                "minecraft:mzombie_calm"
+              ]
+
+            }
+          }
+        ]
+      },
+      
+      
+      "minecraft:start_aa12": {
+
+        "add": {
+          "component_groups": [
+            "minecraft:mzombie_aa12"
+          ]
+        }
+      },
+
+      "minecraft:stop_aa12": {
+        "add": {
+          "component_groups": [
+            "minecraft:mzombie_normal"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "minecraft:mzombie_aa12"
+          ]
+        }
+      },
+
+      "minecraft:start_aa12_villager": {
+
+        "add": {
+          "component_groups": [
+            "minecraft:mzombie_aa12_villager"
+          ]
+        }
+      },
+
+      "minecraft:stop_aa12_villager": {
+        "add": {
+          "component_groups": [
+            "minecraft:mzombie_normal_villager"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "minecraft:mzombie_aa12_villager"
+          ]
+        }
+      },
+      
+      "life_3": {
+        "add": {
+          "component_groups": [
+           "heal",
+            "stunned_life_3"
+        
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "mutant_life_3",
+            "minecraft:mzombie_angry",
+            "minecraft:mzombie_calm"
+          ]
+        }
+      },
+      
+      "start_life_2": {
+        "remove": {
+          "component_groups": [
+            "stunned_life_3"
+        
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "mutant_life_2",
+            "stage_2_roar"
+          ]
+        }
+      },
+
+      "life_2": {
+        "add": {
+          "component_groups": [
+           "heal",
+            "stunned_life_2"
+        
+        
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "mutant_life_2",
+            "minecraft:mzombie_angry",
+            "minecraft:mzombie_calm"
+          ]
+        }
+      },
+      
+      "start_last_life": {
+        "remove": {
+          "component_groups": [
+            "stunned_life_2"
+        
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "mutant_last_life",
+            "angry_roar",
+            "anger"
+          ]
+        }
+      },
+
+      "minecraft:end_stage_2_roar": {
+        "remove": {
+          "component_groups": [
+            "stage_2_roar"
+          ]
+       },
+        "add": {
+          "component_groups": [
+            "minecraft:mzombie_angry"
+          ]
+       }
+    },
+    
+      "minecraft:end_angry_roar": {
+        "remove": {
+          "component_groups": [
+            "angry_roar"
+          ]
+       },
+        "add": {
+          "component_groups": [
+            "minecraft:mzombie_angry",
+            "delay_angry",
+"anger_boss_healh"
+          ]
+       }
+    },
+
+    
+
+
+      "last_life": {
+        "add": {
+          "component_groups": [
+           "heal_2",
+            "stunned_life_death",
+            "stunned_death"
+        
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "mutant_life_3",
+            "stunned_life_3",
+            
+            "mutant_life_2",
+            "stunned_life_2",
+            
+            "mutant_last_life",
+            "minecraft:mzombie_angry",
+            "minecraft:mzombie_calm"
+            
+          ]
+        }
+      },
+      "explosion_death": {
+        "add": {
+          "component_groups": [
+            "stunned_life_death",
+            "stunned_death",
+            "death"
+        
+          ]
+        },
+             "remove": {
+          "component_groups": [
+            "mutant_life_3",
+            "stunned_life_3",
+            
+            "mutant_life_2",
+            "stunned_life_2",
+            
+            "mutant_last_life",
+            
+            "heal",
+           "heal_2",
+            
+            "minecraft:mzombie_angry",
+            "minecraft:mzombie_calm"
+            
+          ]
+        }
+      },
+
+      "start_death": {
+        "add": {
+          "component_groups": [
+            "death"
+        
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "anger"
+        
+          ]
+        }
+      },
+
+
+      "end_health": {
+        "remove": {
+          "component_groups": [
+            "heal",
+           "heal_2"
+          ]
+        }
+      },
+
+
+
+      "minecraft:become_angry": {
+        "remove": {
+          "component_groups": [
+            "minecraft:mzombie_calm"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "minecraft:mzombie_angry"
+          ]
+        }
+      },
+      "minecraft:on_calm": {
+        "remove": {
+          "component_groups": [
+            "minecraft:mzombie_angry"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "minecraft:mzombie_calm"
+          ]
+        }
+      },
+      "minecraft:end_summon": {
+        "add": {
+          "component_groups": [
+            "minecraft:mzombie_angry"
+        
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "summoning",
+            "roaring"
+          ]
+        }
+      },
+
+      "minecraft:start_roar": {
+        "add": {
+          "component_groups": [
+            "roaring"
+        
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "minecraft:mzombie_angry"
+          ]
+        }
+      },
+      
+
+      
+      
+      "minecraft:end_roar": {
+        "remove": {
+          "component_groups": [
+            "roaring"
+          ]
+        },
+          
+          
+        "add": {
+          "component_groups": [
+            "summoning"
+          ]
+        }
+      },
+      "sitting": {
+        "remove": {
+          "component_groups": [
+            "mwolf_stand"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "mwolf_sit"
+          ]
+        }
+      },
+
+      "standing": {
+        "remove": {
+          "component_groups": [
+            "mwolf_sit"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "mwolf_stand"
+          ]
+        }
+      },
+
+
+      "minecraft:entity_born": {
+        "remove": {
+        },
+        "add": {
+          "component_groups": [
+            "minecraft:wolf_baby",
+            "minecraft:wolf_tame",
+  "mwolf_stand"
+          ]
+        }
+      },
+
+      "minecraft:ageable_grow_up": {
+        "remove": {
+          "component_groups": [
+            "minecraft:wolf_baby"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "minecraft:wolf_adult"
+          ]
+        }
+      },
+
+      "minecraft:ageable_set_baby": {
+        "remove": {
+          "component_groups": [
+            "minecraft:wolf_adult"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "minecraft:wolf_baby"
+          ]
+        }
+      },
+
+      "minecraft:on_tame": {
+        "remove": {
+          "component_groups": [
+            "minecraft:wolf_wild"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "minecraft:wolf_tame",
+  "mwolf_stand"
+          ]
+        }
+      },
+      "minecraft:as_baby": {
+        "add": {
+          "component_groups": [
+                "minecraft:mzombie_baby",
+"minecraft:mzombie_name",
+                "mutant_life_3",
+                "minecraft:mzombie_calm"
+          ]
+        }
+      },
+      "minecraft:as_adult": {
+        "add": {
+          "component_groups": [
+                "minecraft:mzombie_adult",
+"minecraft:mzombie_name",
+                "mutant_life_3",
+                "minecraft:mzombie_calm"
+          ]
+        }
+      }, 
+      "minecraft:start_transforming": {
+        "add": {
+          "component_groups": [
+            "minecraft:start_drowned_transformation"
+          ]
+        },
+        "remove": {
+          "component_groups": [ "minecraft:look_to_start_drowned_transformation" ]
+        }
+      },
+      "minecraft:stop_transforming": {
+        "add": {
+          "component_groups": [
+            "minecraft:look_to_start_drowned_transformation"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "minecraft:start_drowned_transformation"
+          ]
+        }
+      },
+      "minecraft:convert_to_drowned": {
+        "sequence": [
+          {
+            "filters": {
+              "test": "has_component",
+              "operator": "!=",
+              "value": "minecraft:is_baby"
+            },
+            "add": {
+              "component_groups": [ "minecraft:convert_to_drowned" ]
+            },
+            "remove": {
+              "component_groups": [ "minecraft:start_drowned_transformation" ]
+            }
+          },
+          {
+            "filters": {
+              "test": "has_component",
+              "value": "minecraft:is_baby"
+            },
+            "add": {
+              "component_groups": [ "minecraft:convert_to_baby_drowned" ]
+            },
+            "remove": {
+              "component_groups": [ "minecraft:start_drowned_transformation" ]
+            }
+          }
+        ]
+      }
+      
+      
+      
+    }
+  }
+}

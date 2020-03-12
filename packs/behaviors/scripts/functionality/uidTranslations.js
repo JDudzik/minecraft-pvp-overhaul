@@ -44,6 +44,19 @@ const uidToName = {
 	'boi:spider_baby': 'spiderling',
 	'boi:zombie_miner': 'zombie miner',
 	'boi:spider_queen': 'spider matriarch',
+	'mutant:drowned_minion': 'drowned',
+	'mutant:husk_minion': 'husk',
+	'mutant:zombie_minion': 'zombine',
+	'mutant:zombiepig_minion': 'zombie pigman',
+	'mutant:mutant_creeper': 'mutant creeper',
+	'mutant:mutant_drowned': 'mutant drowned',
+	'mutant:mutant_husk': 'mutant husk',
+	'mutant:mutant_skeleton': 'mutant skeleton',
+	'mutant:mutant_stray': 'mutant stray',
+	'mutant:mutant_wither_skeleton': 'mutant wither skeleton',
+	'mutant:mutant_wolf': 'mutant wolf',
+	'mutant:mutant_zombie': 'mutant zombie',
+	'mutant:mutant_zombie_pigman': 'mutant zombie pigman',
 }
 
 const uidToValue = {
@@ -57,7 +70,7 @@ const uidToValue = {
 	'minecraft:cave_spider': 45,
 	'minecraft:slime': 20,
 	'minecraft:wither_skeleton': 125,
-	'minecraft:zombie_pigman': 100,
+	'minecraft:zombie_pigman': 70,
 	'minecraft:ghast': 150,
 	'minecraft:blaze': 125,
 	'minecraft:enderman': 100,
@@ -82,6 +95,19 @@ const uidToValue = {
 	'boi:spider_baby': 3,
 	'boi:zombie_miner': 40,
 	'boi:spider_queen': 400,
+	'mutant:drowned_minion': 45,
+	'mutant:husk_minion': 75,
+	'mutant:zombie_minion': 45,
+	'mutant:zombiepig_minion': 85,
+	// 'mutant:mutant_creeper': 7000,
+	// 'mutant:mutant_drowned': 7000,
+	// 'mutant:mutant_husk': 5000,
+	// 'mutant:mutant_skeleton': 6500,
+	// 'mutant:mutant_stray': 6500,
+	// 'mutant:mutant_wither_skeleton': 8000,
+	'mutant:mutant_wolf': 800,
+	// 'mutant:mutant_zombie': 5000,
+	// 'mutant:mutant_zombie_pigman': 6000,
 }
 
 

@@ -1,0 +1,336 @@
+{
+  "entity_sounds": {
+    "entities": {
+     
+     
+     
+     "mutant:drowned_minion": {
+        "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.drowned.say",
+          "hurt": "mob.drowned.hurt",
+          "death": "mob.drowned.death",
+          "ambient.in.water": "mob.drowned.say_water",
+          "hurt.in.water": "mob.drowned.hurt_water",
+          "death.in.water": "mob.drowned.death_water",
+          "step": "mob.drowned.step",
+          "shoot": {
+            "sound": "item.trident.throw",
+            "volume": 3.0,
+        "pitch": [ 0.8, 1.2 ]
+          }
+        }
+      },
+      
+      "mutant:husk_minion": {
+        "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.husk.ambient",
+          "hurt": "mob.husk.hurt",
+          "death": "mob.husk.death",
+          "step": {
+            "sound": "mob.husk.step",
+            "volume": 0.15,
+            "pitch": 1.0
+          }
+        }
+      },
+      
+      "mutant:zombiepig_minion": {
+        "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.zombiepig.zpig",
+          "hurt": "mob.zombiepig.zpighurt",
+          "death": "mob.zombiepig.zpigdeath",
+          "mad": {
+            "sound": "mob.zombiepig.zpigangry",
+            "volume": 2.0,
+            "pitch": [ 1.44, 2.16 ]
+          }
+        }
+      },
+      "mutant:zombie_minion": {
+        "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.zombie.say",
+          "hurt": "mob.zombie.hurt",
+          "death": "mob.zombie.death",
+          "step": {
+            "sound": "mob.zombie.step",
+            "volume": 0.15,
+            "pitch": 1.0
+          }
+        }
+      },
+     
+     
+        
+      "mutant:mutant_creeper": {
+        "volume": 2.0,
+        "pitch": [ 0.8, 1.0 ],
+        "events": {
+    "ambient": "mob.mcreeper.idle",
+          "step": "mob.mutant.step",
+          "roar": {
+            "sound": "mob.mcreeper.idle",
+            "volume": 10.0,
+            "pitch": 0.675
+          },
+            "hurt": "mob.mcreeper.hurt",
+          "death": "mob.mcreeper.hurt",
+          "stun": {"sound": "mob.mcreeper.fuse", "volume":  5.8, "pitch":  1.0}
+        }
+      },
+      "mutant:mutant_zombie_pigman": {
+       "volume": 2.0,
+          "pitch": [ 0.85, 1.1 ],
+        "events": {
+          "ambient": "mob.mzombiepig.zpig",
+          "hurt": "mob.mzombiepig.zpighurt",
+          "roar": {
+            "sound": "mob.mzombiepig.zpigroar",
+            "volume": 1.0,
+            "pitch": 0.85
+          },
+          "attack.strong": {
+            "sound": "mob.mzombiepig.zpigangry",
+            "volume": 1.0,
+            "pitch": 0.9
+          },
+          "stun": {
+            "sound": "mob.mzombiepig.zpighurt",
+            "volume": 1.0,
+            "pitch": 0.78
+          },
+          "death": {
+            "sound": "mob.mzombiepig.zpigroar",
+            "volume": 1.0,
+            "pitch": 0.78
+          },
+
+          "mad": {
+            "sound": "mob.mzombiepig.zpigangry",
+            "volume": 4.0,
+            "pitch": [ 0.8, 1.1 ]
+          }
+        }
+      },
+        
+        
+      "mutant:mutant_husk": {
+        "volume": 2.0,
+        "pitch": [ 0.68, 0.9 ],
+        "events": {
+          "ambient": "mob.mhusk.idle",
+          "hurt": "mob.mhusk.hurt",
+
+          "step": "mob.mutant.step",
+          "prepare.summon": "mob.mhusk.call",
+
+          "roar": "mob.mhusk.roar",
+       "attack.strong": {
+            "sound": "mob.mzombie.smash",
+            "volume": 1.0,
+            "pitch": 0.75
+          },
+          "death": {
+            "sound": "mob.mhusk.roar",
+            "volume": 1.0,
+            "pitch": 0.65
+          },
+          "stun": {
+            "sound": "mob.mhusk.hurt",
+            "volume": 1.0,
+            "pitch": 0.75
+          }
+        }
+      },
+      "mutant:mutant_wither_skeleton": {
+        "volume": 2.0,
+        "pitch": [ 0.75, 0.85 ],
+        "events": {
+          "ambient": "mob.mwither_skeleton.idle",
+          "hurt": "mob.mwither_skeleton.hurt",
+
+          "step": "mob.mwither_skeleton.step",
+          "prepare.summon": "mob.mwither_skeleton.call",
+          "shoot": {
+            "sound": "mob.wither.shoot",
+            "volume": 3.0,
+        "pitch": [ 0.7, 0.85 ]
+          },
+          "roar": {
+            "sound": "mob.wither.ambient",
+            "volume": 1.0,
+            "pitch": 0.675
+          },
+          "attack.strong": {
+            "sound": "mob.mwither_skeleton.step",
+            "volume": 1.0,
+            "pitch": 0.7
+          },
+          "death": {
+            "sound": "mob.mwither_skeleton.death",
+            "volume": 1.0,
+            "pitch": 0.75
+          },
+          "stun": {
+            "sound": "mob.mwither_skeleton.death",
+            "volume": 1.0,
+            "pitch": 0.75
+          }
+        }
+      },
+      "mutant:mutant_stray": {
+        "volume": 2.0,
+        "pitch": [ 0.75, 0.85 ],
+        "events": {
+          "ambient": "mob.mstray.idle",
+          "hurt": "mob.mstray.hurt",
+
+          "step": "mob.mstray.step",
+          "prepare.summon": "mob.mstray.call",
+          "attack.strong": "mob.mstray.step",
+          "shoot": {
+            "sound": "crossbow.shoot",
+            "volume": 3.0,
+        "pitch": [ 0.7, 0.85 ]
+          },
+          "roar": {
+            "sound": "mob.horse.skeleton.death",
+            "volume": 1.0,
+            "pitch": 0.75
+          },
+          "death": {
+            "sound": "mob.mstray.death",
+            "volume": 1.0,
+            "pitch": 0.75
+          },
+          "stun": {
+            "sound": "mob.mstray.death",
+            "volume": 1.0,
+            "pitch": 0.75
+          }
+        }
+      },
+      
+      
+      "mutant:mutant_skeleton": {
+        "volume": 2.0,
+        "pitch": [ 0.75, 0.85 ],
+        "events": {
+          "ambient": "mob.mskeleton.idle",
+          "hurt": "mob.mskeleton.hurt",
+
+          "step": "mob.mskeleton.step",
+          "prepare.summon": "mob.mskeleton.call",
+          "attack.strong": "mob.mskeleton.step",
+          "shoot": {
+            "sound": "crossbow.shoot",
+            "volume": 3.0,
+        "pitch": [ 0.7, 0.85 ]
+          },
+          "roar": {
+            "sound": "mob.horse.skeleton.death",
+            "volume": 1.0,
+            "pitch": 0.75
+          },
+          "death": {
+            "sound": "mob.mskeleton.death",
+            "volume": 1.0,
+            "pitch": 0.75
+          },
+          "stun": {
+            "sound": "mob.mskeleton.death",
+            "volume": 1.0,
+            "pitch": 0.75
+          }
+        }
+      },
+      "mutant:mutant_drowned": {
+        "volume": 2.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient.in.water": "mob.mdrowned.say_water",
+          "hurt.in.water": "mob.mdrowned.hurt_water",
+          "death.in.water": "mob.mdrowned.death_water",
+            
+          "ambient": "mob.mdrowned.idle",
+          "hurt": "mob.mdrowned.hurt",
+
+          "step": "mob.mdrowned.step",
+          "prepare.summon": "mob.mzombie.call",
+          "shoot": {
+            "sound": "item.trident.throw",
+            "volume": 3.0,
+        "pitch": [ 0.7, 0.85 ]
+          },
+       "attack.strong": {
+            "sound": "mob.mzombie.smash",
+            "volume": 1.0,
+            "pitch": 0.9
+          },
+          "roar": "mob.mdrowned.roar",
+          "death": {
+            "sound": "mob.mdrowned.roar",
+            "volume": 1.0,
+            "pitch": 0.75
+          },
+          "stun": {
+            "sound": "mob.mdrowned.hurt",
+            "volume": 1.0,
+            "pitch": 0.85
+          }
+        }
+      },
+      "mutant:mutant_zombie": {
+        "volume": 2.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.mzombie.idle",
+          "hurt": "mob.mzombie.hurt",
+
+          "step": "mob.mutant.step",
+          "prepare.summon": "mob.mzombie.call",
+       "attack.strong": {
+            "sound": "mob.mzombie.smash",
+            "volume": 1.0,
+            "pitch": 0.95
+          },
+          "roar": "mob.mzombie.roar",
+          "death": {
+            "sound": "mob.mzombie.roar",
+            "volume": 1.0,
+            "pitch": 0.75
+          },
+          "stun": {
+            "sound": "mob.mzombie.hurt",
+            "volume": 1.0,
+            "pitch": 0.85
+          }
+        }
+      },
+        
+      "mutant:mutant_wolf": {
+        "volume": 2.0,
+        "pitch": [ 0.75, 1.2 ],
+        "events": {
+          "ambient": "mob.mwolf.idle",
+          "hurt": "mob.mwolf.hurt",
+          "growl": "mob.wolf.growl",
+          "attack.strong": "mob.mwolf.bite",
+          "death": "mob.mwolf.death",
+          "step": {
+            "sound": "mob.wolf.step",
+            "volume": 1,
+            "pitch": 1.0
+          }
+        }
+      }
+    }
+  }
+}

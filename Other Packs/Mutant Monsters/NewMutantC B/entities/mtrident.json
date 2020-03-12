@@ -1,0 +1,55 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "mutant:trident",
+   "runtime_identifier": "minecraft:arrow",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+
+
+    "components": {
+        "minecraft:scale": {
+          "value": 1.0
+        },
+
+      "minecraft:collision_box": {
+        "width": 0.75,
+        "height": 0.75
+      },
+      "minecraft:projectile": {
+        "onHit": {
+          "impact_damage": {
+            "damage": [ 10, 12 ],
+            "knockback": true,
+            "semirandomdiffdamage": false,
+            "destroyonhit": true
+          },
+          "remove_on_hit": {},
+          "stick_in_ground": {
+            "shake_time" : 0.35
+          },
+          "arrow_effect": {
+          }
+        },
+
+				"hit_sound": "item.trident.hit",
+				"hit_ground_sound": "item.trident.hit_ground",
+        "power": 2.85,
+        "gravity": 0.020,
+        "uncertaintyBase": 8,
+        "uncertaintyMultiplier": 2,
+        "anchor": 1,
+      "inertia": 1.0,
+      "liquid_inertia": 0.99,
+        "shouldbounce": true,
+        "offset": [ 0, -0.01, 0 ]
+      },
+	  "minecraft:physics": {
+      }
+    }
+
+  }
+}

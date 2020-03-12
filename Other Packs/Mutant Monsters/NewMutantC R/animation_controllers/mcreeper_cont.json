@@ -1,0 +1,133 @@
+{
+  "format_version": "1.8.0",
+  "animation_controllers": {
+
+    "controller.animation.test.general": {
+      "states": {
+        "default": {
+          "animations": [
+            { "mcreeper_general": [] },
+            { "mcreeper_general_2": [] },
+            { "look_at_target": [] }
+          ]
+        }
+      }
+    },
+    "controller.animation.mcreeper.baby_big_head": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "baby": "query.is_baby" }
+          ]
+        },
+        "baby": {
+          "animations": [ { "mcreeper_big_head": [] } ],
+          "transitions": [
+            { "default": "!query.is_baby" }
+          ]
+        }
+      }
+    },
+
+    "controller.animation.mcreeper.general": {
+      "states": {
+        "default": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            { "mcreeper_general": [] },
+            { "mcreeper_general_2": [] },
+            { "look_at_target": [] },
+            { "move": [ { "0.0": 0.0, "1.0": 1.0  }]  }
+          ],
+          "transitions": [
+            { "stunned": "query.is_stunned == 1" },
+            { "roaring": "query.is_roaring == 1" }
+          ]
+        },
+        
+        
+        "stunned": {
+          "animations": [
+            { "mcreeper_general_2": [] },
+            { "mcreeper_general": [] },
+            { "stunned": [] }
+          ],
+          "particle_effects": [
+            {
+              "effect": "stun_particles",
+              "locator": "stun"
+            }
+          ],
+          "transitions": [
+            { "default": "query.is_stunned == 0" }
+          ]
+        },
+        
+        "roaring": {
+          "animations": [
+              
+            { "mcreeper_general_2": [] },
+
+            { "roaring": [] }
+            
+    
+          ],
+
+          "transitions": [
+            { "default": "query.is_roaring == 0" }
+          ]
+        }
+      }
+    },
+    "controller.animation.mcreeper.attack_bare_hand": {
+      "states": {
+        "default": {
+          "transitions": [ 
+            { "is_bare_hand": "variable.is_holding_left != 1.0" }
+          ]
+        },
+        "is_bare_hand": {
+          "animations": [ { "attack_bare_hand": [] } ],
+          "transitions": [ 
+            { "default": "variable.is_holding_left == 1.0" }
+          ]
+        }
+      }
+    },
+    
+    "controller.animation.mcreeper.movetest": {
+      "states": {
+        "default": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            {
+              "move": [
+                {
+                  "0.0": 0.0,
+                  "1.0": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.mcreeper.baby": {
+      "states": {
+        "baby": {
+          "parameters": [ "query.is_baby" ],
+          "animations": [
+            {
+              "baby_transform": [
+                {
+                  "0.0": 0.0,
+                  "1.0": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+} 

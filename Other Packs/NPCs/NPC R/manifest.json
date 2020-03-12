@@ -2,16 +2,16 @@
    "format_version" : 1,
    "header" : {
       "description" : "npc resources",
-      "name" : "§l§bNPC by wave§r",
-      "uuid" : "7539fd3d-e670-4a31-9c67-9fd30959bf03",
-      "version" : [ 2, 0, 0 ]
+      "name" : "NPC",
+      "uuid" : "7539fd3d-e670-4a31-9c67-9fd30959bf04",
+      "version" : [ 2, 0, 2 ]
    },
    "modules" : [
       {
          "description" : "npc resources",
          "type" : "resources",
-         "uuid" : "ab6ff9ca-697d-4966-8117-df0358c5b10d",
-         "version" : [ 2, 0, 0 ]
+         "uuid" : "ab6ff9ca-697d-4966-8117-df0358c5b10c",
+         "version" : [ 2, 0, 2 ]
       }
    ]
 }

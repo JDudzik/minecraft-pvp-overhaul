@@ -1,0 +1,29 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.mcreeper_explode": {
+      "geometry": "Geometry.explode",
+
+      "materials": [ { "*": "Material.explode" } ],
+      "textures": [ "Texture.explode" ],
+      "overlay_color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 2.0
+      },
+      "part_visibility": [ { "*": "query.is_stunned" } ],
+      "uv_anim": {
+        "offset": [
+          "(query.is_stunned ? (Math.cos(query.life_time * 11.1) * 2) : 0.0)",
+          "(query.is_stunned ? (Math.cos (query.life_time * 10.62) * 2) : 0.0)"
+        ],
+          "scale": [ 1.0, 1.0 ]
+      },
+      "light_color_multiplier": 0.75,
+      "ignore_lighting": true
+    }
+  }
+}
+
+

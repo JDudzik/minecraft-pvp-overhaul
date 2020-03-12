@@ -1,0 +1,404 @@
+{
+  "format_version": "1.8.0",
+  "animation_controllers": {
+    "controller.animation.mwolf.setup": {
+      "states": {
+        "default": {
+          "parameters": [
+            "query.modified_move_speed"
+          ],
+          "animations": [ 
+         {"mwolf_setup": [] }
+
+
+],
+          "transitions": [
+            { "sitting": "query.is_sitting" },
+            { "dance": "query.is_dancing" },
+            { "angry": "query.is_angry" }
+
+          ]
+        },
+
+        "sitting": {
+
+
+         
+          "transitions": [
+            { "stand": "!query.is_sitting" }
+          ]
+        },
+
+        "dance": {
+          "animations": [
+         {"mwolf_floss": [] }
+
+          
+          ],
+          "transitions": [
+            { "default": "!query.is_dancing" }
+          ]
+        },
+        
+        "angry": {
+          "parameters": [
+            "query.modified_move_speed"
+          ],
+          "animations": [  
+              {"mwolf_angry": [] }
+],
+          "transitions": [
+            { "default": "!query.is_angry" }
+          ]
+        }
+      }
+    },
+  
+    
+    "controller.animation.mwolf.attack": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "attack_1": "variable.attack_state == 1" },
+            { "attack_2": "variable.attack_state == 2" },
+            { "attack_3": "variable.attack_state == 3" }
+          ]
+        },
+        "attack_1": {
+          "animations": [
+              {"mwolf_sitting_anim_2": [] }
+          
+          ],
+          "transitions": [
+            { "default": "query.any_animation_finished" }
+          ]
+        },
+        "attack_2": {
+          "animations": [
+              {"mwolf_sitting_anim_1": [] }
+          
+          ],
+          "transitions": [
+            { "default": "query.any_animation_finished" }
+          ]
+        },
+        "attack_3": {
+          "animations": [
+              {"mwolf_begging_anim_1": [] }
+          
+          ],
+          "transitions": [
+            { "default": "query.any_animation_finished" }
+          ]
+        }
+      }
+    },
+    
+  
+    
+    "controller.animation.mwolf.sitting_anim": {
+      "states": {
+        "default": {
+          "parameters": [
+            "query.modified_move_speed"
+          ],
+          "animations": [ 
+         {"mwolf_setup": [] },
+
+    { "mwolf_leg_default": [{ "0.0": 0.0, "0.8333": 0.95  }]  
+    
+} 
+],
+
+          "transitions": [
+
+            { "run": "query.modified_move_speed>0.95" },
+            { "sitting_anim": "query.is_sitting" }
+          ]
+        },
+
+        "run": {
+          "parameters": [
+            "query.modified_move_speed"
+          ],
+          "animations": [ 
+         {"mwolf_setup": [] },
+
+    { "mwolf_leg_angry": [{ "0.0": 0.0, "0.8333": 0.95  }] 
+    
+} 
+],
+
+          "transitions": [
+
+            { "default": "query.modified_move_speed<0.95" }
+          ]
+        },
+        
+      
+      
+        
+        "sitting": {
+            "animations":[
+              {"mwolf_sitting_anim_1": [] }
+              ],
+          "transitions": [
+            { "sitting_anim": "query.any_animation_finished" }
+          ]
+        },
+        "default2": {
+          "animations": [
+
+           
+              {"mwolf_sitting_anim_2": [] }
+          
+          ],
+          "transitions": [
+            { "default": "query.any_animation_finished" }
+          ]
+        },
+ 
+        "sitting_anim": {
+          "animations": [
+       
+{ "mwolf_sitting": [] }
+          
+          ],
+          "transitions": [
+            { "default": "!query.is_sitting" }
+          ]
+        }
+      }
+    },
+  
+  
+  
+  
+    
+    "controller.animation.mwolf.angry_anim": {
+      "states": {
+        "default": {
+
+          "transitions": [
+            { "angry_anim": "query.is_angry" }
+          ]
+        },
+        
+        "default2": {
+          "animations": [
+
+           
+              {"mwolf_angry_anim_2": [] }
+          
+          ],
+          "transitions": [
+            { "default": "query.any_animation_finished" }
+          ]
+        },
+ 
+        "angry_anim": {
+          "animations": [
+              {"mwolf_angry_anim_3": [] },
+              {"mwolf_angry_anim_1": [] }
+          ],
+          "transitions": [
+            { "default2": "!query.is_angry" }
+          ]
+        }
+      }
+    },
+  
+  
+  
+    "controller.animation.mwolf.dance": {
+      "states": {
+        "default": {
+
+          "transitions": [
+            { "dance_anim": "query.is_dancing" }
+          ]
+        },
+        
+        "dance_anim": {
+          "animations": [
+
+           
+              {"mwolf_floss": [] }
+          
+          ],
+          "transitions": [
+            { "default": "!query.is_dancing" }
+          ]
+        }
+      }
+    },
+    
+    "controller.animation.mwolf.biting": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "biting": "query.is_delayed_attacking == 1" }
+          ]
+        },
+        "biting": {
+
+          "animations":
+          [{ "mwolf_biting": [] } 
+
+     ],
+          "transitions": [
+              
+            { "default": "query.is_delayed_attacking == 0" }
+          ]
+        }
+      }
+    },
+    "controller.animation.mwolf.begging": {
+      "states": {
+        "default": {
+
+          "transitions": [
+            { "begging": "query.is_interested" }
+          ]
+        },
+        
+        "default2": {
+          "animations": [
+
+           
+    { "mwolf_begging_anim_2": [] }
+          
+          ],
+          "transitions": [
+            { "default": "query.any_animation_finished" }
+          ]
+        },
+ 
+        "begging": {
+          "animations": [
+           { "mwolf_begging": [] },
+           
+    { "mwolf_begging_anim_1": [] },
+           { "mwolf_begging_anim": [] }
+          ],
+          "transitions": [
+            { "default2": "!query.is_interested" },
+            { "normal": "!query.is_interested" }
+          ]
+        }
+      }
+    },
+    
+    
+    
+    
+    "controller.animation.mwolf.eating": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "eating": "query.is_eating" }
+          ]
+        },
+        "eating": {
+          "animations": [ { "mwolf_eating": [] } ],
+          "transitions": [
+            { "default": "!query.is_eating" }
+          ]
+        }
+      }
+    },
+    
+    
+    "controller.animation.mwolf.baby_scaling": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "baby": "query.is_baby" }
+          ]
+        },
+        "baby": {
+          "animations": [ { "mwolf_baby_scaling": [] } ],
+          "transitions": [
+            { "default": "!query.is_baby" }
+          ]
+        }
+      }
+    },
+    "controller.animation.mwolf.look_at": {
+      "states": {
+        "default": {
+          "animations": [ { "mwolf_look_at": [] } ]
+        }
+      }
+    },
+
+    "controller.animation.mwolf.tail": {
+      "states": {
+        "default": {
+          "animations": [ { "mwolf_tail": [] } ]
+        }
+      }
+    },
+    "controller.animation.mwolf.angry": {
+      "states": {
+        "default": {
+          "animations": [ { "mwolf_angry": [] } ]
+        }
+      }
+    },
+    "controller.animation.mwolf.item": {
+      "states": {
+        "default": {
+          "animations": [ { "mwolf_item": [] } ]
+        }
+      }
+    },
+    "controller.animation.mwolf.sitting": {
+      "states": {
+        "default": {
+          "parameters": [
+            "query.modified_move_speed"
+          ],
+          "animations": [ { "mwolf_leg_default": [{ "0.0": 0.0, "1.0": 1.0  }] } ],
+          "transitions": [
+            { "sitting": "query.is_sitting" }
+          ]
+        },
+        "default2": {
+          "animations": [
+
+
+           
+              {"mwolf_sitting_anim_2": [] }
+          
+          ],
+          "transitions": [
+            { "default": "query.any_animation_finished" }
+          ]
+        },
+        "sitting": {
+          "animations": [ { "mwolf_sitting": [] },
+{ "mwolf_setup": [] } ],
+          "transitions": [
+            { "default2": "!query.is_sitting" }
+          ]
+        }
+      }
+    },
+    "controller.animation.mwolf.shaking": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "shaking": "query.is_shaking_wetness" }
+          ]
+        },
+        "shaking": {
+          "animations": [ { "mwolf_shaking": [] } ],
+          "transitions": [
+            { "default": "!query.is_shaking_wetness" }
+          ]
+        }
+      }
+    }
+  }
+}

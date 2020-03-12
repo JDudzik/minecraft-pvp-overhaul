@@ -1,0 +1,28 @@
+{
+	"format_version": "1.8.0",
+	"render_controllers": {
+    "controller.render.mhusk": {
+               "arrays": {
+
+        "materials": {
+          "Array.materials": [ "Material.default", "Material.tmhusky" ]
+        },
+        "geometries": {
+          "Array.geos": [ "Geometry.default", "Geometry.tmhusky" ]
+        },
+				"textures": {
+					"Array.skins": [
+						"Texture.default",
+						
+						"Texture.tmhusky"
+					]
+				}
+			},
+      "geometry": "Array.geos[query.variant]",
+			"materials": [{
+				"*": "Array.materials[query.variant]"
+			}],
+			"textures": ["Array.skins[query.variant]"]
+		}
+	}
+}

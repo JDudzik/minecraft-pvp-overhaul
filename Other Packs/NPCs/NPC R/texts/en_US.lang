@@ -3,5 +3,5 @@
 ## Note, trailing spaces will NOT be trimmed. If you want room between the end of the string and the start of a
 ## comment on the same line, use TABs.
 item.spawn_egg.entity.npc:newcomermc.name=NewcomerMC
-item.spawn_egg.entity.npc:hidden_zone.name=Hidden Zone
+item.spawn_egg.entity.npc:hidden_region.name=Hidden Region
 item.spawn_egg.entity.npc:wave.name=WavePlayz
