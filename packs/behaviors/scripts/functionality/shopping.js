@@ -64,6 +64,47 @@ const kioskLocations = {
   '2018,8,3620': 'buy-spider-1',
   '2018,8,3622': 'buy-husk-3',
   '2018,8,3624': 'buy-stray-1',
+
+  // Offensive Gear
+  '2016,5,3821': 'buy-iron_sword-1',
+  '2014,5,3821': 'buy-diamond_sword-1',
+  '2013,5,3810': 'buy-crossbow-1',
+  '2011,5,3811': 'buy-bow-1',
+  '2016,5,3811': 'buy-arrow-8',
+  '2016,5,3813': 'buy-arrow_slow-8',
+  '2016,5,3815': 'buy-arrow_poison-8',
+  '2016,5,3817': 'buy-arrow_weakness-8',
+
+  // Defensive Gear
+  '2007,5,3805': 'buy-shield-1',
+  '2017,5,3803': 'buy-chainmail_helmet-1',
+  '2017,5,3806': 'buy-diamond_helmet-1',
+  '2015,5,3803': 'buy-chainmail_chestplate-1',
+  '2015,5,3806': 'buy-diamond_chestplate-1',
+  '2013,5,3803': 'buy-chainmail_leggings-1',
+  '2013,5,3806': 'buy-diamond_leggings-1',
+  '2011,5,3803': 'buy-chainmail_boots-1',
+  '2011,5,3807': 'buy-diamond_boots-1',
+  '2009,5,3804': 'buy-horsearmoriron-1',
+  '2009,5,3809': 'buy-horsearmordiamond-1',
+
+  // Tools
+  '2023,5,3803': 'buy-iron_axe-1',
+  '2026,5,3804': 'buy-diamond_axe-1',
+  '2020,5,3806': 'buy-iron_pickaxe-1',
+  '2020,5,3803': 'buy-diamond_pickaxe-1',
+  '2026,5,3809': 'buy-iron_shovel-1',
+  '2025,5,3808': 'buy-diamond_shovel-1',
+  '2027,5,3810': 'buy-iron_hoe-1',
+  '2028,5,3805': 'buy-diamond_hoe-1',
+
+  // Misc
+  '2020,5,3817': 'buy-snowball-16',
+  '2021,5,3821': 'buy-elytra-1',
+  '2020,5,3813': 'buy-phantom_membrane-1',
+  '2025,5,3820': 'buy-totem-1',
+  '2026,5,3818': 'buy-compass-1',
+  '2026,5,3814': 'buy-clock-1',
 }
 
 
